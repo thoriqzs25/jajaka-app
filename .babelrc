@@ -1,0 +1,22 @@
+{
+  "presets": ["module:metro-react-native-babel-preset"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@src": "./src"
+        }
+      }
+    ]
+  ]
+}
+// env: {
+//   development: {
+//     compact: false,
+//   },
+//   production: {
+//     plugins: ["transform-remove-console"]
+//   }
+// },

@@ -1,13 +1,42 @@
 // prettier-ignore
+// {
+//   "compilerOptions": {
+//     "baseUrl": "./",
+//     "paths": {
+//       "@src/*": ["src/*"],  
+//       "@customTypes/*": ["src/types/*"],
+//     },
+//     "skipLibCheck": true                                
+//   },
+// }
 {
   "extends": "@tsconfig/react-native/tsconfig.json", 
-  "compilerOptions": {    
-    "baseUrl": ".",
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "checkJs": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": ["es2017", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "outDir": "./",
     "paths": {
-        "@customTypes/*": ["src/types/*"],
-        "@src/*": ["src/*"],
-      },
-    "skipLibCheck": true                                
+      "@src/*": ["src/*"],
+      "@customTypes/*": ["src/types/*"],
+    },
+    "pretty": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "esnext"
   },
-  "include": ["src"]
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"],
+  "lib": ["esnext"]
 }
