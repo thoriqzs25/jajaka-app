@@ -1,13 +1,14 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '@src/screens/Main/Home';
+import TabNavigator from './TabNavigator';
 
-const Stack = createStackNavigator<Record<string, any>>();
+const Main = createStackNavigator<Record<string, any>>();
 
 const MainStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName='Home'>
-      <Stack.Screen name={'Home'} component={Home} options={{ headerShown: false }} />
-    </Stack.Navigator>
+    <Main.Navigator initialRouteName='Home'>
+      <Main.Screen name={'TabNavigator'} component={TabNavigator} options={{ headerShown: false }} />
+    </Main.Navigator>
   );
 };
 

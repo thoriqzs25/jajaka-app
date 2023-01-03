@@ -29,7 +29,11 @@
     "outDir": "./",
     "paths": {
       "@src/*": ["src/*"],
-      "@customTypes/*": ["src/types/*"],
+      "@cTypes/*": ["src/types/*"],
+      "@components/*": ["src/components/*"],
+      "@assets/*":[ "src/assets/*"],
+      "@screens/*":[ "src/screens/*"],
+      "@utils/*":[ "src/utils/*"]
     },
     "pretty": true,
     "resolveJsonModule": true,

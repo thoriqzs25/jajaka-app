@@ -1,5 +1,5 @@
-import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import colours from '@utils/colours';
+import { fontFamily } from '@utils/fonts';
 import { StyleSheet } from 'react-native';
 import { Text, View } from 'react-native';
 

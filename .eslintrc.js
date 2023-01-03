@@ -18,6 +18,7 @@ module.exports = {
         'no-undef': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
         'react/jsx-uses-react': 'off',
         'react/react-in-jsx-scope': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
@@ -27,7 +28,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        paths: ['src'],
+        paths: ['src', 'src/types', 'src/components', 'src/utils', 'src/screens', 'src/assets'],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },

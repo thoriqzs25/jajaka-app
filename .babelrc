@@ -6,7 +6,12 @@
       {
         "root": ["./"],
         "alias": {
-          "@src": "./src"
+          "@src": "./src",
+          "@components": "./src/components",
+          "@assets": "./src/assets",
+          "@cTypes": "./src/types", // 'c' for custom
+          "@screens": "./src/screens",
+          "@utils": "./src/utils"
         }
       }
     ]
