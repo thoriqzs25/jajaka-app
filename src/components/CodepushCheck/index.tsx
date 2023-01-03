@@ -13,6 +13,7 @@ const CodepushCheck = () => {
       if (hasUpdate) {
         codePush.sync({ installMode: codePush.InstallMode.ON_NEXT_RESTART });
       }
+      setLoading.false();
     } catch (e) {
       __DEV__ && console.log('Error line 16', e);
       setLoading.false();

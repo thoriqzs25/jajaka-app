@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '@screens/Main/Home';
+import CustomIcon from '@src/components/CustomIcons';
 import { fontFamily } from '@src/utils/fonts';
 import colours from '@utils/colours';
 import { FULL_TAB_BAR_HEIGHT, SCREEN_WIDTH } from '@utils/deviceDimensions';
@@ -25,13 +26,9 @@ const TabNavigator = () => {
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <TouchableOpacity style={styles.container as ViewStyle} onPress={() => navigation.navigate('Home')}>
-                {/* <View style={styles.icon as ViewStyle}> */}
-                {/* <CustomIcon
-                    name={'icon-tab-home-alt'}
-                    size={24}
-                    color={focused ? colours.primaryBlue : colours.primaryDust}
-                  /> */}
-                {/* </View> */}
+                <View style={styles.icon as ViewStyle}>
+                  <CustomIcon name={'bluetooth'} size={24} color={focused ? colours.blueNormal : colours.gray200} />
+                </View>
                 <Text style={[styles.text, { color: focused ? colours.blueNormal : colours.blueYoung }]}>Home</Text>
               </TouchableOpacity>
             ),

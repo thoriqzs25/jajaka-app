@@ -1,7 +1,7 @@
 import colours from '@src/utils/colours';
 import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import Icon, { IconType } from '@utils';
+import Icon, { IconType } from './utils';
 
 const CustomIcon = ({
   name,
