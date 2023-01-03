@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">jajaka</string>
+        <string name="CodePushDeploymentKey" modulConfig="true" translatable="false">smegzDoYLtSW-PZG7zFLkRYglf7pmxawAqGIh</string>
 </resources>
