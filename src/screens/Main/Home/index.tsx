@@ -15,7 +15,7 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   test: { color: colours.white, fontFamily: fontFamily.bold, fontSize: 40 },
-  container: { width: 200, height: 400, backgroundColor: colours.backgroundPrimary },
+  container: {},
 });
 
 export default Home;

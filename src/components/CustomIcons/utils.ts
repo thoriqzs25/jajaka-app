@@ -5,3 +5,27 @@ export type IconType =
   'bluetooth'
 
 export default createIconSetFromIcoMoon(icoMoonConfig, 'icomoon');
+
+
+// selection.json scripts
+// let data = {DATA}
+
+// const iconsArr = []
+
+// for (let i=0 ; i < data.icons.length; i++) {
+//   const val = data.icons[i].properties
+//   const prop = {
+//     properties: {
+//       name: val.name,
+//       code: val.code
+//     }
+//   }
+//   iconsArr.push(prop)
+// }
+
+// const res = {
+//   icons: iconsArr
+// }
+
+// console.log(res)
+// document.querySelector('#header').innerHTML = JSON.stringify(res)

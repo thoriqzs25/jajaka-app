@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.json",
-    "build": "cd android && ./gradlew clean && NODE_OPTIONS= ./gradlew assembleRelease"
+    "build": "cd android && ./gradlew clean && NODE_OPTIONS= ./gradlew assembleRelease",
+    "re:android": "cd android && ./gradlew clean && cd .. && yarn android"
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.2.8",
@@ -30,6 +31,7 @@
     "react-native-screens": "^3.18.2",
     "react-native-splash-screen": "^3.3.0",
     "react-native-status-bar-height": "^2.6.0",
+    "react-native-vector-icons": "^9.2.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0"
   },

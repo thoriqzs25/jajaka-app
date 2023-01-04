@@ -4,6 +4,7 @@ import SplashScreen from 'react-native-splash-screen';
 import AppComponent from '@src/screens';
 import { createStackNavigator } from '@react-navigation/stack';
 import CodePush from 'react-native-code-push';
+import colours from '@src/utils/colours';
 
 // ts-ignore
 const Test = createStackNavigator();
@@ -27,6 +28,7 @@ let App = () => {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
+    backgroundColor: colours.backgroundPrimary,
   },
 });
 
