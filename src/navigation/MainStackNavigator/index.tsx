@@ -6,7 +6,7 @@ const Main = createStackNavigator<Record<string, any>>();
 
 const MainStackNavigator = () => {
   return (
-    <Main.Navigator initialRouteName='Home'>
+    <Main.Navigator initialRouteName='TabNavigator'>
       <Main.Screen name={'TabNavigator'} component={TabNavigator} options={{ headerShown: false }} />
     </Main.Navigator>
   );

@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: 5,
   },
-  title: { fontFamily: fontFamily.regular, fontSize: 15, lineHeight: 22, color: colours.blueOld },
+  title: { fontFamily: fontFamily.regular, fontSize: 15, lineHeight: 22, color: colours.white },
   status: {
     color: colours.white,
     textAlign: 'center',

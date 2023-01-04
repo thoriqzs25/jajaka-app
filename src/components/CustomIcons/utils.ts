@@ -1,9 +1,7 @@
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icoMoonConfig from '@src/assets/fonts/icons/selection.json';
 
-export type IconType =
-  'bluetooth'
-
+export type IconType = 'home1' | 'user1' | 'notifications-outline'
 export default createIconSetFromIcoMoon(icoMoonConfig, 'icomoon');
 
 

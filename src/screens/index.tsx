@@ -22,7 +22,7 @@ const AppComponent = () => {
   return (
     <View style={styles.screenContainer}>
       <NavigationContainer theme={appTheme}>
-        <StatusBar barStyle={'light-content'} />
+        <StatusBar barStyle={'light-content'} backgroundColor={colours.backgroundPrimary} />
         {/* <ErrorBox visible={message !== null} title={''} content={message ?? ''} onClose={handleInitError} /> */}
         {/* <ErrorModal /> */}
         <CodepushCheck />
