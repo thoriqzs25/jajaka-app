@@ -37,35 +37,38 @@ const FeatureHighlights = () => {
 
 const styles = StyleSheet.create({
   hightlightContainer: {
+    marginTop: 8,
+    marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',
-    marginVertical: 20,
   },
   cardContainer: {
-    width: 152,
-    height: 200,
+    width: 172,
+    // height: 230,
     color: colours.white,
     borderRadius: 8,
     marginHorizontal: 6,
-    paddingVertical: 8,
+    paddingVertical: 12,
     paddingHorizontal: 12,
     alignContent: 'center',
     justifyContent: 'center',
     backgroundColor: colours.blueNormal,
   },
   image: {
-    width: 128,
-    height: 128,
+    width: 140,
+    height: 140,
+    marginBottom: 12,
   },
   title: {
     fontFamily: fontFamily.bold,
-    fontSize: 16,
-    lineHeight: 20,
+    fontSize: 20,
+    lineHeight: 24,
+    marginBottom: 8,
   },
   desc: {
     fontFamily: fontFamily.regular,
-    fontSize: 12,
-    lineHeight: 16,
+    fontSize: 16,
+    lineHeight: 20,
   },
 });
 

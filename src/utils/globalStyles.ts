@@ -1,14 +1,17 @@
 import { StyleSheet } from 'react-native';
 
+const ph = 24
+const pt = 12
+
 export const globalStyle = StyleSheet.create({
   padding: {
-    paddingHorizontal: 16,
-    paddingTop: 12,
+    paddingHorizontal: ph,
+    paddingTop: pt,
   },
   paddingHorizontal: {
-    paddingHorizontal: 16,
+    paddingHorizontal: ph,
   },
   paddingTop: {
-    paddingTop: 12,
+    paddingTop: pt,
   },
 });

@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    backgroundColor: colours.backgroundPrimary,
+    paddingVertical: 12,
   },
   leftContainer: { flexDirection: 'row', alignItems: 'center' },
   rightContainer: {
