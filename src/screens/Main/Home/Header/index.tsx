@@ -1,8 +1,9 @@
 import CustomIcon from '@src/components/CustomIcons';
 import ImageView from '@src/components/ImageView';
+import { navigate } from '@src/navigation';
 import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View } from 'react-native';
 
 const HomeHeader = () => {
@@ -18,9 +19,16 @@ const HomeHeader = () => {
           {name}
         </Text>
       </View>
-      <View style={styles.rightContainer}>
-        <CustomIcon name={'notifications-outline'} size={16} color={colours.blueOld} style={{ padding: 8 }} />
-        {incomingNotif && <View style={styles.redDot} />}
+      <View>
+        <TouchableOpacity
+          activeOpacity={0.75}
+          style={styles.rightContainer}
+          onPress={() => {
+            navigate('Notification');
+          }}>
+          <CustomIcon name={'notifications-outline'} size={16} color={colours.blueOld} style={{ padding: 8 }} />
+          {incomingNotif && <View style={styles.redDot} />}
+        </TouchableOpacity>
       </View>
     </View>
   );

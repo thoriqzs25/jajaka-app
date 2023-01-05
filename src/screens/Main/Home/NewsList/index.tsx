@@ -1,8 +1,12 @@
 import CustomIcon from '@components/CustomIcons';
 import ImageView from '@components/ImageView';
+import { useNavigation } from '@react-navigation/native';
+import NewsCard from '@src/components/Renderer/newsCard';
+import { navigate } from '@src/navigation';
 import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const DATA = [
   {
@@ -43,33 +47,21 @@ const DATA = [
 ];
 
 const NewsList = () => {
-  const _renderItem = ({ item }: { item: any }) => {
-    return (
-      <View style={styles.cardContainer}>
-        <ImageView name={'news-dummy-image'} style={styles.image} />
-        <View style={styles.textContainer}>
-          <Text style={[styles.regular, styles.date]}>{item.date}</Text>
-          <Text style={styles.title} numberOfLines={2} ellipsizeMode='tail'>
-            {item.title}
-          </Text>
-          <Text style={[styles.regular, styles.desc]} numberOfLines={2} ellipsizeMode='tail'>
-            {item.desc}
-          </Text>
-        </View>
-      </View>
-    );
-  };
-
   return (
     <View style={styles.listContainer}>
       <View style={styles.headerContainer}>
         <Text style={styles.leftText}>📰 Berita UMKM</Text>
-        <View style={styles.more}>
+        <TouchableOpacity
+          style={styles.more}
+          activeOpacity={0.75}
+          onPress={() => {
+            navigate('NewsPage');
+          }}>
           <Text style={styles.rightText}>Lihat Selengkapnya</Text>
           <CustomIcon name={'cheveron-right'} color={colours.blueYoung} size={20} />
-        </View>
+        </TouchableOpacity>
       </View>
-      <FlatList data={DATA} renderItem={_renderItem} keyExtractor={(item, index) => item.id.toString()} />
+      <FlatList data={DATA} renderItem={NewsCard} keyExtractor={(item, index) => item.id.toString()} />
     </View>
   );
 };
@@ -99,42 +91,6 @@ const styles = StyleSheet.create({
     marginRight: 2,
     color: colours.blueYoung,
     fontFamily: fontFamily.bold,
-  },
-  cardContainer: {
-    borderRadius: 8,
-    marginBottom: 8,
-    flexDirection: 'row',
-    backgroundColor: colours.backgroundClickable,
-  },
-  image: {
-    width: 120,
-    height: 120,
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
-  },
-  textContainer: {
-    padding: 8,
-    width: 244,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  regular: {
-    fontFamily: fontFamily.regular,
-    fontSize: 14,
-    lineHeight: 18,
-    color: colours.gray300,
-  },
-  title: {
-    fontFamily: fontFamily.bold,
-    fontSize: 16,
-    lineHeight: 20,
-    color: colours.white,
-  },
-  date: {
-    color: colours.gray300,
-  },
-  desc: {
-    color: colours.white,
   },
 });
 

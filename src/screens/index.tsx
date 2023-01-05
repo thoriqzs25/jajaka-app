@@ -5,6 +5,7 @@ import SwitchStackNavigator from '@src/navigation/SwitchStackNavigator';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CodepushCheck from '@src/components/CodepushCheck';
 import colours from '@src/utils/colours';
+import { navigationRef } from '@src/navigation';
 
 const Test = createNativeStackNavigator();
 
@@ -21,7 +22,7 @@ const appTheme = {
 const AppComponent = () => {
   return (
     <View style={styles.screenContainer}>
-      <NavigationContainer theme={appTheme}>
+      <NavigationContainer theme={appTheme} ref={navigationRef}>
         <StatusBar barStyle={'light-content'} backgroundColor={colours.backgroundPrimary} />
         {/* <ErrorBox visible={message !== null} title={''} content={message ?? ''} onClose={handleInitError} /> */}
         {/* <ErrorModal /> */}

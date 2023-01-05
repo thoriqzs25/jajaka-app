@@ -17,7 +17,6 @@ const content = [
 
 const Home = () => {
   const _renderItem = ({ item }: { item: any }) => {
-    console.log('line 16', item.title);
     switch (item.title) {
       case 'HomeHeader':
         return <HomeHeader />;
@@ -30,14 +29,16 @@ const Home = () => {
     }
   };
   return (
-    <FlatList
-      data={content}
-      renderItem={_renderItem}
-      keyExtractor={(item, index) => item.id.toString()}
-      contentContainerStyle={[globalStyle.padding]}
-      stickyHeaderIndices={[0]}
-      stickyHeaderHiddenOnScroll={true}
-    />
+    <>
+      <FlatList
+        data={content}
+        renderItem={_renderItem}
+        keyExtractor={(item, index) => item.id.toString()}
+        contentContainerStyle={[globalStyle.padding]}
+        stickyHeaderIndices={[0]}
+        stickyHeaderHiddenOnScroll={true}
+      />
+    </>
   );
 };
 
