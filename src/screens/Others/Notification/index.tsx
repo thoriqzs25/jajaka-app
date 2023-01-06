@@ -69,6 +69,30 @@ const DATA = [
     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
+  {
+    id: 12,
+    date: '06-11-2022',
+    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    id: 13,
+    date: '06-11-2022',
+    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    id: 14,
+    date: '06-11-2022',
+    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    id: 15,
+    date: '06-11-2022',
+    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
 ];
 
 const Notification = () => {

@@ -11,7 +11,7 @@ const notificationCard = ({ item }: { item: any }) => {
       <TouchableOpacity activeOpacity={0.75}>
         <View style={styles.cardContainer}>
           <View style={styles.iconContainer}>
-            <CustomIcon name={'announcement'} style={styles.icon} size={24} color={colours.white} />
+            <CustomIcon name={'bullhorn'} style={styles.icon} size={24} color={colours.white} />
           </View>
           <View style={styles.textContainer}>
             <View style={styles.topContainer}>
@@ -31,6 +31,7 @@ const notificationCard = ({ item }: { item: any }) => {
 };
 const styles = StyleSheet.create({
   cardContainer: {
+    padding: 8,
     borderRadius: 8,
     marginBottom: 8,
     flexDirection: 'row',
@@ -46,7 +47,9 @@ const styles = StyleSheet.create({
   },
   icon: {},
   textContainer: {
-    padding: 8,
+    flex: 1,
+    paddingLeft: 8,
+    alignSelf: 'flex-start',
   },
   topContainer: {
     flexDirection: 'row',
@@ -58,10 +61,13 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   title: {
-    fontFamily: fontFamily.bold,
+    width: 100,
     fontSize: 14,
     lineHeight: 18,
+    marginRight: 8,
+    flex: 1,
     color: colours.white,
+    fontFamily: fontFamily.bold,
   },
   date: {
     color: colours.gray300,
