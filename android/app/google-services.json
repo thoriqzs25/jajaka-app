@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "982948409074",
+    "project_id": "jajaka-app",
+    "storage_bucket": "jajaka-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982948409074:android:de2f42a66f41e6a8d4ea6b",
+        "android_client_info": {
+          "package_name": "com.jajaka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982948409074-a3mi5fi2kf6nlhsid6o60am10ecu9rro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jajaka",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "982948409074-aukespi0p1evv5k2v1ku5nocrlalv7hi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ9kZunRsiQ4tn18fQUKOqp0Z2WesCpoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982948409074-aukespi0p1evv5k2v1ku5nocrlalv7hi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
