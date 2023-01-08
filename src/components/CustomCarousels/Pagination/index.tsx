@@ -19,15 +19,10 @@ const Pagination = ({
             <Pressable
               key={idx.toString()}
               onPress={() => {
-                console.log('index line 20', index);
                 paginationClick(idx);
               }}>
               <Animated.View
-                style={[
-                  styles.dot,
-                  { backgroundColor: idx === index ? colours.yellowNormal : colours.gray300 },
-                  // { backgroundColor },
-                ]}
+                style={[styles.dot, { backgroundColor: idx === index ? colours.yellowNormal : colours.gray300 }]}
               />
             </Pressable>
           );

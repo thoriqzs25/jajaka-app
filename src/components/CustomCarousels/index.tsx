@@ -10,21 +10,21 @@ import Pagination from './Pagination';
 const DATA = [
   {
     id: 1,
-    image: 'character-2-logo',
+    image: 'character-1-logo',
     title: 'Temukan ide usaha baru untuk UMKM',
-    color: 'yellow',
+    // color: 'yellow',
   },
   {
     id: 2,
     image: 'character-2-logo',
-    title: 'Temukan ide usaha baru untuk UMKM',
-    color: 'green',
+    title: 'Tentukan usaha yang tepat dengan sasaran',
+    // color: 'green',
   },
   {
     id: 3,
-    image: 'character-2-logo',
-    title: 'Temukan ide usaha baru untuk UMKM',
-    color: 'blue',
+    image: 'character-3-logo',
+    title: 'Pembimbingan konsultasi dengan para ahli',
+    // color: 'blue',
   },
 ];
 
@@ -70,7 +70,7 @@ const CustomCarousels = () => {
       } else {
         handleScrollToIndex(0);
       }
-    }, 7000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [index]);
 

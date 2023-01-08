@@ -8,8 +8,12 @@ export const imageSource = (name: string) => {
       return require('@src/assets/images/ngajarkeun-logo.webp');
     case 'news-dummy-image':
       return require('@src/assets/images/news-dummy-image.webp');    
+    case 'character-1-logo':
+      return require('@src/assets/images/character-1-logo.webp');    
     case 'character-2-logo':
       return require('@src/assets/images/character-2-logo.webp');    
+    case 'character-3-logo':
+      return require('@src/assets/images/character-3-logo.webp');    
     default:
       return undefined;
   }

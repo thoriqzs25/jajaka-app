@@ -1,16 +1,20 @@
 import CustomCarousels from '@src/components/CustomCarousels';
 import ImageView from '@src/components/ImageView';
 import { globalStyle } from '@src/utils/globalStyles';
-import { StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
+import LoginForm from './LoginForm';
 
 const Login = () => {
   return (
-    <View style={styles.pageContainer}>
-      <View style={[styles.header, globalStyle.padding]}>
-        <ImageView name={'logo'} style={styles.logo} />
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'}>
+      <View style={styles.pageContainer}>
+        <View style={[styles.header, globalStyle.padding]}>
+          <ImageView name={'logo'} style={styles.logo} />
+        </View>
+        <CustomCarousels />
+        <LoginForm />
       </View>
-      <CustomCarousels />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

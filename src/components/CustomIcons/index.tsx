@@ -1,6 +1,6 @@
 import colours from '@utils/colours';
 import React from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, ViewStyle } from 'react-native';
 import Icon, { IconType } from '@utils/icons';
 
 const CustomIcon = ({
@@ -8,13 +8,19 @@ const CustomIcon = ({
   size = 16,
   color = colours.white,
   style,
+  onPress,
 }: {
   name: IconType;
   size?: number;
   color?: string;
   style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 }) => {
-  return <Icon name={name} size={size} color={color} style={style} />;
+  return (
+    <Pressable onPress={onPress} style={style}>
+      <Icon name={name} size={size} color={color} />
+    </Pressable>
+  );
 };
 
 export default CustomIcon;
