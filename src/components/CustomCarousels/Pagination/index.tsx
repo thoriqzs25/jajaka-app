@@ -33,8 +33,8 @@ const Pagination = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     marginTop: 16,
+    flexDirection: 'row',
     justifyContent: 'center',
   },
   dot: {

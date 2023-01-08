@@ -39,7 +39,12 @@ const TextField = ({
         <Text style={styles.labelTitle}>{title}</Text>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput placeholder={placeholderText} ref={inputRef} secureTextEntry={secureInput && !visible} />
+        <TextInput
+          placeholder={placeholderText}
+          ref={inputRef}
+          secureTextEntry={secureInput && !visible}
+          style={[styles.inputText, { width: secureInput ? '83%' : '100%' }]}
+        />
         {secureInput && (
           <CustomIcon
             name={!visible ? 'eye' : 'eye-blocked'}
@@ -68,16 +73,16 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     borderRadius: 12,
     paddingHorizontal: 8,
-    position: 'relative',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     fontFamily: fontFamily.regular,
     backgroundColor: colours.backgroundClickable,
   },
+  inputText: {},
   icon: {
-    width: 30,
-    right: 10,
     height: 30,
-    position: 'absolute',
+    width: '17%',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -44,7 +44,7 @@ const AuthScreen = () => {
 const styles = StyleSheet.create({
   pageContainer: {},
   header: {
-    marginBottom: 24,
+    marginBottom: 16,
   },
   logo: {
     width: 44,

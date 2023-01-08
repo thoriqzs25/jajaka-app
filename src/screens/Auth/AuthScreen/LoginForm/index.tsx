@@ -10,7 +10,7 @@ const LoginForm = () => {
     <View style={[styles.sectionContainer, globalStyle.padding]}>
       <Text style={styles.sectionTitle}>Login</Text>
       <View style={styles.formContainer}>
-        <TextField title={'E-mail'} autoFocus placeholderText={'Masukkan e-mail'} style={{ marginBottom: 12 }} />
+        <TextField title={'E-mail'} placeholderText={'Masukkan e-mail'} style={{ marginBottom: 12 }} />
         <TextField title={'Password'} placeholderText={'Masukkan password'} secureInput />
       </View>
     </View>
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionTitle: {
-    fontSize: 40,
-    lineHeight: 44,
+    fontSize: 32,
+    lineHeight: 36,
     marginBottom: 8,
     color: colours.white,
     fontFamily: fontFamily.bold,

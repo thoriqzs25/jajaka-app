@@ -6,26 +6,24 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const SigninForm = () => {
   return (
-    <View style={[styles.sectionContainer, globalStyle.padding]}>
+    <View style={[styles.sectionContainer, globalStyle.paddingHorizontal]}>
       <Text style={styles.sectionTitle}>Sign Up</Text>
       <View style={styles.formContainer}>
-        <TextField title={'E-mail'} autoFocus placeholderText={'Masukkan e-mail'} style={{ marginBottom: 12 }} />
-        <View style={styles.namaHp}>
-          <TextField
-            title={'Nama'}
-            placeholderText={'Masukkan nama'}
-            style={[styles.input, { backgroundColor: colours.yellowNormal }]}
-          />
-          {/* <View style={styles.divider} /> */}
-          <TextField
-            title={'No. HP'}
-            placeholderText={'Masukkan nomor hp'}
-            style={[styles.input, { backgroundColor: colours.greenNormal }]}
-          />
+        <TextField title={'E-mail'} placeholderText={'Masukkan e-mail'} style={{ marginBottom: 12 }} />
+        <View style={[styles.dualInput, { marginBottom: 12 }]}>
+          <TextField title={'Nama'} placeholderText={'Masukkan nama'} style={[styles.input]} />
+          <View style={styles.divider} />
+          <TextField title={'No. HP'} placeholderText={'Masukkan nomor hp'} style={[styles.input]} />
         </View>
-        <View>
-          <TextField title={'Password'} placeholderText={'Masukkan password'} secureInput />
-          <TextField title={'Konfirmasi Password'} placeholderText={'Masukkan password'} secureInput />
+        <View style={styles.dualInput}>
+          <TextField title={'Password'} placeholderText={'Masukkan password'} secureInput style={[styles.input]} />
+          <View style={styles.divider} />
+          <TextField
+            title={'Konfirmasi Password'}
+            placeholderText={'Masukkan password'}
+            secureInput
+            style={[styles.input]}
+          />
         </View>
       </View>
     </View>
@@ -36,29 +34,26 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionTitle: {
-    fontSize: 40,
-    lineHeight: 44,
+    fontSize: 32,
+    lineHeight: 36,
     marginBottom: 8,
     color: colours.white,
     fontFamily: fontFamily.bold,
   },
   formContainer: {
+    padding: 12,
     borderRadius: 12,
     backgroundColor: colours.backgroundSecondary,
-    padding: 12,
   },
-  namaHp: {
-    marginBottom: 12,
+  dualInput: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: colours.redNormal,
   },
   divider: {
-    // width: 8,
-
-    backgroundColor: colours.blueNormal,
+    width: '2%',
   },
-  input: {},
+  input: {
+    width: '49%',
+  },
 });
 
 export default SigninForm;

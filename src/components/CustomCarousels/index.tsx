@@ -29,7 +29,7 @@ const DATA = [
 ];
 
 const CustomCarousels = () => {
-  const [index, setIndex] = useState<number>(2);
+  const [index, setIndex] = useState<number>(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const flatListRef = useRef<FlatList>(null);
   const totalIndex = DATA.length - 1;
@@ -99,8 +99,15 @@ const CustomCarousels = () => {
         keyExtractor={(item, _) => item.id.toString()}
         showsHorizontalScrollIndicator={false}
         onScroll={handleOnScroll}
+        initialScrollIndex={index}
         onViewableItemsChanged={handleOnViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
+        onScrollToIndexFailed={(info) => {
+          const wait = new Promise((resolve) => setTimeout(resolve, 500));
+          wait.then(() => {
+            flatListRef.current?.scrollToIndex({ index: info.index, animated: true });
+          });
+        }}
       />
       <Pagination data={DATA} index={index} paginationClick={handleScrollToIndex} />
     </>
