@@ -1,7 +1,8 @@
-import CustomIcon from '@src/components/CustomIcons';
+import CustomIcon from '@components/CustomIcons';
 import useBoolean from '@src/hooks/useBoolean';
-import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import { UseBoolean } from '@cTypes/hooks/UseBoolean';
+import colours from '@utils/colours';
+import { fontFamily } from '@utils/fonts';
 import { StyleProp, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -9,15 +10,24 @@ const CustomCheckbox = ({
   style,
   boxStyle,
   label,
+  setValue,
 }: {
   style?: StyleProp<any>;
   boxStyle?: StyleProp<any>;
   label?: string;
+  setValue: UseBoolean;
 }) => {
   const { value: active, setValue: setActive } = useBoolean(false);
 
   return (
-    <TouchableOpacity activeOpacity={0.75} onPress={() => setActive.toggle()} style={[styles.container, style]}>
+    <TouchableOpacity
+      activeOpacity={0.75}
+      onPress={() => {
+        setActive.toggle();
+        if (active) setValue.true();
+        else setValue.false();
+      }}
+      style={[styles.container, style]}>
       <View style={[styles.boxContainer, boxStyle]}>{active && <CustomIcon name={'checkmark1'} size={12} />}</View>
       <View>
         <Text style={styles.label}>Saya telah setuju dengan syarat dan ketentuan.</Text>

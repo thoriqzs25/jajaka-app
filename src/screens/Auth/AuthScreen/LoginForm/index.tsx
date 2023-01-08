@@ -5,13 +5,27 @@ import { fontFamily } from '@src/utils/fonts';
 import { globalStyle } from '@src/utils/globalStyles';
 import { StyleSheet, Text, View } from 'react-native';
 
-const LoginForm = () => {
+const LoginForm = ({
+  email,
+  setEmail,
+  setPassword,
+}: {
+  email?: string;
+  setEmail: (val: string) => void;
+  setPassword: (val: string) => void;
+}) => {
   return (
     <View style={[styles.sectionContainer, globalStyle.padding]}>
       <Text style={styles.sectionTitle}>Login</Text>
       <View style={styles.formContainer}>
-        <TextField title={'E-mail'} placeholderText={'Masukkan e-mail'} style={{ marginBottom: 12 }} />
-        <TextField title={'Password'} placeholderText={'Masukkan password'} secureInput />
+        <TextField
+          title={'E-mail'}
+          placeholderText={'Masukkan e-mail'}
+          style={{ marginBottom: 12 }}
+          setValue={setEmail}
+          value={email}
+        />
+        <TextField title={'Password'} placeholderText={'Masukkan password'} secureInput setValue={setPassword} />
       </View>
     </View>
   );

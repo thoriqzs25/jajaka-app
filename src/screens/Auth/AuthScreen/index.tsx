@@ -5,6 +5,7 @@ import useBoolean from '@src/hooks/useBoolean';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
 import { globalStyle } from '@src/utils/globalStyles';
+import { useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
 import LoginForm from './LoginForm';
 import SigninForm from './SigninForm';
@@ -12,6 +13,19 @@ import SigninForm from './SigninForm';
 const AuthScreen = () => {
   // user if already have registered account
   const { value: user, setValue: setUser } = useBoolean(true);
+  const { value: termAggreement, setValue: setTerm } = useBoolean(true);
+
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [phoneNum, setPhoneNum] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [passwordConf, setPasswordConf] = useState<string>('');
+
+  const handleSubmit = () => {
+    if (email === 'thariqzs@yahoo.com' && password === 'thoriqganteng123') {
+      console.log('success login line 22');
+    }
+  };
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'}>
@@ -20,9 +34,23 @@ const AuthScreen = () => {
           <ImageView name={'logo'} style={styles.logo} />
         </View>
         <CustomCarousels />
-        {user ? <LoginForm /> : <SigninForm />}
+        {user ? (
+          <LoginForm setEmail={setEmail} setPassword={setPassword} email={email} />
+        ) : (
+          <SigninForm
+            name={name}
+            email={email}
+            phoneNum={phoneNum}
+            setName={setName}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            setPhoneNum={setPhoneNum}
+            setPasswordConf={setPasswordConf}
+            setTerm={setTerm}
+          />
+        )}
         <View style={[globalStyle.paddingHorizontal]}>
-          <CustomButton title={'Login'} style={styles.button} />
+          <CustomButton title={user ? 'Login' : 'Sign Up'} style={styles.button} onPress={handleSubmit} />
         </View>
         <View style={styles.footer}>
           <Text style={styles.footerTitle}>

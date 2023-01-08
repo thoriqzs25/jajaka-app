@@ -12,12 +12,16 @@ const TextField = ({
   placeholderText,
   style,
   secureInput,
+  setValue,
+  value,
 }: {
   title?: string;
   autoFocus?: boolean;
   placeholderText?: string;
   style?: StyleProp<any>;
   secureInput?: boolean;
+  setValue: (val: string) => void;
+  value?: string;
 }) => {
   const { value: active, setValue: setActive } = useBoolean(false);
   const { value: visible, setValue: setVisible } = useBoolean(false);
@@ -43,7 +47,9 @@ const TextField = ({
           placeholder={placeholderText}
           ref={inputRef}
           secureTextEntry={secureInput && !visible}
-          style={[styles.inputText, { width: secureInput ? '83%' : '100%' }]}
+          onChangeText={(val) => setValue(val)}
+          style={[styles.inputText, { width: secureInput ? '86%' : '100%' }]}
+          value={value ?? value}
         />
         {secureInput && (
           <CustomIcon
@@ -82,7 +88,7 @@ const styles = StyleSheet.create({
   inputText: {},
   icon: {
     height: 30,
-    width: '17%',
+    width: '12%',
     alignItems: 'center',
     justifyContent: 'center',
   },

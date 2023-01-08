@@ -108,6 +108,7 @@ const CustomCarousels = () => {
             flatListRef.current?.scrollToIndex({ index: info.index, animated: true });
           });
         }}
+        decelerationRate={'normal'}
       />
       <Pagination data={DATA} index={index} paginationClick={handleScrollToIndex} />
     </>

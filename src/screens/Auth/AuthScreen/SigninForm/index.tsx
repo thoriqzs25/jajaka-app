@@ -1,33 +1,79 @@
-import CustomCheckbox from '@src/components/Field/CustomCheckbox';
-import TextField from '@src/components/Field/TextField';
-import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
-import { globalStyle } from '@src/utils/globalStyles';
+import CustomCheckbox from '@components/Field/CustomCheckbox';
+import TextField from '@components/Field/TextField';
+import { UseBoolean } from '@cTypes/hooks/UseBoolean';
+import colours from '@utils/colours';
+import { fontFamily } from '@utils/fonts';
+import { globalStyle } from '@utils/globalStyles';
 import { StyleSheet, Text, View } from 'react-native';
 
-const SigninForm = () => {
+const SigninForm = ({
+  name,
+  email,
+  phoneNum,
+  setName,
+  setEmail,
+  setPassword,
+  setPhoneNum,
+  setPasswordConf,
+  setTerm,
+}: {
+  name?: string;
+  email?: string;
+  phoneNum?: string;
+  setName: (val: string) => void;
+  setEmail: (val: string) => void;
+  setPassword: (val: string) => void;
+  setPhoneNum: (val: string) => void;
+  setPasswordConf: (val: string) => void;
+  setTerm: UseBoolean;
+}) => {
   return (
     <View style={[styles.sectionContainer, globalStyle.paddingHorizontal]}>
       <Text style={styles.sectionTitle}>Sign Up</Text>
       <View style={styles.formContainer}>
-        <TextField title={'E-mail'} placeholderText={'Masukkan e-mail'} style={{ marginBottom: 12 }} />
+        <TextField
+          title={'E-mail'}
+          placeholderText={'Masukkan e-mail'}
+          style={{ marginBottom: 12 }}
+          setValue={setEmail}
+          value={email}
+        />
         <View style={[styles.dualInput, { marginBottom: 12 }]}>
-          <TextField title={'Nama'} placeholderText={'Masukkan nama'} style={[styles.input]} />
+          <TextField
+            title={'Nama'}
+            placeholderText={'Masukkan nama'}
+            style={[styles.input]}
+            setValue={setName}
+            value={name}
+          />
           <View style={styles.divider} />
-          <TextField title={'No. HP'} placeholderText={'Masukkan nomor hp'} style={[styles.input]} />
+          <TextField
+            title={'No. HP'}
+            placeholderText={'Masukkan nomor hp'}
+            style={[styles.input]}
+            setValue={setPhoneNum}
+            value={phoneNum}
+          />
         </View>
         <View style={styles.dualInput}>
-          <TextField title={'Password'} placeholderText={'Masukkan password'} secureInput style={[styles.input]} />
+          <TextField
+            title={'Password'}
+            placeholderText={'Masukkan password'}
+            secureInput
+            style={[styles.input]}
+            setValue={setPassword}
+          />
           <View style={styles.divider} />
           <TextField
             title={'Konfirmasi Password'}
             placeholderText={'Masukkan password'}
             secureInput
             style={[styles.input]}
+            setValue={setPasswordConf}
           />
         </View>
       </View>
-      <CustomCheckbox />
+      <CustomCheckbox setValue={setTerm} />
     </View>
   );
 };
