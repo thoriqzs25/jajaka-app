@@ -1,7 +1,8 @@
 import { SwitchStackParamList } from '@cTypes/navigation/types';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TransitionPresets } from '@react-navigation/stack';
-import { useEffect } from 'react';
+import { RootState } from '@src/types/states/root';
+import { useSelector } from 'react-redux';
 import AuthStackNavigator from '../AuthStackNavigator';
 import MainStackNavigator from '../MainStackNavigator';
 
@@ -18,16 +19,17 @@ const noGesturesAndNoHeaderAndAnimateFromTheSideOptions = {
 };
 
 const SwitchStackNavigator = () => {
-  const user = false;
+  // const user = false;
+  const { loggedIn } = useSelector((state: RootState) => state.auth);
 
   return (
-    <Switch.Navigator initialRouteName='MainScreen'>
-      {user ? (
-        <Switch.Screen name={'MainScreen'} options={{ headerShown: false }}>
+    <Switch.Navigator initialRouteName='MainStackScreen'>
+      {loggedIn ? (
+        <Switch.Screen name={'MainStackScreen'} options={{ headerShown: false }}>
           {() => <MainStackNavigator />}
         </Switch.Screen>
       ) : (
-        <Switch.Screen name={'AuthScreen'} options={{ headerShown: false }}>
+        <Switch.Screen name={'AuthStackScreen'} options={{ headerShown: false }}>
           {() => <AuthStackNavigator />}
         </Switch.Screen>
       )}

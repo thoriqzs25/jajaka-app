@@ -1,22 +1,21 @@
 import ImageView from '@src/components/ImageView';
+import { userLogout } from '@src/redux/actions/auth';
+import { RootState } from '@src/types/states/root';
 import colours from '@src/utils/colours';
 import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import { fontFamily } from '@src/utils/fonts';
 import { StyleSheet, Text } from 'react-native';
 import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
 
 const FeatureHighlights = () => {
+  const { email } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+
   const DATA = [
-    {
-      image: 'bongbolongan-logo',
-      title: 'Bongbolongan',
-      desc: 'Temukan Potensi ide UMKM!',
-    },
-    {
-      image: 'ngajarkeun-logo',
-      title: 'Ngajarkeun',
-      desc: 'Dapatkan bimbingan perintis UMKM!',
-    },
+    { id: 1, image: 'bongbolongan-logo', title: 'Bongbolongan', desc: 'Temukan Potensi ide UMKM!' },
+    { id: 2, image: 'ngajarkeun-logo', title: 'Ngajarkeun', desc: 'Dapatkan bimbingan perintis UMKM!' },
   ];
 
   return (
@@ -24,11 +23,18 @@ const FeatureHighlights = () => {
       {DATA &&
         DATA.map((data, idx) => {
           return (
-            <View style={styles.cardContainer}>
+            <TouchableOpacity
+              activeOpacity={0.75}
+              style={styles.cardContainer}
+              key={data.id}
+              onPress={() => {
+                if (data.id === 1) console.log('line 20', email);
+                else dispatch(userLogout());
+              }}>
               <ImageView name={data.image} style={styles.image} />
               <Text style={styles.title}>{data.title}</Text>
               <Text style={styles.desc}>{data.desc}</Text>
-            </View>
+            </TouchableOpacity>
           );
         })}
     </View>
@@ -44,7 +50,6 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: 172,
-    // height: 230,
     color: colours.white,
     borderRadius: 8,
     marginHorizontal: 6,
@@ -67,8 +72,8 @@ const styles = StyleSheet.create({
   },
   desc: {
     fontFamily: fontFamily.regular,
-    fontSize: 16,
-    lineHeight: 20,
+    fontSize: 14,
+    lineHeight: 18,
   },
 });
 

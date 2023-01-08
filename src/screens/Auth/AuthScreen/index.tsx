@@ -2,16 +2,20 @@ import CustomCarousels from '@src/components/CustomCarousels';
 import CustomButton from '@src/components/Field/CustomButton';
 import ImageView from '@src/components/ImageView';
 import useBoolean from '@src/hooks/useBoolean';
+import { userLogin } from '@src/redux/actions/auth';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
 import { globalStyle } from '@src/utils/globalStyles';
 import { useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import LoginForm from './LoginForm';
 import SigninForm from './SigninForm';
 
 const AuthScreen = () => {
   // user if already have registered account
+  const dispatch = useDispatch();
+
   const { value: user, setValue: setUser } = useBoolean(true);
   const { value: termAggreement, setValue: setTerm } = useBoolean(true);
 
@@ -22,8 +26,9 @@ const AuthScreen = () => {
   const [passwordConf, setPasswordConf] = useState<string>('');
 
   const handleSubmit = () => {
-    if (email === 'thariqzs@yahoo.com' && password === 'thoriqganteng123') {
+    if (email === '123' && password === '123') {
       console.log('success login line 22');
+      dispatch(userLogin({ token: 'abcefghi', email: email }));
     }
   };
 

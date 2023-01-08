@@ -19,17 +19,16 @@ const HomeHeader = () => {
           {name}
         </Text>
       </View>
-      <View>
-        <TouchableOpacity
-          activeOpacity={0.75}
-          style={styles.rightContainer}
-          onPress={() => {
-            navigate('Notification');
-          }}>
-          <CustomIcon name={'notifications-outline'} size={16} color={colours.blueOld} style={{ padding: 8 }} />
-          {incomingNotif && <View style={styles.redDot} />}
-        </TouchableOpacity>
-      </View>
+
+      <TouchableOpacity
+        activeOpacity={0.75}
+        style={styles.rightContainer}
+        onPress={() => {
+          navigate('Notification');
+        }}>
+        <CustomIcon name={'notifications-outline'} size={16} color={colours.blueOld} style={{ padding: 8 }} />
+        {incomingNotif && <View style={styles.redDot} />}
+      </TouchableOpacity>
     </View>
   );
 };
@@ -39,15 +38,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: colours.backgroundPrimary,
     paddingVertical: 12,
   },
   leftContainer: { flexDirection: 'row', alignItems: 'center' },
   rightContainer: {
+    borderRadius: 1000,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colours.yellowNormal,
-    borderRadius: 1000,
   },
   redDot: {
     width: 8,

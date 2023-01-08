@@ -4,7 +4,10 @@ import SplashScreen from 'react-native-splash-screen';
 import AppComponent from '@src/screens';
 import { createStackNavigator } from '@react-navigation/stack';
 import CodePush from 'react-native-code-push';
-import colours from '@src/utils/colours';
+import colours from '@utils/colours';
+import { Provider } from 'react-redux';
+import { persistor, store } from '@src/redux/store';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
 // ts-ignore
 const Test = createStackNavigator();
@@ -20,7 +23,11 @@ let App = () => {
 
   return (
     <SafeAreaView style={styles.appContainer}>
-      <AppComponent />
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <AppComponent />
+        </PersistGate>
+      </Provider>
     </SafeAreaView>
   );
 };

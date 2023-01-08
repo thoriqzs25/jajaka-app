@@ -1,5 +1,5 @@
 export type SwitchStackParamList = {
   SplashScreen: undefined;
-  AuthScreen: undefined;
-  MainScreen: undefined;
+  AuthStackScreen: undefined;
+  MainStackScreen: undefined;
 };
