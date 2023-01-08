@@ -1,3 +1,4 @@
+import CustomButton from '@src/components/Field/CustomButton';
 import TextField from '@src/components/Field/TextField';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
@@ -12,19 +13,18 @@ const LoginForm = () => {
         <TextField title={'E-mail'} autoFocus placeholderText={'Masukkan e-mail'} style={{ marginBottom: 12 }} />
         <TextField title={'Password'} placeholderText={'Masukkan password'} secureInput />
       </View>
-      <Text>Login //custombutton</Text>
-      <Text>
-        Belum punya akun? <Text>Login</Text>
-      </Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {},
+  sectionContainer: {
+    marginBottom: 16,
+  },
   sectionTitle: {
     fontSize: 40,
     lineHeight: 44,
+    marginBottom: 8,
     color: colours.white,
     fontFamily: fontFamily.bold,
   },

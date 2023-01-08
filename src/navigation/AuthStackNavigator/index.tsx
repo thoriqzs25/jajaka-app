@@ -1,12 +1,12 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from '@screens/Auth/Login';
+import AuthScreen from '@screens/Auth/AuthScreen';
 
 const Stack = createStackNavigator<Record<string, any>>();
 
 const AuthStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName='Login'>
-      <Stack.Screen name={'Login'} component={Login} options={{ headerShown: false }} />
+    <Stack.Navigator initialRouteName='AuthScreen'>
+      <Stack.Screen name={'AuthScreen'} component={AuthScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };
