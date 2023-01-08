@@ -19,7 +19,7 @@ const LoginForm = () => {
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginBottom: 16,
+    marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 32,
@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.bold,
   },
   formContainer: {
+    padding: 12,
     borderRadius: 12,
     backgroundColor: colours.backgroundSecondary,
-    padding: 12,
   },
 });
 

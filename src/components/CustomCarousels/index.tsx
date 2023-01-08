@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH - ph * 2,
     backgroundColor: colours.backgroundSecondary,
   },
-  image: { width: 200, height: 200 },
+  image: { width: 200, height: 180 },
   title: {
     fontSize: 16,
     color: colours.white,

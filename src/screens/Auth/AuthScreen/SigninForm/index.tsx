@@ -1,3 +1,4 @@
+import CustomCheckbox from '@src/components/Field/CustomCheckbox';
 import TextField from '@src/components/Field/TextField';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
@@ -26,12 +27,13 @@ const SigninForm = () => {
           />
         </View>
       </View>
+      <CustomCheckbox />
     </View>
   );
 };
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginBottom: 16,
+    marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 32,
@@ -43,6 +45,7 @@ const styles = StyleSheet.create({
   formContainer: {
     padding: 12,
     borderRadius: 12,
+    marginBottom: 4,
     backgroundColor: colours.backgroundSecondary,
   },
   dualInput: {
