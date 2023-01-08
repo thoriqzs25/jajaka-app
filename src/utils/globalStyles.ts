@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-const ph = 24
-const pt = 12
+export const ph = 24
+export const pt = 12
 
 export const globalStyle = StyleSheet.create({
   padding: {
