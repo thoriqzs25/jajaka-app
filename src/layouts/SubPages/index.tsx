@@ -1,18 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
-import CustomIcon from '@src/components/CustomIcons';
-import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
-import { globalStyle } from '@src/utils/globalStyles';
+import CustomIcon from '@components/CustomIcons';
+import colours from '@utils/colours';
+import { fontFamily } from '@utils/fonts';
+import { globalStyle } from '@utils/globalStyles';
+import { IconType } from '@utils/icons';
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const SubPages = ({
   children,
   title,
   childPadding = true,
+  subTitle,
+  subTitleIcon,
 }: {
   children: JSX.Element;
   title: string;
   childPadding?: boolean;
+  subTitle?: string;
+  subTitleIcon?: IconType;
 }) => {
   const { navigate, goBack, canGoBack } = useNavigation();
 
@@ -24,7 +29,17 @@ const SubPages = ({
       <View style={[styles.headerContainer, !childPadding && globalStyle.paddingHorizontal]}>
         <TouchableOpacity activeOpacity={0.75} style={styles.leftContainer} onPress={handleBack}>
           <CustomIcon name={'cheveron-left'} size={32} color={colours.white} style={styles.icon} />
-          <Text style={styles.title}>{title}</Text>
+          {subTitle ? (
+            <View style={styles.textContainer}>
+              <Text style={styles.title}>{title}</Text>
+              <View style={styles.subTitleContainer}>
+                {subTitleIcon && <CustomIcon style={styles.subTitleIcon} name={subTitleIcon} size={10} />}
+                <Text style={styles.subTitle}>{subTitle}</Text>
+              </View>
+            </View>
+          ) : (
+            <Text style={styles.title}>{title}</Text>
+          )}
         </TouchableOpacity>
       </View>
       {children}
@@ -45,10 +60,25 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 4,
   },
+  textContainer: {},
   title: {
     fontFamily: fontFamily.bold,
     fontSize: 16,
     lineHeight: 20,
+    color: colours.white,
+  },
+  subTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  subTitle: {
+    fontFamily: fontFamily.regular,
+    fontSize: 10,
+    lineHeight: 14,
+    color: colours.white,
+  },
+  subTitleIcon: {
+    marginRight: 4,
   },
 });
 

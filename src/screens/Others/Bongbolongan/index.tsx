@@ -5,6 +5,10 @@ import { BottomSheetRefProps } from '@cTypes/refs/bottomSheet';
 import colours from '@utils/colours';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import CustomButton from '@src/components/Field/CustomButton';
+import { globalStyle } from '@src/utils/globalStyles';
+import KategoriData from './KategoriData';
+import useBoolean from '@src/hooks/useBoolean';
 
 const DATA = [
   {
@@ -32,7 +36,7 @@ const DATA = [
       ...defaultDelta,
     },
     details: {
-      Kategori: 'Kuliner',
+      Kategori: 'Donasi',
       Produk: 'Aneka nasi dan jajanan',
       Alamat: 'Jl. Tamansari Kec. Bandung Wetan',
       'Jam Buka': 'Rabu - Sabtu, 19.30 - 20.00',
@@ -55,36 +59,94 @@ const DATA = [
       'Tahun Berdiri': '2010',
     },
   },
+  {
+    id: 4,
+    name: 'Test 4',
+    coordinate: {
+      latitude: -6.60455,
+      longitude: 106.82203,
+      ...defaultDelta,
+    },
+    details: {
+      Kategori: 'Kulineran',
+      Produk: 'Aneka nasi dan jajanan',
+      Alamat: 'Jl. Kec. Bandung Wetan',
+      'Jam Buka': 'Senin - Selasa, 09.00 - 12.00',
+      'Tahun Berdiri': '2010',
+    },
+  },
+  {
+    id: 5,
+    name: 'Test 5',
+    coordinate: {
+      latitude: -6.59355,
+      longitude: 106.81003,
+      ...defaultDelta,
+    },
+    details: {
+      Kategori: 'Kulineran 5',
+      Produk: 'Aneka nasi dan jajanan',
+      Alamat: 'Jl. Kec. Bandung Wetan',
+      'Jam Buka': 'Senin - Selasa, 09.00 - 12.00',
+      'Tahun Berdiri': '2010',
+    },
+  },
 ];
 
 const Bongbolongan = () => {
-  // const { value: visibleModal, setValue: setVisibleModal } = useBoolean(false);
   const ref = useRef<BottomSheetRefProps>(null);
   const [selected, setSelected] = useState<any>();
+  const [tabs, setTabs] = useState<'Maps' | 'Database'>('Maps');
 
   const onPress = useCallback(() => {
-    // const isActive = ref?.current?.isActive();
-    // if (isActive) {
-    // ref?.current?.scrollTo(0);
-    // } else {
-    ref?.current?.scrollTo(-230);
-    // }
+    if (!ref?.current?.isActive()) ref?.current?.scrollTo(-230);
   }, []);
 
+  const tabsNav = () => {
+    switch (tabs) {
+      case 'Maps':
+        return (
+          <View style={styles.mapsContainer}>
+            <CustomMaps style={styles.maps} itemList={DATA} onOpenDetail={onPress} setSelected={setSelected} />
+          </View>
+        );
+      case 'Database':
+        return (
+          <View style={[styles.databaseContainer, globalStyle.paddingHorizontal]}>
+            <KategoriData />
+          </View>
+        );
+      default:
+        return (
+          <View>
+            <Text>Loading</Text>
+          </View>
+        );
+    }
+  };
+
   return (
-    <SubPages title={'Bongbolongan'} childPadding={false}>
+    <SubPages
+      title={'Bongbolongan'}
+      childPadding={false}
+      subTitle={'Pencarian data UMKM di sekitarmu'}
+      subTitleIcon={'search1'}>
       <>
-        <Pressable
-          style={styles.button}
-          onPress={() => {
-            // setVisibleModal.toggle();
-            onPress();
-          }}>
-          <Text>Modal</Text>
-        </Pressable>
-        <View style={styles.mapsContainer}>
-          <CustomMaps style={styles.maps} itemList={DATA} onOpenDetail={onPress} setSelected={setSelected} />
+        <View style={styles.tabsContainer}>
+          <CustomButton
+            title={'Maps'}
+            onPress={() => setTabs('Maps')}
+            style={[styles.tabsButton, tabs === 'Maps' && activeStyle.container]}
+            titleStyle={[styles.tabsText, tabs === 'Maps' && activeStyle.text]}
+          />
+          <CustomButton
+            title={'Database'}
+            onPress={() => setTabs('Database')}
+            style={[styles.tabsButton, tabs === 'Database' && activeStyle.container]}
+            titleStyle={[styles.tabsText, tabs === 'Database' && activeStyle.text]}
+          />
         </View>
+        {tabsNav()}
         <BongbolonganDetails ref={ref} item={selected} />
       </>
     </SubPages>
@@ -92,11 +154,24 @@ const Bongbolongan = () => {
 };
 
 const styles = StyleSheet.create({
-  button: {
-    width: 50,
+  tabsContainer: {
     marginTop: 12,
     marginBottom: 20,
-    backgroundColor: colours.blueNormal,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tabsButton: {
+    width: 140,
+    borderRadius: 16,
+    paddingVertical: 8,
+    marginHorizontal: 6,
+    backgroundColor: colours.backgroundClickable,
+  },
+  tabsText: {
+    fontSize: 12,
+    lineHeight: 12,
+    color: colours.white,
   },
   mapsContainer: {
     flex: 1,
@@ -105,6 +180,16 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+  },
+  databaseContainer: {},
+});
+
+const activeStyle = StyleSheet.create({
+  container: {
+    backgroundColor: colours.yellowNormal,
+  },
+  text: {
+    color: colours.backgroundPrimary,
   },
 });
 

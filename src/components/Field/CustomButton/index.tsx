@@ -3,10 +3,20 @@ import { fontFamily } from '@src/utils/fonts';
 import { Pressable, StyleProp, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const CustomButton = ({ title, style, onPress }: { title: string; style?: StyleProp<any>; onPress?: () => void }) => {
+const CustomButton = ({
+  title,
+  style,
+  onPress,
+  titleStyle,
+}: {
+  title: string;
+  style?: StyleProp<any>;
+  onPress?: () => void;
+  titleStyle?: StyleProp<any>;
+}) => {
   return (
     <TouchableOpacity activeOpacity={0.75} style={[styles.container, style]} onPress={onPress}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, titleStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 };

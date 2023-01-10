@@ -12,6 +12,7 @@ import Animated, {
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import colours from '@src/utils/colours';
+import { UseBoolean } from '@src/types/hooks/UseBoolean';
 
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 36;
 
@@ -21,7 +22,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, { children: JSX.Elemen
 
   const scrollTo = useCallback((destination: number) => {
     'worklet';
-    active.value = destination !== 0;
+    active.value = destination === MAX_TRANSLATE_Y / 1.8;
 
     translateY.value = withSpring(destination, { damping: 50 });
   }, []);

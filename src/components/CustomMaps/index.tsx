@@ -10,6 +10,17 @@ export const defaultDelta = {
   latitudeDelta: 0.02,
   longitudeDelta: 0.01,
 };
+// React.forwardRef<BottomSheetRefProps, {
+//   style: StyleProp<any>;
+//   onOpenDetail: () => void;
+//   setSelected: (id: any) => void;
+//   itemList: any[];
+// }>(({style,
+//   onOpenDetail,
+//   setSelected,
+//   itemList}, ref) => {
+
+//   })
 
 const CustomMaps = ({
   style,
@@ -22,11 +33,17 @@ const CustomMaps = ({
   setSelected: (id: any) => void;
   itemList: any[];
 }) => {
-  const Point = () => {
+  const Point = ({ category }: { category: string }) => {
     return (
       <View style={styles.pointContainer}>
         <ImageView name={'map-marker'} style={styles.image} />
-        <CustomIcon name={'spoon-knife'} size={14} color={colours.white} style={styles.icon} />
+        <CustomIcon
+          name={category === 'Kuliner' ? 'spoon-knife' : 'coin-dollar'}
+          size={14}
+          color={colours.white}
+          style={styles.icon}
+        />
+        <View style={styles.dot} />
       </View>
     );
   };
@@ -35,6 +52,8 @@ const CustomMaps = ({
     <View style={[styles.container, style]}>
       <MapView
         style={styles.map}
+        // mapPadding={{ top: 0, left: 0, right: 0, bottom: usingPadding ? 320 : 0 }}
+        showsCompass={false}
         initialRegion={{
           latitude: -6.60755,
           longitude: 106.81303,
@@ -49,7 +68,7 @@ const CustomMaps = ({
                 setSelected(item);
                 onOpenDetail();
               }}>
-              <Point />
+              <Point category={item.details.Kategori} />
             </Marker>
           );
         })}
@@ -72,11 +91,24 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
+    height: 38,
+    // width: 23,
   },
   image: {
     width: 23,
     height: 32,
   },
-  icon: { position: 'absolute', top: 6 },
+  icon: {
+    top: 6,
+    position: 'absolute',
+  },
+  dot: {
+    width: 4,
+    height: 4,
+    bottom: 1,
+    borderRadius: 2,
+    position: 'absolute',
+    backgroundColor: colours.blueYoung,
+  },
 });
 export default CustomMaps;

@@ -1,5 +1,6 @@
 import CustomIcon from '@components/CustomIcons';
 import BottomSheet from '@components/Modal/BottomSheet';
+import { UseBoolean } from '@src/types/hooks/UseBoolean';
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
 import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
@@ -15,7 +16,7 @@ import { StyleSheet, Text, View } from 'react-native';
 //   'Tahun Berdiri': '2020',
 // };
 
-const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, any>(({ item }, ref) => {
+const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, { item: any }>(({ item }, ref) => {
   return (
     <BottomSheet ref={ref}>
       {item ? (
