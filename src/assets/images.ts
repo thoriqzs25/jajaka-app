@@ -14,6 +14,8 @@ export const imageSource = (name: string) => {
       return require('@src/assets/images/character-2-logo.webp');    
     case 'character-3-logo':
       return require('@src/assets/images/character-3-logo.webp');    
+      case 'map-marker':
+      return require('@src/assets/images/map-marker.webp');    
     default:
       return undefined;
   }

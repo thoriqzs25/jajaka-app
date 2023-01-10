@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Image, View, ImageBackground } from 'react-native';
-import { imageSource } from '@src/assets/pngs';
+import { imageSource } from '@src/assets/images';
 import colours from '@src/utils/colours';
 
 interface ImageViewIProps {

@@ -82,10 +82,10 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     position: 'absolute',
     top: SCREEN_HEIGHT,
-    borderRadius: 25,
+    borderRadius: 24,
     backgroundColor: colours.backgroundPrimary,
     borderWidth: 1,
-    borderColor: '43445A',
+    borderColor: '#43445A',
   },
   line: {
     width: 75,

@@ -1,10 +1,11 @@
+import CustomMaps from '@src/components/CustomMaps';
 import useBoolean from '@src/hooks/useBoolean';
 import SubPages from '@src/layouts/SubPages';
 import BongbolonganDetails from '@src/screens/Main/Home/FeatureHighlights/BongbolonganDetails';
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
 import colours from '@src/utils/colours';
 import { useCallback, useRef } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 const Bongbolongan = () => {
   // const { value: visibleModal, setValue: setVisibleModal } = useBoolean(false);
@@ -12,7 +13,6 @@ const Bongbolongan = () => {
 
   const onPress = useCallback(() => {
     const isActive = ref?.current?.isActive();
-    console.log('line 15', isActive);
     if (isActive) {
       ref?.current?.scrollTo(0);
     } else {
@@ -21,7 +21,7 @@ const Bongbolongan = () => {
   }, []);
 
   return (
-    <SubPages title={'Bongbolongan'}>
+    <SubPages title={'Bongbolongan'} childPadding={false}>
       <>
         <Pressable
           style={styles.button}
@@ -31,14 +31,10 @@ const Bongbolongan = () => {
           }}>
           <Text>Modal</Text>
         </Pressable>
-        <BongbolonganDetails
-          ref={ref}
-
-          // visible={visibleModal}
-          // onClose={() => {
-          //   setVisibleModal.false();
-          // }}
-        />
+        <View style={styles.mapsContainer}>
+          <CustomMaps style={styles.maps} onOpenDetail={onPress} />
+        </View>
+        <BongbolonganDetails ref={ref} />
       </>
     </SubPages>
   );
@@ -46,7 +42,18 @@ const Bongbolongan = () => {
 
 const styles = StyleSheet.create({
   button: {
+    width: 50,
+    marginTop: 12,
+    marginBottom: 20,
     backgroundColor: colours.blueNormal,
+  },
+  mapsContainer: {
+    flex: 1,
+  },
+  maps: {
+    overflow: 'hidden',
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
   },
 });
 
