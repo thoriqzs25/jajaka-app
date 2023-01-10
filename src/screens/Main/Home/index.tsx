@@ -1,11 +1,8 @@
-import CustomIcon from '@src/components/CustomIcons';
-import ImageView from '@src/components/ImageView';
-import { globalStyle } from '@src/utils/globalStyles';
-import colours from '@utils/colours';
-import { fontFamily } from '@utils/fonts';
-import { FlatList, ScrollView, StyleSheet } from 'react-native';
-import { Text, View } from 'react-native';
+import useBoolean from '@src/hooks/useBoolean';
+import { globalStyle } from '@utils/globalStyles';
+import { FlatList, ScrollView, StyleSheet, Text } from 'react-native';
 import FeatureHighlights from './FeatureHighlights';
+import BongbolonganDetails from './FeatureHighlights/BongbolonganDetails';
 import HomeHeader from './Header';
 import NewsList from './NewsList';
 

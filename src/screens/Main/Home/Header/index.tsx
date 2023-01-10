@@ -1,6 +1,7 @@
 import CustomIcon from '@src/components/CustomIcons';
 import ImageView from '@src/components/ImageView';
 import { navigate } from '@src/navigation';
+import { UseBoolean } from '@src/types/hooks/UseBoolean';
 import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
 import { Pressable, StyleSheet, TouchableOpacity } from 'react-native';

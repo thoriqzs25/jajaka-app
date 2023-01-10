@@ -1,8 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import ImageView from '@src/components/ImageView';
+import useBoolean from '@src/hooks/useBoolean';
+import { navigate } from '@src/navigation';
 import { userLogout } from '@src/redux/actions/auth';
 import { RootState } from '@src/types/states/root';
 import colours from '@src/utils/colours';
-import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import { fontFamily } from '@src/utils/fonts';
 import { StyleSheet, Text } from 'react-native';
 import { View } from 'react-native';
@@ -28,8 +30,9 @@ const FeatureHighlights = () => {
               style={styles.cardContainer}
               key={data.id}
               onPress={() => {
-                if (data.id === 1) console.log('line 20', email);
-                else dispatch(userLogout());
+                if (data.id === 1) {
+                  navigate('Bongbolongan');
+                } else dispatch(userLogout());
               }}>
               <ImageView name={data.image} style={styles.image} />
               <Text style={styles.title}>{data.title}</Text>
@@ -50,10 +53,10 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: 172,
-    color: colours.white,
     borderRadius: 8,
     marginHorizontal: 6,
     paddingVertical: 12,
+    color: colours.white,
     paddingHorizontal: 12,
     alignContent: 'center',
     justifyContent: 'center',
@@ -65,15 +68,15 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   title: {
-    fontFamily: fontFamily.bold,
     fontSize: 20,
     lineHeight: 24,
     marginBottom: 8,
+    fontFamily: fontFamily.bold,
   },
   desc: {
-    fontFamily: fontFamily.regular,
     fontSize: 14,
     lineHeight: 18,
+    fontFamily: fontFamily.regular,
   },
 });
 

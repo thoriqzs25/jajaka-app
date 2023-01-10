@@ -8,6 +8,10 @@ export const globalStyle = StyleSheet.create({
     paddingHorizontal: ph,
     paddingTop: pt,
   },
+  paddingModal: {
+    paddingHorizontal: ph,
+    paddingTop: pt-12,
+  },
   paddingHorizontal: {
     paddingHorizontal: ph,
   },

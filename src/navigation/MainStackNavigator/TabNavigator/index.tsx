@@ -7,6 +7,7 @@ import colours from '@utils/colours';
 import { FULL_TAB_BAR_HEIGHT, SCREEN_WIDTH } from '@utils/deviceDimensions';
 import { StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import HomeStackNavigator from './HomeStack';
 
 const Tab = createBottomTabNavigator<any>();
 
@@ -17,8 +18,8 @@ const TabNavigator = () => {
         tabBarStyle: { height: 72 },
       }}>
       <Tab.Screen
-        name='Home'
-        component={Home}
+        name='HomeStack'
+        component={HomeStackNavigator}
         options={({ navigation }) => {
           const isFocused = navigation.isFocused();
           return {
@@ -34,7 +35,7 @@ const TabNavigator = () => {
                     borderTopWidth: isFocused ? 2 : 1,
                   },
                 ]}
-                onPress={() => navigation.navigate('Home')}>
+                onPress={() => navigation.navigate('HomeStack')}>
                 <View style={styles.icon as ViewStyle}>
                   <CustomIcon name={'home1'} size={24} color={focused ? colours.yellowNormal : colours.gray300} />
                 </View>

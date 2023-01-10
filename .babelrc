@@ -2,7 +2,7 @@
   "presets": ["module:metro-react-native-babel-preset"],
   "plugins": [
     [
-      "module-resolver",
+      "module-resolver", 
       {
         "root": ["./"],
         "alias": {
@@ -14,7 +14,8 @@
           "@utils": "./src/utils"
         }
       }
-    ]
+    ], 
+    "react-native-reanimated/plugin"
   ]
 }
 // env: {

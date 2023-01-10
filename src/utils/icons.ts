@@ -1,7 +1,18 @@
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icoMoonConfig from '@src/assets/fonts/icons/selection.json';
 
-export type IconType = 'home1' | 'user1' | 'notifications-outline' | 'cheveron-right' | 'cheveron-left' | 'search1' | 'bullhorn' | 'eye' | 'eye-blocked' | 'checkmark1'
+export type IconType = 
+'home1' | 
+'user1' | 
+'notifications-outline' | 
+'cheveron-right' | 
+'cheveron-left' | 
+'search1' | 
+'bullhorn' | 
+'eye' | 
+'eye-blocked' | 
+'checkmark1' |
+'spoon-knife'
 export default createIconSetFromIcoMoon(icoMoonConfig, 'icomoon');
 
 

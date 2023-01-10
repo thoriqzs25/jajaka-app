@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '@src/screens/Main/Home';
+import Bongbolongan from '@src/screens/Others/Bongbolongan';
 import NewsDetail from '@src/screens/Others/NewsDetail';
 import NewsPage from '@src/screens/Others/NewsPage';
 import Notification from '@src/screens/Others/Notification';
@@ -11,9 +12,10 @@ const MainStackNavigator = () => {
   return (
     <Main.Navigator initialRouteName='TabNavigator'>
       <Main.Screen name={'TabNavigator'} component={TabNavigator} options={{ headerShown: false }} />
-      <Main.Screen name={'NewsPage'} component={NewsPage} options={{ headerShown: false }} />
+      {/* <Main.Screen name={'NewsPage'} component={NewsPage} options={{ headerShown: false }} />
       <Main.Screen name={'NewsDetail'} component={NewsDetail} options={{ headerShown: false }} />
       <Main.Screen name={'Notification'} component={Notification} options={{ headerShown: false }} />
+      <Main.Screen name={'Bongbolongan'} component={Bongbolongan} options={{ headerShown: false }} /> */}
     </Main.Navigator>
   );
 };

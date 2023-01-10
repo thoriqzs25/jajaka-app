@@ -8,6 +8,7 @@ import colours from '@utils/colours';
 import { Provider } from 'react-redux';
 import { persistor, store } from '@src/redux/store';
 import { PersistGate } from 'redux-persist/lib/integration/react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // ts-ignore
 const Test = createStackNavigator();
@@ -25,7 +26,9 @@ let App = () => {
     <SafeAreaView style={styles.appContainer}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <AppComponent />
+          <GestureHandlerRootView style={styles.appContainer}>
+            <AppComponent />
+          </GestureHandlerRootView>
         </PersistGate>
       </Provider>
     </SafeAreaView>

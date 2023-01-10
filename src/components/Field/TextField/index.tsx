@@ -85,7 +85,11 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.regular,
     backgroundColor: colours.backgroundClickable,
   },
-  inputText: {},
+  inputText: {
+    fontSize: 14,
+    paddingVertical: 8,
+    fontFamily: fontFamily.regular,
+  },
   icon: {
     height: 30,
     width: '12%',
