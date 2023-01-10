@@ -22,7 +22,6 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, { children: JSX.Elemen
   const scrollTo = useCallback((destination: number) => {
     'worklet';
     active.value = destination !== 0;
-    console.log(destination, 'line 24', active.value, destination !== 0);
 
     translateY.value = withSpring(destination, { damping: 50 });
   }, []);
@@ -47,8 +46,10 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, { children: JSX.Elemen
         scrollTo(MAX_TRANSLATE_Y);
       } else if (translateY.value < -SCREEN_HEIGHT / 2.5) {
         scrollTo(MAX_TRANSLATE_Y / 1.8);
-      } else {
+      } else if (translateY.value < -195) {
         scrollTo(-230);
+      } else {
+        scrollTo(0);
       }
     });
 

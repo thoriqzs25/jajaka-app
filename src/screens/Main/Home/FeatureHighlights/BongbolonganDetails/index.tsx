@@ -7,37 +7,42 @@ import { globalStyle } from '@utils/globalStyles';
 import React, { Ref } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const DATA = {
-  Kategori: 'Kuliner',
-  Produk: 'Aneka nasi dan jajanan',
-  Alamat: 'Jl. Tamansari Bawah, Tamansari, Kec. Bandung Wetan',
-  'Jam Buka': 'Senin - Sabtu, 09.00 - 20.00',
-  'Tahun Berdiri': '2020',
-};
+// const DATA = {
+//   Kategori: 'Kuliner',
+//   Produk: 'Aneka nasi dan jajanan',
+//   Alamat: 'Jl. Tamansari Bawah, Tamansari, Kec. Bandung Wetan',
+//   'Jam Buka': 'Senin - Sabtu, 09.00 - 20.00',
+//   'Tahun Berdiri': '2020',
+// };
 
-const BongbolonganDetails = React.forwardRef<BottomSheetRefProps>((_, ref) => {
+const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, any>(({ item }, ref) => {
   return (
     <BottomSheet ref={ref}>
-      <View style={[globalStyle.paddingModal]}>
-        <View style={styles.headerContainer}>
-          <CustomIcon name={'spoon-knife'} size={20} style={styles.icon} />
-          <Text style={styles.title}>Warung Nasi Bukan Warteg</Text>
-        </View>
-        <View>
-          <Text>Foto-Foto</Text>
-        </View>
-        <View>
-          {Object.keys(DATA).map((key) => (
-            <View style={styles.textLine} key={key}>
-              <View style={styles.keyLine}>
-                <Text style={styles.textKey}>{key}</Text>
-                <Text>:</Text>
+      {item ? (
+        <View style={[globalStyle.paddingModal]}>
+          <View style={styles.headerContainer}>
+            <CustomIcon name={'spoon-knife'} size={20} style={styles.icon} />
+
+            <Text style={styles.title}>{item.name}</Text>
+          </View>
+          <View>
+            <Text>Foto-Foto</Text>
+          </View>
+          <View>
+            {Object.keys(item.details).map((key) => (
+              <View style={styles.textLine} key={key}>
+                <View style={styles.keyLine}>
+                  <Text style={styles.textKey}>{key}</Text>
+                  <Text>:</Text>
+                </View>
+                <Text style={styles.textValue}>{item.details[key]}</Text>
               </View>
-              <Text style={styles.textValue}>{DATA[key]}</Text>
-            </View>
-          ))}
+            ))}
+          </View>
         </View>
-      </View>
+      ) : (
+        <Text>Loading</Text>
+      )}
     </BottomSheet>
   );
 });

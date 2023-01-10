@@ -6,39 +6,22 @@ import MapView, { Marker } from 'react-native-maps';
 import CustomIcon from '../CustomIcons';
 import ImageView from '../ImageView';
 
-const defaultDelta = {
+export const defaultDelta = {
   latitudeDelta: 0.02,
   longitudeDelta: 0.01,
 };
 
-const DATA = [
-  {
-    name: 'test 1',
-    coordinate: {
-      latitude: -6.60255,
-      longitude: 106.81303,
-      ...defaultDelta,
-    },
-  },
-  {
-    name: 'test 2',
-    coordinate: {
-      latitude: -6.60754,
-      longitude: 106.81503,
-      ...defaultDelta,
-    },
-  },
-  {
-    name: 'test 3',
-    coordinate: {
-      latitude: -6.60255,
-      longitude: 106.81203,
-      ...defaultDelta,
-    },
-  },
-];
-
-const CustomMaps = ({ style, onOpenDetail }: { style: StyleProp<any>; onOpenDetail: () => void }) => {
+const CustomMaps = ({
+  style,
+  onOpenDetail,
+  setSelected,
+  itemList,
+}: {
+  style: StyleProp<any>;
+  onOpenDetail: () => void;
+  setSelected: (id: any) => void;
+  itemList: any[];
+}) => {
   const Point = () => {
     return (
       <View style={styles.pointContainer}>
@@ -57,9 +40,15 @@ const CustomMaps = ({ style, onOpenDetail }: { style: StyleProp<any>; onOpenDeta
           longitude: 106.81303,
           ...defaultDelta,
         }}>
-        {DATA.map((item: any, idx: number) => {
+        {itemList.map((item: any, idx: number) => {
           return (
-            <Marker key={item.name} coordinate={item.coordinate} onPress={onOpenDetail}>
+            <Marker
+              key={item.name}
+              coordinate={item.coordinate}
+              onPress={() => {
+                setSelected(item);
+                onOpenDetail();
+              }}>
               <Point />
             </Marker>
           );
