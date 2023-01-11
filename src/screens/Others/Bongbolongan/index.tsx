@@ -3,12 +3,14 @@ import SubPages from '@src/layouts/SubPages';
 import BongbolonganDetails from '@src/screens/Main/Home/FeatureHighlights/BongbolonganDetails';
 import { BottomSheetRefProps } from '@cTypes/refs/bottomSheet';
 import colours from '@utils/colours';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { createRef, useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import CustomButton from '@src/components/Field/CustomButton';
 import { globalStyle } from '@src/utils/globalStyles';
 import KategoriData from './KategoriData';
 import useBoolean from '@src/hooks/useBoolean';
+import { EdgePadding } from 'react-native-maps';
+import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 
 const DATA = [
   {
@@ -94,12 +96,14 @@ const DATA = [
 ];
 
 const Bongbolongan = () => {
-  const ref = useRef<BottomSheetRefProps>(null);
+  const bottomSheetRef = useRef<BottomSheetRefProps>(null);
+  const customMapRef = useRef<CustomMapsRefProps>(null);
   const [selected, setSelected] = useState<any>();
   const [tabs, setTabs] = useState<'Maps' | 'Database'>('Maps');
 
   const onPress = useCallback(() => {
-    if (!ref?.current?.isActive()) ref?.current?.scrollTo(-230);
+    // if (!bottomSheetRef?.current?.isActive())
+    bottomSheetRef?.current?.scrollTo(-230);
   }, []);
 
   const tabsNav = () => {
@@ -107,7 +111,7 @@ const Bongbolongan = () => {
       case 'Maps':
         return (
           <View style={styles.mapsContainer}>
-            <CustomMaps style={styles.maps} itemList={DATA} onOpenDetail={onPress} setSelected={setSelected} />
+            <CustomMaps itemList={DATA} style={styles.maps} onOpenDetail={onPress} setSelected={setSelected} />
           </View>
         );
       case 'Database':
@@ -147,7 +151,7 @@ const Bongbolongan = () => {
           />
         </View>
         {tabsNav()}
-        <BongbolonganDetails ref={ref} item={selected} />
+        <BongbolonganDetails ref={bottomSheetRef} item={selected} />
       </>
     </SubPages>
   );

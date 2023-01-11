@@ -2,19 +2,12 @@ import CustomIcon from '@components/CustomIcons';
 import BottomSheet from '@components/Modal/BottomSheet';
 import { UseBoolean } from '@src/types/hooks/UseBoolean';
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
+import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
 import { globalStyle } from '@utils/globalStyles';
 import React, { Ref } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-// const DATA = {
-//   Kategori: 'Kuliner',
-//   Produk: 'Aneka nasi dan jajanan',
-//   Alamat: 'Jl. Tamansari Bawah, Tamansari, Kec. Bandung Wetan',
-//   'Jam Buka': 'Senin - Sabtu, 09.00 - 20.00',
-//   'Tahun Berdiri': '2020',
-// };
 
 const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, { item: any }>(({ item }, ref) => {
   return (

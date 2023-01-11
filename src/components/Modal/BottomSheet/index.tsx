@@ -12,7 +12,7 @@ import Animated, {
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import colours from '@src/utils/colours';
-import { UseBoolean } from '@src/types/hooks/UseBoolean';
+import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 36;
 
@@ -23,7 +23,6 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, { children: JSX.Elemen
   const scrollTo = useCallback((destination: number) => {
     'worklet';
     active.value = destination === MAX_TRANSLATE_Y / 1.8;
-
     translateY.value = withSpring(destination, { damping: 50 });
   }, []);
 
@@ -43,17 +42,20 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, { children: JSX.Elemen
       translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
     })
     .onEnd(() => {
-      if (translateY.value < -SCREEN_HEIGHT / 1.5) {
-        scrollTo(MAX_TRANSLATE_Y);
-      } else if (translateY.value < -SCREEN_HEIGHT / 2.5) {
-        scrollTo(MAX_TRANSLATE_Y / 1.8);
-      } else if (translateY.value < -195) {
-        scrollTo(-230);
-      } else {
-        scrollTo(0);
+      try {
+        if (translateY.value < -SCREEN_HEIGHT / 1.5) {
+          scrollTo(MAX_TRANSLATE_Y);
+        } else if (translateY.value < -SCREEN_HEIGHT / 2.5) {
+          scrollTo(MAX_TRANSLATE_Y / 1.8);
+        } else if (translateY.value < -195) {
+          scrollTo(-230);
+        } else {
+          scrollTo(0);
+        }
+      } catch (e) {
+        console.log('line 62 error,', e);
       }
     });
-
   const rBottomSheetStyle = useAnimatedStyle(() => {
     const borderRadius = interpolate(
       translateY.value,

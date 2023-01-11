@@ -1,8 +1,11 @@
 import { imageSource } from '@src/assets/images';
+import useBoolean from '@src/hooks/useBoolean';
+import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
+import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 import colours from '@src/utils/colours';
-import React from 'react';
+import React, { useCallback, useImperativeHandle, useState } from 'react';
 import { StyleProp, StyleSheet, Text, View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { EdgePadding, Marker } from 'react-native-maps';
 import CustomIcon from '../CustomIcons';
 import ImageView from '../ImageView';
 
@@ -10,17 +13,6 @@ export const defaultDelta = {
   latitudeDelta: 0.02,
   longitudeDelta: 0.01,
 };
-// React.forwardRef<BottomSheetRefProps, {
-//   style: StyleProp<any>;
-//   onOpenDetail: () => void;
-//   setSelected: (id: any) => void;
-//   itemList: any[];
-// }>(({style,
-//   onOpenDetail,
-//   setSelected,
-//   itemList}, ref) => {
-
-//   })
 
 const CustomMaps = ({
   style,
@@ -51,8 +43,11 @@ const CustomMaps = ({
   return (
     <View style={[styles.container, style]}>
       <MapView
+        onMarkerPress={() => {
+          console.log('click line 55');
+        }}
+        // mapPadding={{ top: 0, right: 0, bottom:  ? 320 : 0, left: 0 }}
         style={styles.map}
-        // mapPadding={{ top: 0, left: 0, right: 0, bottom: usingPadding ? 320 : 0 }}
         showsCompass={false}
         initialRegion={{
           latitude: -6.60755,
@@ -76,11 +71,11 @@ const CustomMaps = ({
     </View>
   );
 };
-//create our styling code:
+
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    flex: 1, //the container will fill the whole screen.
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
