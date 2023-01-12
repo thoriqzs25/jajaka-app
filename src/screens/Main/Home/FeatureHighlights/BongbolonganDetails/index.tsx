@@ -2,51 +2,46 @@ import CustomIcon from '@components/CustomIcons';
 import BottomSheet from '@components/Modal/BottomSheet';
 import { UseBoolean } from '@src/types/hooks/UseBoolean';
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
+import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
 import { globalStyle } from '@utils/globalStyles';
 import React, { Ref } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-// const DATA = {
-//   Kategori: 'Kuliner',
-//   Produk: 'Aneka nasi dan jajanan',
-//   Alamat: 'Jl. Tamansari Bawah, Tamansari, Kec. Bandung Wetan',
-//   'Jam Buka': 'Senin - Sabtu, 09.00 - 20.00',
-//   'Tahun Berdiri': '2020',
-// };
+const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, { item: any; halfScreen: (half: boolean) => void }>(
+  ({ item, halfScreen }, ref) => {
+    return (
+      <BottomSheet ref={ref} halfScreen={halfScreen}>
+        {item ? (
+          <View style={[globalStyle.paddingModal]}>
+            <View style={styles.headerContainer}>
+              <CustomIcon name={'spoon-knife'} size={20} style={styles.icon} />
 
-const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, { item: any }>(({ item }, ref) => {
-  return (
-    <BottomSheet ref={ref}>
-      {item ? (
-        <View style={[globalStyle.paddingModal]}>
-          <View style={styles.headerContainer}>
-            <CustomIcon name={'spoon-knife'} size={20} style={styles.icon} />
-
-            <Text style={styles.title}>{item.name}</Text>
-          </View>
-          <View>
-            <Text>Foto-Foto</Text>
-          </View>
-          <View>
-            {Object.keys(item.details).map((key) => (
-              <View style={styles.textLine} key={key}>
-                <View style={styles.keyLine}>
-                  <Text style={styles.textKey}>{key}</Text>
-                  <Text>:</Text>
+              <Text style={styles.title}>{item.name}</Text>
+            </View>
+            <View>
+              <Text>Foto-Foto</Text>
+            </View>
+            <View>
+              {Object.keys(item.details).map((key) => (
+                <View style={styles.textLine} key={key}>
+                  <View style={styles.keyLine}>
+                    <Text style={styles.textKey}>{key}</Text>
+                    <Text>:</Text>
+                  </View>
+                  <Text style={styles.textValue}>{item.details[key]}</Text>
                 </View>
-                <Text style={styles.textValue}>{item.details[key]}</Text>
-              </View>
-            ))}
+              ))}
+            </View>
           </View>
-        </View>
-      ) : (
-        <Text>Loading</Text>
-      )}
-    </BottomSheet>
-  );
-});
+        ) : (
+          <Text>Loading</Text>
+        )}
+      </BottomSheet>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   headerContainer: {

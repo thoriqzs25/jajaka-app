@@ -1,8 +1,12 @@
 import { imageSource } from '@src/assets/images';
+import useBoolean from '@src/hooks/useBoolean';
+import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
+import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 import colours from '@src/utils/colours';
-import React from 'react';
+import React, { createRef, LegacyRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { StyleProp, StyleSheet, Text, View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { EdgePadding, Marker } from 'react-native-maps';
+import { SharedValue } from 'react-native-reanimated';
 import CustomIcon from '../CustomIcons';
 import ImageView from '../ImageView';
 
@@ -10,29 +14,25 @@ export const defaultDelta = {
   latitudeDelta: 0.02,
   longitudeDelta: 0.01,
 };
-// React.forwardRef<BottomSheetRefProps, {
-//   style: StyleProp<any>;
-//   onOpenDetail: () => void;
-//   setSelected: (id: any) => void;
-//   itemList: any[];
-// }>(({style,
-//   onOpenDetail,
-//   setSelected,
-//   itemList}, ref) => {
-
-//   })
 
 const CustomMaps = ({
   style,
   onOpenDetail,
   setSelected,
   itemList,
+  isHalf,
+  selectedItem,
 }: {
   style: StyleProp<any>;
   onOpenDetail: () => void;
   setSelected: (id: any) => void;
+  selectedItem: any;
   itemList: any[];
+  isHalf: boolean;
 }) => {
+  const mapRef = useRef<MapView>() as React.MutableRefObject<MapView>;
+  // const mapRef = createRef<MapView>();
+
   const Point = ({ category }: { category: string }) => {
     return (
       <View style={styles.pointContainer}>
@@ -48,11 +48,36 @@ const CustomMaps = ({
     );
   };
 
+  useEffect(() => {
+    console.log('changed isHalf line 53', isHalf);
+    const timeout = setTimeout(() => {
+      if (selectedItem) {
+        mapRef.current?.animateCamera({
+          center: {
+            latitude: selectedItem.coordinate.latitude,
+            longitude: selectedItem.coordinate.longitude,
+          },
+
+          zoom: isHalf ? 14.8 : 14.4,
+        });
+      }
+    }, 350);
+    // mapRef.current?.on
+    return () => clearTimeout(timeout);
+  }, [mapRef, isHalf]);
+
   return (
     <View style={[styles.container, style]}>
       <MapView
+        ref={mapRef}
+        onMapReady={() => {
+          console.log('line 77 ready');
+        }}
+        onMapLoaded={() => {
+          console.log('line 78 loaded');
+        }}
+        mapPadding={{ top: 0, right: 0, bottom: isHalf ? 320 : 0, left: 0 }}
         style={styles.map}
-        // mapPadding={{ top: 0, left: 0, right: 0, bottom: usingPadding ? 320 : 0 }}
         showsCompass={false}
         initialRegion={{
           latitude: -6.60755,
@@ -76,11 +101,11 @@ const CustomMaps = ({
     </View>
   );
 };
-//create our styling code:
+
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    flex: 1, //the container will fill the whole screen.
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },

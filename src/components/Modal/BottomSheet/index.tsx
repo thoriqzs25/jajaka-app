@@ -4,6 +4,7 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
   interpolate,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -12,18 +13,20 @@ import Animated, {
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import colours from '@src/utils/colours';
-import { UseBoolean } from '@src/types/hooks/UseBoolean';
+import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 36;
 
-const BottomSheet = React.forwardRef<BottomSheetRefProps, { children: JSX.Element }>(({ children }, ref) => {
+const BottomSheet = React.forwardRef<
+  BottomSheetRefProps,
+  { children: JSX.Element; halfScreen: (half: boolean) => void }
+>(({ children, halfScreen }, ref) => {
   const translateY = useSharedValue(0);
   const active = useSharedValue(false);
 
   const scrollTo = useCallback((destination: number) => {
     'worklet';
     active.value = destination === MAX_TRANSLATE_Y / 1.8;
-
     translateY.value = withSpring(destination, { damping: 50 });
   }, []);
 
@@ -43,17 +46,24 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, { children: JSX.Elemen
       translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
     })
     .onEnd(() => {
-      if (translateY.value < -SCREEN_HEIGHT / 1.5) {
-        scrollTo(MAX_TRANSLATE_Y);
-      } else if (translateY.value < -SCREEN_HEIGHT / 2.5) {
-        scrollTo(MAX_TRANSLATE_Y / 1.8);
-      } else if (translateY.value < -195) {
-        scrollTo(-230);
-      } else {
-        scrollTo(0);
+      try {
+        if (translateY.value < -SCREEN_HEIGHT / 1.5) {
+          scrollTo(MAX_TRANSLATE_Y);
+          runOnJS(halfScreen)(false);
+        } else if (translateY.value < -SCREEN_HEIGHT / 2.5) {
+          scrollTo(MAX_TRANSLATE_Y / 1.8);
+          runOnJS(halfScreen)(true);
+        } else if (translateY.value < -195) {
+          scrollTo(-230);
+          runOnJS(halfScreen)(false);
+        } else {
+          scrollTo(0);
+          runOnJS(halfScreen)(false);
+        }
+      } catch (e) {
+        console.log('line 62 error,', e);
       }
     });
-
   const rBottomSheetStyle = useAnimatedStyle(() => {
     const borderRadius = interpolate(
       translateY.value,
