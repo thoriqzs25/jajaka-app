@@ -11,6 +11,7 @@ import KategoriData from './KategoriData';
 import useBoolean from '@src/hooks/useBoolean';
 import { EdgePadding } from 'react-native-maps';
 import { CustomMapsRefProps } from '@src/types/refs/customMaps';
+import { runOnJS, useSharedValue, useWorkletCallback } from 'react-native-reanimated';
 
 const DATA = [
   {
@@ -97,21 +98,30 @@ const DATA = [
 
 const Bongbolongan = () => {
   const bottomSheetRef = useRef<BottomSheetRefProps>(null);
-  const customMapRef = useRef<CustomMapsRefProps>(null);
   const [selected, setSelected] = useState<any>();
   const [tabs, setTabs] = useState<'Maps' | 'Database'>('Maps');
+  const [isHalf, setHalfScreen] = useState<boolean>(false);
 
   const onPress = useCallback(() => {
-    // if (!bottomSheetRef?.current?.isActive())
-    bottomSheetRef?.current?.scrollTo(-230);
+    if (!bottomSheetRef?.current?.isActive()) bottomSheetRef?.current?.scrollTo(-230);
   }, []);
+
+  const halfScreen = (half: boolean) => {
+    setHalfScreen(half);
+  };
 
   const tabsNav = () => {
     switch (tabs) {
       case 'Maps':
         return (
           <View style={styles.mapsContainer}>
-            <CustomMaps itemList={DATA} style={styles.maps} onOpenDetail={onPress} setSelected={setSelected} />
+            <CustomMaps
+              itemList={DATA}
+              style={styles.maps}
+              onOpenDetail={onPress}
+              setSelected={setSelected}
+              isHalf={isHalf}
+            />
           </View>
         );
       case 'Database':
@@ -151,7 +161,7 @@ const Bongbolongan = () => {
           />
         </View>
         {tabsNav()}
-        <BongbolonganDetails ref={bottomSheetRef} item={selected} />
+        <BongbolonganDetails ref={bottomSheetRef} item={selected} halfScreen={halfScreen} />
       </>
     </SubPages>
   );

@@ -4,6 +4,7 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
   interpolate,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -16,7 +17,10 @@ import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 36;
 
-const BottomSheet = React.forwardRef<BottomSheetRefProps, { children: JSX.Element }>(({ children }, ref) => {
+const BottomSheet = React.forwardRef<
+  BottomSheetRefProps,
+  { children: JSX.Element; halfScreen: (half: boolean) => void }
+>(({ children, halfScreen }, ref) => {
   const translateY = useSharedValue(0);
   const active = useSharedValue(false);
 
@@ -45,12 +49,16 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, { children: JSX.Elemen
       try {
         if (translateY.value < -SCREEN_HEIGHT / 1.5) {
           scrollTo(MAX_TRANSLATE_Y);
+          runOnJS(halfScreen)(false);
         } else if (translateY.value < -SCREEN_HEIGHT / 2.5) {
           scrollTo(MAX_TRANSLATE_Y / 1.8);
+          runOnJS(halfScreen)(true);
         } else if (translateY.value < -195) {
           scrollTo(-230);
+          runOnJS(halfScreen)(false);
         } else {
           scrollTo(0);
+          runOnJS(halfScreen)(false);
         }
       } catch (e) {
         console.log('line 62 error,', e);

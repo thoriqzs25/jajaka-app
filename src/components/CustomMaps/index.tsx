@@ -3,9 +3,10 @@ import useBoolean from '@src/hooks/useBoolean';
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
 import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 import colours from '@src/utils/colours';
-import React, { useCallback, useImperativeHandle, useState } from 'react';
+import React, { useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { StyleProp, StyleSheet, Text, View } from 'react-native';
 import MapView, { EdgePadding, Marker } from 'react-native-maps';
+import { SharedValue } from 'react-native-reanimated';
 import CustomIcon from '../CustomIcons';
 import ImageView from '../ImageView';
 
@@ -19,11 +20,13 @@ const CustomMaps = ({
   onOpenDetail,
   setSelected,
   itemList,
+  isHalf,
 }: {
   style: StyleProp<any>;
   onOpenDetail: () => void;
   setSelected: (id: any) => void;
   itemList: any[];
+  isHalf: boolean;
 }) => {
   const Point = ({ category }: { category: string }) => {
     return (
@@ -43,10 +46,7 @@ const CustomMaps = ({
   return (
     <View style={[styles.container, style]}>
       <MapView
-        onMarkerPress={() => {
-          console.log('click line 55');
-        }}
-        // mapPadding={{ top: 0, right: 0, bottom:  ? 320 : 0, left: 0 }}
+        mapPadding={{ top: 0, right: 0, bottom: isHalf ? 320 : 0, left: 0 }}
         style={styles.map}
         showsCompass={false}
         initialRegion={{

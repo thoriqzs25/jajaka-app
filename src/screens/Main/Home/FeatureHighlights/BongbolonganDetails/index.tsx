@@ -9,37 +9,39 @@ import { globalStyle } from '@utils/globalStyles';
 import React, { Ref } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, { item: any }>(({ item }, ref) => {
-  return (
-    <BottomSheet ref={ref}>
-      {item ? (
-        <View style={[globalStyle.paddingModal]}>
-          <View style={styles.headerContainer}>
-            <CustomIcon name={'spoon-knife'} size={20} style={styles.icon} />
+const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, { item: any; halfScreen: (half: boolean) => void }>(
+  ({ item, halfScreen }, ref) => {
+    return (
+      <BottomSheet ref={ref} halfScreen={halfScreen}>
+        {item ? (
+          <View style={[globalStyle.paddingModal]}>
+            <View style={styles.headerContainer}>
+              <CustomIcon name={'spoon-knife'} size={20} style={styles.icon} />
 
-            <Text style={styles.title}>{item.name}</Text>
-          </View>
-          <View>
-            <Text>Foto-Foto</Text>
-          </View>
-          <View>
-            {Object.keys(item.details).map((key) => (
-              <View style={styles.textLine} key={key}>
-                <View style={styles.keyLine}>
-                  <Text style={styles.textKey}>{key}</Text>
-                  <Text>:</Text>
+              <Text style={styles.title}>{item.name}</Text>
+            </View>
+            <View>
+              <Text>Foto-Foto</Text>
+            </View>
+            <View>
+              {Object.keys(item.details).map((key) => (
+                <View style={styles.textLine} key={key}>
+                  <View style={styles.keyLine}>
+                    <Text style={styles.textKey}>{key}</Text>
+                    <Text>:</Text>
+                  </View>
+                  <Text style={styles.textValue}>{item.details[key]}</Text>
                 </View>
-                <Text style={styles.textValue}>{item.details[key]}</Text>
-              </View>
-            ))}
+              ))}
+            </View>
           </View>
-        </View>
-      ) : (
-        <Text>Loading</Text>
-      )}
-    </BottomSheet>
-  );
-});
+        ) : (
+          <Text>Loading</Text>
+        )}
+      </BottomSheet>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   headerContainer: {
