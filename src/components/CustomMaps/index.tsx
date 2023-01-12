@@ -3,7 +3,7 @@ import useBoolean from '@src/hooks/useBoolean';
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
 import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 import colours from '@src/utils/colours';
-import React, { useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import React, { createRef, LegacyRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { StyleProp, StyleSheet, Text, View } from 'react-native';
 import MapView, { EdgePadding, Marker } from 'react-native-maps';
 import { SharedValue } from 'react-native-reanimated';
@@ -21,13 +21,18 @@ const CustomMaps = ({
   setSelected,
   itemList,
   isHalf,
+  selectedItem,
 }: {
   style: StyleProp<any>;
   onOpenDetail: () => void;
   setSelected: (id: any) => void;
+  selectedItem: any;
   itemList: any[];
   isHalf: boolean;
 }) => {
+  const mapRef = useRef<MapView>() as React.MutableRefObject<MapView>;
+  // const mapRef = createRef<MapView>();
+
   const Point = ({ category }: { category: string }) => {
     return (
       <View style={styles.pointContainer}>
@@ -43,9 +48,34 @@ const CustomMaps = ({
     );
   };
 
+  useEffect(() => {
+    console.log('changed isHalf line 53', isHalf);
+    const timeout = setTimeout(() => {
+      if (selectedItem) {
+        mapRef.current?.animateCamera({
+          center: {
+            latitude: selectedItem.coordinate.latitude,
+            longitude: selectedItem.coordinate.longitude,
+          },
+
+          zoom: isHalf ? 14.8 : 14.4,
+        });
+      }
+    }, 350);
+    // mapRef.current?.on
+    return () => clearTimeout(timeout);
+  }, [mapRef, isHalf]);
+
   return (
     <View style={[styles.container, style]}>
       <MapView
+        ref={mapRef}
+        onMapReady={() => {
+          console.log('line 77 ready');
+        }}
+        onMapLoaded={() => {
+          console.log('line 78 loaded');
+        }}
         mapPadding={{ top: 0, right: 0, bottom: isHalf ? 320 : 0, left: 0 }}
         style={styles.map}
         showsCompass={false}

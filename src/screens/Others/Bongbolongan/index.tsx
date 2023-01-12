@@ -121,6 +121,7 @@ const Bongbolongan = () => {
               onOpenDetail={onPress}
               setSelected={setSelected}
               isHalf={isHalf}
+              selectedItem={selected}
             />
           </View>
         );
