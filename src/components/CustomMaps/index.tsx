@@ -33,10 +33,13 @@ const CustomMaps = ({
   const mapRef = useRef<MapView>() as React.MutableRefObject<MapView>;
   // const mapRef = createRef<MapView>();
 
-  const Point = ({ category }: { category: string }) => {
+  const Point = ({ category, active }: { category: string; active: boolean }) => {
     return (
       <View style={styles.pointContainer}>
-        <ImageView name={'map-marker'} style={styles.image} />
+        <ImageView
+          name={active ? 'map-marker-active' : 'map-marker'}
+          style={[styles.image, { width: active ? 36 : 23, height: active ? 39 : 32 }]}
+        />
         <CustomIcon
           name={category === 'Kuliner' ? 'spoon-knife' : 'coin-dollar'}
           size={14}
@@ -49,7 +52,6 @@ const CustomMaps = ({
   };
 
   useEffect(() => {
-    console.log('changed isHalf line 53', isHalf);
     const timeout = setTimeout(() => {
       if (selectedItem) {
         mapRef.current?.animateCamera({
@@ -58,11 +60,10 @@ const CustomMaps = ({
             longitude: selectedItem.coordinate.longitude,
           },
 
-          zoom: isHalf ? 14.8 : 14.4,
+          zoom: isHalf ? 16 : 15.4,
         });
       }
     }, 350);
-    // mapRef.current?.on
     return () => clearTimeout(timeout);
   }, [mapRef, isHalf]);
 
@@ -70,12 +71,6 @@ const CustomMaps = ({
     <View style={[styles.container, style]}>
       <MapView
         ref={mapRef}
-        onMapReady={() => {
-          console.log('line 77 ready');
-        }}
-        onMapLoaded={() => {
-          console.log('line 78 loaded');
-        }}
         mapPadding={{ top: 0, right: 0, bottom: isHalf ? 320 : 0, left: 0 }}
         style={styles.map}
         showsCompass={false}
@@ -93,7 +88,7 @@ const CustomMaps = ({
                 setSelected(item);
                 onOpenDetail();
               }}>
-              <Point category={item.details.Kategori} />
+              <Point category={item.details.Kategori} active={selectedItem ? item.id === selectedItem.id : false} />
             </Marker>
           );
         })}
@@ -119,10 +114,7 @@ const styles = StyleSheet.create({
     height: 38,
     // width: 23,
   },
-  image: {
-    width: 23,
-    height: 32,
-  },
+  image: {},
   icon: {
     top: 6,
     position: 'absolute',
