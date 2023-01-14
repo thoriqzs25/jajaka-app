@@ -41,6 +41,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982948409074:android:0bfd7ec836e46301d4ea6b",
+        "android_client_info": {
+          "package_name": "com.jajaka.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982948409074-aukespi0p1evv5k2v1ku5nocrlalv7hi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ9kZunRsiQ4tn18fQUKOqp0Z2WesCpoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982948409074-aukespi0p1evv5k2v1ku5nocrlalv7hi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

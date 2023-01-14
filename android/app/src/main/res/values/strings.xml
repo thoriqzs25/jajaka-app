@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Jajaka</string>
+    <!-- <string name="app_name">Jajaka</string> -->
     <string name="CodePushDeploymentKey" modulConfig="true" translatable="false">smegzDoYLtSW-PZG7zFLkRYglf7pmxawAqGIh</string>
 </resources>

@@ -144,6 +144,10 @@ android {
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
         resValue 'string', "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
+        resValue "string","app_name", "Jajaka"
+        manifestPlaceholders = [
+                appIcon: "@mipmap/app_logo"
+            ]
 
         if (isNewArchitectureEnabled()) {
             // We configure the CMake build only if you decide to opt-in for the New Architecture.
@@ -231,6 +235,16 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        prod {
+            
+        }
+        staging {
+            resValue "string","app_name", "Jajaka (Beta)"
+            applicationIdSuffix ".staging"
         }
     }
 

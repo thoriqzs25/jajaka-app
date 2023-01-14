@@ -6,8 +6,8 @@
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
-      android:icon="@mipmap/app_logo"
-      android:roundIcon="@mipmap/app_logo"
+      android:icon="${appIcon}"
+      android:roundIcon="${appIcon}"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
       <activity
