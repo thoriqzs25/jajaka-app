@@ -71,7 +71,8 @@ const CustomMaps = ({
     <View style={[styles.container, style]}>
       <MapView
         ref={mapRef}
-        mapPadding={{ top: 0, right: 0, bottom: isHalf ? 320 : 0, left: 0 }}
+        mapPadding={{ top: 0, right: 0, bottom: isHalf ? 248 : 4, left: 0 }}
+        // mapPadding={{ top: 0, right: 0, bottom: isHalf ? 320 : 0, left: 0 }}
         style={styles.map}
         showsCompass={false}
         initialRegion={{

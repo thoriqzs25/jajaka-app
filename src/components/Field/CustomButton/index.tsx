@@ -8,14 +8,27 @@ const CustomButton = ({
   style,
   onPress,
   titleStyle,
+  glow,
 }: {
   title: string;
   style?: StyleProp<any>;
   onPress?: () => void;
   titleStyle?: StyleProp<any>;
+  glow?: boolean;
 }) => {
   return (
-    <TouchableOpacity activeOpacity={0.75} style={[styles.container, style]} onPress={onPress}>
+    <TouchableOpacity
+      activeOpacity={0.75}
+      style={[
+        styles.container,
+        style,
+        glow && {
+          elevation: 2,
+          shadowColor: colours.white,
+          // shadowOffset: { width: 0, height: 5 },
+        },
+      ]}
+      onPress={onPress}>
       <Text style={[styles.title, titleStyle]}>{title}</Text>
     </TouchableOpacity>
   );

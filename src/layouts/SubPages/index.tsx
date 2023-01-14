@@ -4,7 +4,7 @@ import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
 import { globalStyle } from '@utils/globalStyles';
 import { IconType } from '@utils/icons';
-import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, StyleProp, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const SubPages = ({
   children,
@@ -12,12 +12,14 @@ const SubPages = ({
   childPadding = true,
   subTitle,
   subTitleIcon,
+  style,
 }: {
   children: JSX.Element;
   title: string;
   childPadding?: boolean;
   subTitle?: string;
   subTitleIcon?: IconType;
+  style?: StyleProp<any>;
 }) => {
   const { navigate, goBack, canGoBack } = useNavigation();
 
@@ -25,7 +27,8 @@ const SubPages = ({
     if (canGoBack()) goBack();
   };
   return (
-    <View style={[styles.layoutContainer, childPadding && globalStyle.paddingHorizontal, globalStyle.paddingTop]}>
+    <View
+      style={[styles.layoutContainer, childPadding && globalStyle.paddingHorizontal, globalStyle.paddingTop, style]}>
       <View style={[styles.headerContainer, !childPadding && globalStyle.paddingHorizontal]}>
         <TouchableOpacity activeOpacity={0.75} style={styles.leftContainer} onPress={handleBack}>
           <CustomIcon name={'cheveron-left'} size={32} color={colours.white} style={styles.icon} />

@@ -12,6 +12,8 @@ import useBoolean from '@src/hooks/useBoolean';
 import { EdgePadding } from 'react-native-maps';
 import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 import { runOnJS, useSharedValue, useWorkletCallback } from 'react-native-reanimated';
+import { fontFamily } from '@src/utils/fonts';
+import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 
 const DATA = [
   {
@@ -147,6 +149,24 @@ const Bongbolongan = () => {
       subTitle={'Pencarian data UMKM di sekitarmu'}
       subTitleIcon={'search1'}>
       <>
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            bottom: 20,
+            left: 0,
+            right: 0,
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 100,
+          }}>
+          <CustomButton
+            title={'Tentukan idemu'}
+            titleStyle={{ fontFamily: fontFamily.regular, fontSize: 14, lineHeight: 16, color: colours.white }}
+            style={{ width: 200, paddingVertical: 10 }}
+            glow
+          />
+        </View>
         <View style={styles.tabsContainer}>
           <CustomButton
             title={'Maps'}
@@ -156,13 +176,16 @@ const Bongbolongan = () => {
           />
           <CustomButton
             title={'Database'}
-            onPress={() => setTabs('Database')}
+            onPress={() => {
+              setTabs('Database');
+              halfScreen(false);
+            }}
             style={[styles.tabsButton, tabs === 'Database' && activeStyle.container]}
             titleStyle={[styles.tabsText, tabs === 'Database' && activeStyle.text]}
           />
         </View>
         {tabsNav()}
-        <BongbolonganDetails ref={bottomSheetRef} item={selected} halfScreen={halfScreen} />
+        {tabs === 'Maps' && <BongbolonganDetails ref={bottomSheetRef} item={selected} halfScreen={halfScreen} />}
       </>
     </SubPages>
   );
@@ -190,11 +213,12 @@ const styles = StyleSheet.create({
   },
   mapsContainer: {
     flex: 1,
+    marginHorizontal: 20,
+    marginBottom: 72,
   },
   maps: {
     overflow: 'hidden',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
+    borderRadius: 24,
   },
   databaseContainer: {},
 });
