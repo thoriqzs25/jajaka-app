@@ -1,3 +1,4 @@
+import CustomButton from '@src/components/Field/CustomButton';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
 import { StyleSheet, Text, View } from 'react-native';
@@ -18,6 +19,7 @@ const KategoriData = () => {
             );
           })}
       </View>
+      <CustomButton title={'Cari'} />
     </>
   );
 };
