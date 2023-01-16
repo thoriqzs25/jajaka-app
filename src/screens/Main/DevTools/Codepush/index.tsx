@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { NativeModules, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import codePush from 'react-native-code-push';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
+import packageJSON from 'package.json';
 
 type Status = {
   title: string;
   color: string;
 };
+
+// const packageJson = require('package.json');
+// console.log(packageJson.version);
 
 const Codepush = () => {
   const [cpStatus, setCpStatus] = useState<Status>({
@@ -37,9 +41,12 @@ const Codepush = () => {
   };
 
   const CodepushButton = () => {
+    const env = NativeModules.RNConfig.env; // to get the current env you just need to insert this line
+
     return (
       <TouchableOpacity style={styles.buttonContainer} activeOpacity={0.75} onPress={() => handleCodepush()}>
         <Text style={styles.title}>Codepush OTA</Text>
+        <Text style={styles.title}>{`${env} // ${packageJSON.version}`}</Text>
         <View style={[styles.bar, { backgroundColor: cpStatus.color }]}>
           <Text style={styles.status}>{cpStatus.title}</Text>
         </View>
