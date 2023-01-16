@@ -26,6 +26,11 @@ const AuthScreen = () => {
   const [passwordConf, setPasswordConf] = useState<string>('');
 
   const handleSubmit = () => {
+    if (user) {
+      console.log('trying to login line 30');
+    } else {
+      console.log('trying to signup line 34');
+    }
     if (email === '123' && password === '123') {
       console.log('success login line 22');
       dispatch(userLogin({ token: 'abcefghi', email: email }));

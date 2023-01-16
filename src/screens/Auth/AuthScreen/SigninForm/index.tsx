@@ -45,6 +45,7 @@ const SigninForm = ({
             style={[styles.input]}
             setValue={setName}
             value={name}
+            autoCapitalize={'words'}
           />
           <View style={styles.divider} />
           <TextField
@@ -53,6 +54,7 @@ const SigninForm = ({
             style={[styles.input]}
             setValue={setPhoneNum}
             value={phoneNum}
+            keyboardType={'number-pad'}
           />
         </View>
         <View style={styles.dualInput}>

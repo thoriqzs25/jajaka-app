@@ -1,5 +1,6 @@
-import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import colours from '@utils/colours';
+import { fontFamily } from '@utils/fonts';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Codepush from '../DevTools/Codepush';
 

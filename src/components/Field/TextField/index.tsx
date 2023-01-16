@@ -3,7 +3,7 @@ import useBoolean from '@src/hooks/useBoolean';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
 import { useEffect, useRef, useState } from 'react';
-import { StyleProp, StyleSheet, StyleSheetProperties } from 'react-native';
+import { KeyboardTypeOptions, StyleProp, StyleSheet, StyleSheetProperties, TextInputProps } from 'react-native';
 import { Text, TextInput, View } from 'react-native';
 
 const TextField = ({
@@ -14,6 +14,8 @@ const TextField = ({
   secureInput,
   setValue,
   value,
+  autoCapitalize = 'none',
+  keyboardType = 'default',
 }: {
   title?: string;
   autoFocus?: boolean;
@@ -22,6 +24,8 @@ const TextField = ({
   secureInput?: boolean;
   setValue: (val: string) => void;
   value?: string;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+  keyboardType?: KeyboardTypeOptions;
 }) => {
   const { value: active, setValue: setActive } = useBoolean(false);
   const { value: visible, setValue: setVisible } = useBoolean(false);
@@ -48,8 +52,10 @@ const TextField = ({
           ref={inputRef}
           secureTextEntry={secureInput && !visible}
           onChangeText={(val) => setValue(val)}
-          style={[styles.inputText, { width: secureInput ? '86%' : '100%' }]}
+          style={[styles.inputText, { width: secureInput ? '84%' : '100%' }]}
           value={value ?? value}
+          autoCapitalize={autoCapitalize}
+          keyboardType={keyboardType}
         />
         {secureInput && (
           <CustomIcon
