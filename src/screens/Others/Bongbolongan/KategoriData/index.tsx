@@ -4,6 +4,10 @@ import { fontFamily } from '@src/utils/fonts';
 import { StyleSheet, Text, View } from 'react-native';
 
 const KategoriData = () => {
+  const handleFilter = () => {
+    return;
+  };
+
   return (
     <>
       <Text style={styles.title}>🗒️ Kategori Data</Text>
@@ -19,7 +23,7 @@ const KategoriData = () => {
             );
           })}
       </View>
-      <CustomButton title={'Cari'} />
+      <CustomButton style={styles.button} title={'Cari'} onPress={handleFilter} />
     </>
   );
 };
@@ -46,6 +50,12 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontFamily: fontFamily.regular,
     color: colours.white,
+  },
+  button: {
+    width: 80,
+    marginTop: 4,
+    paddingVertical: 8,
+    alignSelf: 'flex-end',
   },
 });
 

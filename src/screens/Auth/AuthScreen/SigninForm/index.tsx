@@ -16,6 +16,9 @@ const SigninForm = ({
   setPhoneNum,
   setPasswordConf,
   setTerm,
+  errorName,
+  errorPass,
+  errorAggree,
 }: {
   name?: string;
   email?: string;
@@ -26,6 +29,9 @@ const SigninForm = ({
   setPhoneNum: (val: string) => void;
   setPasswordConf: (val: string) => void;
   setTerm: UseBoolean;
+  errorName?: string;
+  errorPass?: string;
+  errorAggree?: string;
 }) => {
   return (
     <View style={[styles.sectionContainer, globalStyle.paddingHorizontal]}>
@@ -41,16 +47,17 @@ const SigninForm = ({
         <View style={[styles.dualInput, { marginBottom: 12 }]}>
           <TextField
             title={'Nama'}
-            placeholderText={'Masukkan nama'}
+            placeholderText={'Jajaka Tahiber'}
             style={[styles.input]}
             setValue={setName}
             value={name}
             autoCapitalize={'words'}
+            error={errorName}
           />
           <View style={styles.divider} />
           <TextField
             title={'No. HP'}
-            placeholderText={'Masukkan nomor hp'}
+            placeholderText={'0812345678'}
             style={[styles.input]}
             setValue={setPhoneNum}
             value={phoneNum}
@@ -64,6 +71,7 @@ const SigninForm = ({
             secureInput
             style={[styles.input]}
             setValue={setPassword}
+            error={errorPass}
           />
           <View style={styles.divider} />
           <TextField
@@ -72,10 +80,11 @@ const SigninForm = ({
             secureInput
             style={[styles.input]}
             setValue={setPasswordConf}
+            error={errorPass}
           />
         </View>
       </View>
-      <CustomCheckbox setValue={setTerm} />
+      <CustomCheckbox error={errorAggree} setValue={setTerm} />
     </View>
   );
 };

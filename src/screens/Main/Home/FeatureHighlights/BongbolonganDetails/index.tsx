@@ -1,5 +1,7 @@
 import CustomIcon from '@components/CustomIcons';
 import BottomSheet from '@components/Modal/BottomSheet';
+import CustomCarousels from '@src/components/CustomCarousels';
+import ImageView from '@src/components/ImageView';
 import { UseBoolean } from '@src/types/hooks/UseBoolean';
 import { BottomSheetRefProps } from '@src/types/refs/bottomSheet';
 import { CustomMapsRefProps } from '@src/types/refs/customMaps';
@@ -8,29 +10,64 @@ import { fontFamily } from '@utils/fonts';
 import { globalStyle } from '@utils/globalStyles';
 import React, { Ref } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
-const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, { item: any; halfScreen: (half: boolean) => void }>(
-  ({ item, halfScreen }, ref) => {
+const DATA = [
+  {
+    id: 1,
+    image: 'location-dummy',
+  },
+  {
+    id: 2,
+    image: 'ngajarkeun-logo',
+  },
+  {
+    id: 3,
+    image: 'logo',
+  },
+  {
+    id: 4,
+    image: 'location-dummy',
+  },
+  {
+    id: 5,
+    image: 'location-dummy',
+  },
+];
+
+const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, { data: any; halfScreen: (half: boolean) => void }>(
+  ({ data, halfScreen }, ref) => {
+    const _renderItem = ({ item }: { item: any }) => {
+      return (
+        <View key={data.id.toString()} style={{}}>
+          <ImageView name={item.image} style={{ width: 112, height: 90, borderRadius: 12 }} />
+        </View>
+      );
+    };
+    const _seperatorComp = () => {
+      return <View style={{ width: 12 }} />;
+    };
+
     return (
       <BottomSheet ref={ref} halfScreen={halfScreen}>
-        {item ? (
+        {data ? (
           <View style={[globalStyle.paddingModal]}>
             <View style={styles.headerContainer}>
               <CustomIcon name={'spoon-knife'} size={20} style={styles.icon} />
 
-              <Text style={styles.title}>{item.name}</Text>
+              <Text style={styles.title}>{data.name}</Text>
+            </View>
+            <View style={{ marginVertical: 16 }}>
+              <FlatList data={DATA} renderItem={_renderItem} horizontal ItemSeparatorComponent={_seperatorComp} />
             </View>
             <View>
-              <Text>Foto-Foto</Text>
-            </View>
-            <View>
-              {Object.keys(item.details).map((key) => (
+              {Object.keys(data.details).map((key) => (
                 <View style={styles.textLine} key={key}>
                   <View style={styles.keyLine}>
                     <Text style={styles.textKey}>{key}</Text>
                     <Text>:</Text>
                   </View>
-                  <Text style={styles.textValue}>{item.details[key]}</Text>
+                  <Text style={styles.textValue}>{data.details[key]}</Text>
                 </View>
               ))}
             </View>

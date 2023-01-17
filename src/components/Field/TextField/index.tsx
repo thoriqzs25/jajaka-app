@@ -16,6 +16,7 @@ const TextField = ({
   value,
   autoCapitalize = 'none',
   keyboardType = 'default',
+  error = '',
 }: {
   title?: string;
   autoFocus?: boolean;
@@ -26,6 +27,7 @@ const TextField = ({
   value?: string;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
   keyboardType?: KeyboardTypeOptions;
+  error?: string;
 }) => {
   const { value: active, setValue: setActive } = useBoolean(false);
   const { value: visible, setValue: setVisible } = useBoolean(false);
@@ -46,7 +48,13 @@ const TextField = ({
       <View style={styles.labelContainer}>
         <Text style={styles.labelTitle}>{title}</Text>
       </View>
-      <View style={styles.inputContainer}>
+      <View
+        style={[
+          styles.inputContainer,
+          {
+            borderColor: error ? colours.redNormal : active ? colours.gray500 : colours.backgroundClickable,
+          },
+        ]}>
         <TextInput
           placeholder={placeholderText}
           ref={inputRef}
@@ -56,6 +64,8 @@ const TextField = ({
           value={value ?? value}
           autoCapitalize={autoCapitalize}
           keyboardType={keyboardType}
+          onFocus={() => setActive.true()}
+          onBlur={() => setActive.false()}
         />
         {secureInput && (
           <CustomIcon
@@ -83,12 +93,14 @@ const styles = StyleSheet.create({
   inputContainer: {
     fontSize: 16,
     lineHeight: 20,
+    borderWidth: 1,
     borderRadius: 12,
     paddingHorizontal: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
     fontFamily: fontFamily.regular,
+    justifyContent: 'space-between',
+    borderColor: colours.backgroundClickable,
     backgroundColor: colours.backgroundClickable,
   },
   inputText: {
@@ -101,6 +113,9 @@ const styles = StyleSheet.create({
     width: '12%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  focus: {
+    borderColor: colours.greenNormal,
   },
 });
 

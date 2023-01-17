@@ -11,11 +11,13 @@ const CustomCheckbox = ({
   boxStyle,
   label,
   setValue,
+  error = '',
 }: {
   style?: StyleProp<any>;
   boxStyle?: StyleProp<any>;
   label?: string;
   setValue: UseBoolean;
+  error?: string;
 }) => {
   const { value: active, setValue: setActive } = useBoolean(false);
 
@@ -28,7 +30,9 @@ const CustomCheckbox = ({
         else setValue.false();
       }}
       style={[styles.container, style]}>
-      <View style={[styles.boxContainer, boxStyle]}>{active && <CustomIcon name={'checkmark1'} size={12} />}</View>
+      <View style={[styles.boxContainer, boxStyle, { borderColor: error ? colours.redNormal : colours.blueYoung }]}>
+        {active && <CustomIcon name={'checkmark1'} size={12} />}
+      </View>
       <View>
         <Text style={styles.label}>Saya telah setuju dengan syarat dan ketentuan.</Text>
       </View>
@@ -47,7 +51,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     marginRight: 4,
-    borderColor: colours.blueYoung,
     backgroundColor: colours.backgroundClickable,
   },
   label: { fontFamily: fontFamily.regular, color: colours.white, fontSize: 14, lineHeight: 18 },

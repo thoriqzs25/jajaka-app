@@ -18,6 +18,8 @@ export const imageSource = (name: string) => {
       return require('@src/assets/images/map-marker.webp');    
     case 'map-marker-active':
       return require('@src/assets/images/map-marker-active.webp');    
+    case 'location-dummy':
+      return require('@src/assets/images/location-dummy.webp');    
     default:
       return undefined;
   }

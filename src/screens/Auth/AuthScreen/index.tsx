@@ -20,15 +20,19 @@ const AuthScreen = () => {
   const { value: termAggreement, setValue: setTerm } = useBoolean(true);
 
   const [name, setName] = useState<string>('');
+  const [errorName, setErrorName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phoneNum, setPhoneNum] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordConf, setPasswordConf] = useState<string>('');
+  const [errorPass, setErrorPass] = useState<string>('');
+  const [errorAggree, setErrorAggree] = useState<string>('');
 
   const handleSubmit = () => {
     if (user) {
       console.log('trying to login line 30');
     } else {
+      validateAll();
       console.log('trying to signup line 34');
     }
     if (email === '123' && password === '123') {
@@ -37,13 +41,54 @@ const AuthScreen = () => {
     }
   };
 
+  const validateName = () => {
+    const reLetter = /[a-zA-Z]/;
+    const reSpace = /\s/g;
+    const reSpecialChar = /[`~!@#$%^&*()_|+\-=?;:'",.<>{}[\]/\\]/gi;
+    const tempName = name;
+    if (tempName.trim() === '') {
+      setErrorName('Nama tidak boleh kosong');
+      return false;
+    }
+    if (tempName.trim().length < 3) {
+      setErrorName('Nama harus lebih dari 3 karakter');
+      return false;
+    }
+
+    // if(gende``)
+    for (let i = 0; i < tempName.length; i++) {
+      if (!tempName[i].match(reLetter) && !tempName[i].match(reSpace) && !tempName[i].match(reSpecialChar)) {
+        setErrorName('Nama tidak boleh memiliki angka dan simbol');
+        return false;
+      }
+    }
+    setErrorName('');
+    return true;
+  };
+
+  const validatePassword = () => {
+    if (password && passwordConf && password === passwordConf && password.length > 7) {
+      setErrorPass('');
+      return true;
+    }
+    setErrorPass('Password tidak sama');
+    return false;
+  };
+
+  const validateAll = () => {
+    let res = true;
+    if (!validateName()) res = false;
+    if (!validatePassword()) res = false;
+    return res;
+  };
+
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'}>
       <View style={styles.pageContainer}>
         <View style={[styles.header, globalStyle.padding]}>
           <ImageView name={'logo'} style={styles.logo} />
         </View>
-        <CustomCarousels />
+        <CustomCarousels autoScroll />
         {user ? (
           <LoginForm setEmail={setEmail} setPassword={setPassword} email={email} />
         ) : (
@@ -57,6 +102,9 @@ const AuthScreen = () => {
             setPhoneNum={setPhoneNum}
             setPasswordConf={setPasswordConf}
             setTerm={setTerm}
+            errorName={errorName}
+            errorPass={errorPass}
+            errorAggree={errorAggree}
           />
         )}
         <View style={[globalStyle.paddingHorizontal]}>

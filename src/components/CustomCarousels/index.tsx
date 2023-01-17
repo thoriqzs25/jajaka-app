@@ -79,9 +79,11 @@ const CustomCarousels = () => {
       <View style={[styles.carouselContainer]}>
         <View style={styles.itemContainer}>
           <ImageView name={item.image} style={styles.image} />
-          <View>
-            <Text style={styles.title}>{item.title}</Text>
-          </View>
+          {item.title && (
+            <View>
+              <Text style={styles.title}>{item.title}</Text>
+            </View>
+          )}
         </View>
       </View>
     );

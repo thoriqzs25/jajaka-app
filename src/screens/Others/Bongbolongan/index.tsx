@@ -13,7 +13,9 @@ import { EdgePadding } from 'react-native-maps';
 import { CustomMapsRefProps } from '@src/types/refs/customMaps';
 import { runOnJS, useSharedValue, useWorkletCallback } from 'react-native-reanimated';
 import { fontFamily } from '@src/utils/fonts';
-import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@src/utils/deviceDimensions';
+import ListUMKM from './ListUMKM';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const DATA = [
   {
@@ -98,6 +100,8 @@ const DATA = [
   },
 ];
 
+const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 36;
+
 const Bongbolongan = () => {
   const bottomSheetRef = useRef<BottomSheetRefProps>(null);
   const [selected, setSelected] = useState<any>();
@@ -105,7 +109,10 @@ const Bongbolongan = () => {
   const [isHalf, setHalfScreen] = useState<boolean>(false);
 
   const onPress = useCallback(() => {
-    if (!bottomSheetRef?.current?.isActive()) bottomSheetRef?.current?.scrollTo(-230);
+    if (!bottomSheetRef?.current?.isActive()) {
+      bottomSheetRef?.current?.scrollTo(MAX_TRANSLATE_Y / 1.8);
+      halfScreen(true);
+    }
   }, []);
 
   const halfScreen = (half: boolean) => {
@@ -129,9 +136,10 @@ const Bongbolongan = () => {
         );
       case 'Database':
         return (
-          <View style={[styles.databaseContainer, globalStyle.paddingHorizontal]}>
+          <ScrollView style={[styles.databaseContainer, globalStyle.paddingHorizontal]}>
             <KategoriData />
-          </View>
+            <ListUMKM />
+          </ScrollView>
         );
       default:
         return (
@@ -185,7 +193,7 @@ const Bongbolongan = () => {
           />
         </View>
         {tabsNav()}
-        {tabs === 'Maps' && <BongbolonganDetails ref={bottomSheetRef} item={selected} halfScreen={halfScreen} />}
+        {tabs === 'Maps' && <BongbolonganDetails ref={bottomSheetRef} data={selected} halfScreen={halfScreen} />}
       </>
     </SubPages>
   );

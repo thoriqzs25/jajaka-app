@@ -25,7 +25,6 @@ const CustomButton = ({
         glow && {
           elevation: 2,
           shadowColor: colours.white,
-          // shadowOffset: { width: 0, height: 5 },
         },
       ]}
       onPress={onPress}>
@@ -45,6 +44,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     lineHeight: 20,
+    color: colours.white,
     fontFamily: fontFamily.regular,
   },
 });
