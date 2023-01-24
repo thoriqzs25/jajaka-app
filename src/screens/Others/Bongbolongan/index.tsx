@@ -1,21 +1,18 @@
 import CustomMaps, { defaultDelta } from '@components/CustomMaps';
 import SubPages from '@src/layouts/SubPages';
-import BongbolonganDetails from '@src/screens/Main/Home/FeatureHighlights/BongbolonganDetails';
+import BongbolonganDetails from '@screens/Main/Home/FeatureHighlights/BongbolonganDetails';
 import { BottomSheetRefProps } from '@cTypes/refs/bottomSheet';
 import colours from '@utils/colours';
-import { createRef, useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import CustomButton from '@src/components/Field/CustomButton';
-import { globalStyle } from '@src/utils/globalStyles';
+import { useCallback, useRef, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import CustomButton from '@components/Field/CustomButton';
+import { globalStyle } from '@utils/globalStyles';
 import KategoriData from './KategoriData';
-import useBoolean from '@src/hooks/useBoolean';
-import { EdgePadding } from 'react-native-maps';
-import { CustomMapsRefProps } from '@src/types/refs/customMaps';
-import { runOnJS, useSharedValue, useWorkletCallback } from 'react-native-reanimated';
-import { fontFamily } from '@src/utils/fonts';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@src/utils/deviceDimensions';
+import { fontFamily } from '@utils/fonts';
+import { SCREEN_HEIGHT } from '@utils/deviceDimensions';
 import ListUMKM from './ListUMKM';
 import { ScrollView } from 'react-native-gesture-handler';
+import { navigate } from '@src/navigation';
 
 const DATA = [
   {
@@ -136,7 +133,7 @@ const Bongbolongan = () => {
         );
       case 'Database':
         return (
-          <ScrollView style={[styles.databaseContainer, globalStyle.paddingHorizontal]}>
+          <ScrollView style={[styles.databaseContainer, globalStyle.paddingHorizontal]} nestedScrollEnabled={true}>
             <KategoriData />
             <ListUMKM />
           </ScrollView>
@@ -157,24 +154,6 @@ const Bongbolongan = () => {
       subTitle={'Pencarian data UMKM di sekitarmu'}
       subTitleIcon={'search1'}>
       <>
-        <View
-          style={{
-            position: 'absolute',
-            width: '100%',
-            bottom: 20,
-            left: 0,
-            right: 0,
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 100,
-          }}>
-          <CustomButton
-            title={'Tentukan idemu'}
-            titleStyle={{ fontFamily: fontFamily.regular, fontSize: 14, lineHeight: 16, color: colours.white }}
-            style={{ width: 200, paddingVertical: 10 }}
-            glow
-          />
-        </View>
         <View style={styles.tabsContainer}>
           <CustomButton
             title={'Maps'}
@@ -194,6 +173,29 @@ const Bongbolongan = () => {
         </View>
         {tabsNav()}
         {tabs === 'Maps' && <BongbolonganDetails ref={bottomSheetRef} data={selected} halfScreen={halfScreen} />}
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            bottom: 20,
+            left: 0,
+            right: 0,
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 100,
+          }}>
+          <CustomButton
+            glow
+            onPress={() => {
+              navigate('RekomendasiUMKM');
+            }}
+            title={'Tentukan idemu'}
+            titleStyle={{ fontFamily: fontFamily.regular, fontSize: 14, lineHeight: 16, color: colours.white }}
+            style={{ width: 200, paddingVertical: 10 }}
+            iconName={'light-bulb'}
+            iconNameRight={'cheveron-right'}
+          />
+        </View>
       </>
     </SubPages>
   );

@@ -13,7 +13,9 @@ export type IconType =
 'eye-blocked' | 
 'checkmark1' |
 'spoon-knife' |
-'coin-dollar'
+'coin-dollar' |
+'light-bulb' |
+'notification'
 
 export default createIconSetFromIcoMoon(icoMoonConfig, 'icomoon');
 

@@ -1,7 +1,11 @@
 import CustomButton from '@src/components/Field/CustomButton';
+import CustomDropdown from '@src/components/Field/CustomDropdown';
+import TextField from '@src/components/Field/TextField';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
 import { StyleSheet, Text, View } from 'react-native';
+
+const DATA = ['Kota', 'Kecamatan', 'Sektor', 'Kredit'];
 
 const KategoriData = () => {
   const handleFilter = () => {
@@ -12,18 +16,36 @@ const KategoriData = () => {
     <>
       <Text style={styles.title}>🗒️ Kategori Data</Text>
       <View style={styles.container}>
-        {Array(4)
-          .fill(0)
-          .map((_, idx) => {
+        {DATA.map((_, idx) => {
+          if (idx !== 0) {
             return (
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Kota</Text>
-                <Text>Box</Text>
+              <View style={styles.sectionContainer} key={idx.toString()}>
+                <Text style={styles.sectionTitle}>{_}</Text>
+                <CustomDropdown />
               </View>
             );
-          })}
+          } else {
+            return (
+              <View style={styles.sectionContainer} key={idx.toString()}>
+                <Text style={styles.sectionTitle}>{_}</Text>
+                <TextField
+                  inputStyle={{ borderRadius: 8 }}
+                  style={{ width: 200, height: 33 }}
+                  placeholderText='Bandung'
+                  setValue={() => console.log('line 31')}
+                />
+              </View>
+            );
+          }
+        })}
       </View>
-      <CustomButton style={styles.button} title={'Cari'} onPress={handleFilter} />
+      <CustomButton
+        style={styles.button}
+        titleStyle={styles.buttonText}
+        iconName={'search1'}
+        title={'Cari'}
+        onPress={handleFilter}
+      />
     </>
   );
 };
@@ -43,19 +65,25 @@ const styles = StyleSheet.create({
     backgroundColor: colours.backgroundSecondary,
   },
   sectionContainer: {
+    marginBottom: 8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   sectionTitle: {
-    fontFamily: fontFamily.regular,
+    fontSize: 14,
+    lineHeight: 18,
     color: colours.white,
+    fontFamily: fontFamily.regular,
   },
   button: {
     width: 80,
     marginTop: 4,
     paddingVertical: 8,
     alignSelf: 'flex-end',
+  },
+  buttonText: {
+    fontSize: 14,
   },
 });
 

@@ -1,33 +1,27 @@
+import CustomIcon from '@src/components/CustomIcons';
+import CustomButton from '@src/components/Field/CustomButton';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
 import { StyleSheet, Text, View } from 'react-native';
 
-const DATA = {
-  name: 'Abon Mitcha',
-  product: 'Abon Sapi, Tongkol, dan Ayam',
-  sales: '351 Juta',
-  alamat: 'Situ Aksan, Gg Pagarsih Barat 1',
-};
-// ]
+const itemcount = 4;
 
-const ListUMKM = () => {
+const RekomendasiProduk = ({ DATA, title }: { DATA: any; title: string }) => {
   return (
     <>
       <View style={styles.header}>
-        <Text style={styles.title}>🏬 Jumlah UMKM</Text>
-        <View style={styles.numContainer}>
-          <Text style={styles.numText}>7</Text>
-        </View>
+        <Text style={styles.title}>💡 Rekomendasi Ide Produk UMKM </Text>
       </View>
       <View style={styles.tableContainer}>
         <View style={[styles.flexTable, { borderTopLeftRadius: 8, borderTopRightRadius: 8 }]}>
-          <Text style={[styles.col1, styles.tableHeader]}>No</Text>
-          <Text style={[styles.col2, styles.tableHeader]}>Nama UMKM</Text>
-          <Text style={[styles.col3, styles.tableHeader]}>Produk Utama</Text>
-          <Text style={[styles.col4, styles.tableHeader]}>Penjualan Rata-Rata (Rp)</Text>
-          <Text style={[styles.col5, styles.tableHeader]}>Alamat</Text>
+          <View style={[styles.col1, { flexDirection: 'row', alignItems: 'center' }]}>
+            <CustomIcon name='notification' size={16} style={{ marginRight: 4 }} color={colours.backgroundPrimary} />
+            <Text style={[styles.tableHeader]}>{title}</Text>
+          </View>
+          <Text style={[styles.col2, styles.tableHeader]}>Jumlah Kebutuhan</Text>
+          <View style={[styles.col3, styles.tableHeader]} />
         </View>
-        {Array(60)
+        {Array(itemcount)
           .fill(0)
           .map((_, idx) => {
             return (
@@ -36,12 +30,21 @@ const ListUMKM = () => {
                 style={[
                   styles.flexTable,
                   { backgroundColor: idx % 2 === 0 ? colours.backgroundClickable : colours.backgroundSecondary },
+                  {
+                    borderBottomRightRadius: idx === itemcount - 1 ? 8 : 0,
+                    borderBottomLeftRadius: idx === itemcount - 1 ? 8 : 0,
+                  },
                 ]}>
-                <Text style={[styles.col1, styles.tableItem]}>{idx}</Text>
-                <Text style={[styles.col2, styles.tableItem]}>{DATA.name}</Text>
-                <Text style={[styles.col3, styles.tableItem]}>{DATA.product}</Text>
-                <Text style={[styles.col4, styles.tableItem]}>{DATA.sales}</Text>
-                <Text style={[styles.col5, styles.tableItem]}>{DATA.alamat}</Text>
+                <Text style={[styles.col1, styles.tableItem]}>{DATA.name}</Text>
+                <Text style={[styles.col2, styles.tableItem]}>{DATA.total}</Text>
+                <View style={[styles.col3, styles.tableItem]}>
+                  <CustomButton
+                    title={'Telusuri'}
+                    titleStyle={styles.buttonText}
+                    style={styles.buttonContainer}
+                    iconName={'light-bulb'}
+                  />
+                </View>
               </View>
             );
           })}
@@ -62,15 +65,6 @@ const styles = StyleSheet.create({
     color: colours.white,
     fontFamily: fontFamily.bold,
   },
-  numContainer: {
-    backgroundColor: colours.yellowNormal,
-    paddingVertical: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-    borderRadius: 8,
-    marginLeft: 12,
-  },
   numText: {
     color: colours.backgroundPrimary,
     fontFamily: fontFamily.semiBold,
@@ -88,34 +82,33 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: fontFamily.semiBold,
     color: colours.backgroundPrimary,
-    // backgroundColor: colours.yellowYoung,
   },
   tableItem: {
     paddingVertical: 8,
-    textAlign: 'center',
     color: colours.white,
     fontFamily: fontFamily.regular,
   },
   col1: {
-    width: '8%',
+    width: '25%',
+    textAlign: 'left',
     textAlignVertical: 'center',
   },
   col2: {
-    width: '21%',
+    width: '35%',
+    textAlign: 'center',
     textAlignVertical: 'center',
   },
   col3: {
-    width: '20.5%',
+    width: '28%',
+    textAlign: 'center',
     textAlignVertical: 'center',
   },
-  col4: {
-    width: '20.5%',
-    textAlignVertical: 'center',
+  buttonText: {
+    fontSize: 14,
   },
-  col5: {
-    width: '25%',
-    textAlignVertical: 'center',
+  buttonContainer: {
+    paddingVertical: 8,
   },
 });
 
-export default ListUMKM;
+export default RekomendasiProduk;

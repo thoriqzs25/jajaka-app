@@ -17,6 +17,7 @@ const TextField = ({
   autoCapitalize = 'none',
   keyboardType = 'default',
   error = '',
+  inputStyle,
 }: {
   title?: string;
   autoFocus?: boolean;
@@ -28,6 +29,7 @@ const TextField = ({
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
   keyboardType?: KeyboardTypeOptions;
   error?: string;
+  inputStyle?: StyleProp<any>;
 }) => {
   const { value: active, setValue: setActive } = useBoolean(false);
   const { value: visible, setValue: setVisible } = useBoolean(false);
@@ -45,15 +47,18 @@ const TextField = ({
 
   return (
     <View style={[styles.wholeContainer, style]}>
-      <View style={styles.labelContainer}>
-        <Text style={styles.labelTitle}>{title}</Text>
-      </View>
+      {title && (
+        <View style={styles.labelContainer}>
+          <Text style={styles.labelTitle}>{title}</Text>
+        </View>
+      )}
       <View
         style={[
           styles.inputContainer,
           {
             borderColor: error ? colours.redNormal : active ? colours.gray500 : colours.backgroundClickable,
           },
+          inputStyle,
         ]}>
         <TextInput
           placeholder={placeholderText}

@@ -6334,6 +6334,11 @@ react-native-codegen@^0.70.6:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-element-dropdown@^2.5.3:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/react-native-element-dropdown/-/react-native-element-dropdown-2.5.3.tgz#a8d22912d1c201fc3c08c22fbf3e31ecb166a299"
+  integrity sha512-Os4UtvGlqccV3lsiP5Qy4RPzqqyx7E6lYcn2/IRQZHwBA4NAQA2dul/BrQSwy3bhicCqmWtir7T1GeFmOZPPrQ==
+
 react-native-extra-dimensions-android@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/react-native-extra-dimensions-android/-/react-native-extra-dimensions-android-1.2.5.tgz#8ade91029aaac7519bf305116d39019e618a60f0"
