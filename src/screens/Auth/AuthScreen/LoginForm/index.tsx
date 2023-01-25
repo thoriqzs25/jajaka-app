@@ -9,10 +9,12 @@ const LoginForm = ({
   email,
   setEmail,
   setPassword,
+  errorEmail,
 }: {
   email?: string;
   setEmail: (val: string) => void;
   setPassword: (val: string) => void;
+  errorEmail?: string;
 }) => {
   return (
     <View style={[styles.sectionContainer, globalStyle.padding]}>
@@ -24,6 +26,7 @@ const LoginForm = ({
           style={{ marginBottom: 12 }}
           setValue={setEmail}
           value={email}
+          error={errorEmail}
         />
         <TextField title={'Password'} placeholderText={'Masukkan password'} secureInput setValue={setPassword} />
       </View>

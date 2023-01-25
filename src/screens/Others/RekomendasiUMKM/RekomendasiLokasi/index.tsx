@@ -4,7 +4,7 @@ import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
 import { StyleSheet, Text, View } from 'react-native';
 
-const itemcount = 4;
+const itemcount = 1;
 
 const RekomendasiLokasi = ({ DATA, title }: { DATA: any; title?: string }) => {
   return (

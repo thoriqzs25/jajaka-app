@@ -23,12 +23,12 @@ const CustomMaps = ({
   isHalf,
   selectedItem,
 }: {
-  style: StyleProp<any>;
-  onOpenDetail: () => void;
-  setSelected: (id: any) => void;
-  selectedItem: any;
+  style?: StyleProp<any>;
+  onOpenDetail?: () => void;
+  setSelected?: (id: any) => void;
+  selectedItem?: any;
   itemList: any[];
-  isHalf: boolean;
+  isHalf?: boolean;
 }) => {
   const mapRef = useRef<MapView>() as React.MutableRefObject<MapView>;
   // const mapRef = createRef<MapView>();
@@ -86,8 +86,10 @@ const CustomMaps = ({
               key={item.name}
               coordinate={item.coordinate}
               onPress={() => {
-                setSelected(item);
-                onOpenDetail();
+                if (setSelected && onOpenDetail) {
+                  setSelected(item);
+                  onOpenDetail();
+                }
               }}>
               <Point category={item.details.Kategori} active={selectedItem ? item.id === selectedItem.id : false} />
             </Marker>
@@ -102,17 +104,17 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
     flex: 1,
-    justifyContent: 'flex-end',
     alignItems: 'center',
+    justifyContent: 'flex-end',
   },
   map: {
     ...StyleSheet.absoluteFillObject,
   },
   pointContainer: {
+    height: 38,
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 38,
     // width: 23,
   },
   image: {},

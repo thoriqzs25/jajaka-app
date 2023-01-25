@@ -1,13 +1,15 @@
 import CustomCarousels from '@src/components/CustomCarousels';
 import CustomButton from '@src/components/Field/CustomButton';
 import ImageView from '@src/components/ImageView';
+import CustomSnackBar from '@src/components/SnackBar';
 import useBoolean from '@src/hooks/useBoolean';
 import { userLogin } from '@src/redux/actions/auth';
 import colours from '@src/utils/colours';
+import { validateEmail, validateName, validatePassword } from '@src/utils/constraints/signup';
 import { fontFamily } from '@src/utils/fonts';
 import { globalStyle } from '@src/utils/globalStyles';
 import { useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import LoginForm from './LoginForm';
 import SigninForm from './SigninForm';
@@ -20,77 +22,71 @@ const AuthScreen = () => {
   const { value: termAggreement, setValue: setTerm } = useBoolean(true);
 
   const [name, setName] = useState<string>('');
-  const [errorName, setErrorName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phoneNum, setPhoneNum] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordConf, setPasswordConf] = useState<string>('');
+
+  const [errorEmail, setErrorEmail] = useState<string>('');
+  const [errorName, setErrorName] = useState<string>('');
   const [errorPass, setErrorPass] = useState<string>('');
   const [errorAggree, setErrorAggree] = useState<string>('');
 
+  const { value: visible, setValue: setVisible } = useBoolean(false);
+
   const handleSubmit = () => {
-    if (user) {
-      console.log('trying to login line 30');
-    } else {
-      validateAll();
-      console.log('trying to signup line 34');
-    }
+    Keyboard.dismiss();
     if (email === '123' && password === '123') {
       console.log('success login line 22');
       dispatch(userLogin({ token: 'abcefghi', email: email }));
     }
+    if (user) {
+      if (!validateLogin()) setVisible.true();
+    } else {
+      if (!validateSignup()) setVisible.true();
+    }
   };
 
-  const validateName = () => {
-    const reLetter = /[a-zA-Z]/;
-    const reSpace = /\s/g;
-    const reSpecialChar = /[`~!@#$%^&*()_|+\-=?;:'",.<>{}[\]/\\]/gi;
-    const tempName = name;
-    if (tempName.trim() === '') {
-      setErrorName('Nama tidak boleh kosong');
-      return false;
-    }
-    if (tempName.trim().length < 3) {
-      setErrorName('Nama harus lebih dari 3 karakter');
-      return false;
-    }
-
-    // if(gende``)
-    for (let i = 0; i < tempName.length; i++) {
-      if (!tempName[i].match(reLetter) && !tempName[i].match(reSpace) && !tempName[i].match(reSpecialChar)) {
-        setErrorName('Nama tidak boleh memiliki angka dan simbol');
-        return false;
-      }
-    }
-    setErrorName('');
-    return true;
-  };
-
-  const validatePassword = () => {
-    if (password && passwordConf && password === passwordConf && password.length > 7) {
-      setErrorPass('');
-      return true;
-    }
-    setErrorPass('Password tidak sama');
-    return false;
-  };
-
-  const validateAll = () => {
+  const validateLogin = () => {
     let res = true;
-    if (!validateName()) res = false;
-    if (!validatePassword()) res = false;
+    const emailValidation = validateEmail(email);
+
+    if (!emailValidation.value) res = false;
+
+    setErrorEmail(emailValidation.message);
+
+    return res;
+  };
+
+  const validateSignup = () => {
+    let res = true;
+    const emailValidation = validateEmail(email);
+    const nameValidation = validateName(name);
+    const passValidation = validatePassword(password, passwordConf);
+
+    if (!emailValidation.value || !nameValidation.value || !passValidation.value) res = false;
+
+    setErrorEmail(emailValidation.message);
+    setErrorName(nameValidation.message);
+    setErrorPass(passValidation.message);
+
     return res;
   };
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'}>
+      <CustomSnackBar
+        visible={visible}
+        setVisible={setVisible}
+        desc={errorEmail ? errorEmail : errorName ? errorName : errorPass}
+      />
       <View style={styles.pageContainer}>
         <View style={[styles.header, globalStyle.padding]}>
           <ImageView name={'logo'} style={styles.logo} />
         </View>
-        <CustomCarousels autoScroll />
+        <CustomCarousels />
         {user ? (
-          <LoginForm setEmail={setEmail} setPassword={setPassword} email={email} />
+          <LoginForm setEmail={setEmail} setPassword={setPassword} email={email} errorEmail={errorEmail} />
         ) : (
           <SigninForm
             name={name}
@@ -102,6 +98,7 @@ const AuthScreen = () => {
             setPhoneNum={setPhoneNum}
             setPasswordConf={setPasswordConf}
             setTerm={setTerm}
+            errorEmail={errorEmail}
             errorName={errorName}
             errorPass={errorPass}
             errorAggree={errorAggree}
@@ -128,7 +125,9 @@ const AuthScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  pageContainer: {},
+  pageContainer: {
+    position: 'relative',
+  },
   header: {
     marginBottom: 16,
   },

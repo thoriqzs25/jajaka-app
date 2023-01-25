@@ -1,6 +1,8 @@
+import CustomMaps, { defaultDelta } from '@src/components/CustomMaps';
 import CustomButton from '@src/components/Field/CustomButton';
 import SubPages from '@src/layouts/SubPages';
 import colours from '@src/utils/colours';
+import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import { globalStyle } from '@src/utils/globalStyles';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -9,6 +11,25 @@ import RekomendasiLokasi from './RekomendasiLokasi';
 import RekomendasiProduk from './RekomendasiProduk';
 import TentukanIdemu from './TentukanIdemu';
 import TentukanLokasi from './TentukanLokasi';
+
+const DATA = [
+  {
+    id: 1,
+    name: 'Test 1',
+    coordinate: {
+      latitude: -6.60255,
+      longitude: 106.81303,
+      ...defaultDelta,
+    },
+    details: {
+      Kategori: 'Kuliner',
+      Produk: 'Aneka nasi dan jajanan',
+      Alamat: 'Jl. Tamansari Bawah, Tamansari, Kec. Bandung Wetan',
+      'Jam Buka': 'Senin - Sabtu, 09.00 - 20.00',
+      'Tahun Berdiri': '2020',
+    },
+  },
+];
 
 const RekomendasiUMKM = () => {
   const [tabs, setTabs] = useState<'Cari Ide Usaha' | 'Cari Lokasi Usaha'>('Cari Ide Usaha');
@@ -45,6 +66,9 @@ const RekomendasiUMKM = () => {
                 total: '3',
               }}
             />
+            <View style={{ marginTop: 16, height: 200, width: '100%' }}>
+              <CustomMaps style={styles.maps} itemList={DATA} />
+            </View>
           </ScrollView>
         );
       default:
@@ -104,6 +128,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 12,
     color: colours.white,
+  },
+  maps: {
+    borderRadius: 24,
+    overflow: 'hidden',
   },
 });
 

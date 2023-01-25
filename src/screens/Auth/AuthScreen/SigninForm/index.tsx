@@ -16,6 +16,7 @@ const SigninForm = ({
   setPhoneNum,
   setPasswordConf,
   setTerm,
+  errorEmail,
   errorName,
   errorPass,
   errorAggree,
@@ -29,6 +30,7 @@ const SigninForm = ({
   setPhoneNum: (val: string) => void;
   setPasswordConf: (val: string) => void;
   setTerm: UseBoolean;
+  errorEmail?: string;
   errorName?: string;
   errorPass?: string;
   errorAggree?: string;
@@ -43,6 +45,7 @@ const SigninForm = ({
           style={{ marginBottom: 12 }}
           setValue={setEmail}
           value={email}
+          error={errorEmail}
         />
         <View style={[styles.dualInput, { marginBottom: 12 }]}>
           <TextField
