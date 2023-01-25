@@ -19,7 +19,7 @@ const AuthScreen = () => {
   const dispatch = useDispatch();
 
   const { value: user, setValue: setUser } = useBoolean(true);
-  const { value: termAggreement, setValue: setTerm } = useBoolean(true);
+  const { value: termAggreement, setValue: setTerm } = useBoolean(false);
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -64,11 +64,13 @@ const AuthScreen = () => {
     const nameValidation = validateName(name);
     const passValidation = validatePassword(password, passwordConf);
 
-    if (!emailValidation.value || !nameValidation.value || !passValidation.value) res = false;
+    if (!emailValidation.value || !nameValidation.value || !passValidation.value || !termAggreement) res = false;
 
     setErrorEmail(emailValidation.message);
     setErrorName(nameValidation.message);
     setErrorPass(passValidation.message);
+
+    setErrorAggree(termAggreement ? '' : 'Harap setujui syarat dan ketentuan');
 
     return res;
   };
@@ -78,7 +80,7 @@ const AuthScreen = () => {
       <CustomSnackBar
         visible={visible}
         setVisible={setVisible}
-        desc={errorEmail ? errorEmail : errorName ? errorName : errorPass}
+        desc={errorEmail ? errorEmail : errorName ? errorName : errorPass ? errorPass : errorAggree}
       />
       <View style={styles.pageContainer}>
         <View style={[styles.header, globalStyle.padding]}>

@@ -5,6 +5,7 @@ import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
 import { StyleProp, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useEffect } from 'react';
 
 const CustomCheckbox = ({
   style,
@@ -21,16 +22,23 @@ const CustomCheckbox = ({
 }) => {
   const { value: active, setValue: setActive } = useBoolean(false);
 
+  useEffect(() => {
+    if (active) setValue.true();
+    else setValue.false();
+  }, [active]);
   return (
     <TouchableOpacity
       activeOpacity={0.75}
       onPress={() => {
         setActive.toggle();
-        if (active) setValue.true();
-        else setValue.false();
       }}
       style={[styles.container, style]}>
-      <View style={[styles.boxContainer, boxStyle, { borderColor: error ? colours.redNormal : colours.blueYoung }]}>
+      <View
+        style={[
+          styles.boxContainer,
+          boxStyle,
+          { borderColor: active ? colours.blueYoung : error ? colours.redNormal : colours.blueYoung },
+        ]}>
         {active && <CustomIcon name={'checkmark1'} size={12} />}
       </View>
       <View>
