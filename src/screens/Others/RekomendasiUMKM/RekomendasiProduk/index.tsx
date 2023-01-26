@@ -1,5 +1,6 @@
 import CustomIcon from '@src/components/CustomIcons';
 import CustomButton from '@src/components/Field/CustomButton';
+import { navigate } from '@src/navigation';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
 import { StyleSheet, Text, View } from 'react-native';
@@ -43,6 +44,7 @@ const RekomendasiProduk = ({ DATA, title }: { DATA: any; title: string }) => {
                     titleStyle={styles.buttonText}
                     style={styles.buttonContainer}
                     iconName={'light-bulb'}
+                    onPress={() => navigate('PenelusuranUMKM', { id: idx })}
                   />
                 </View>
               </View>
