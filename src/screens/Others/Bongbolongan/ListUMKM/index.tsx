@@ -1,5 +1,5 @@
 import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
 import { StyleSheet, Text, View } from 'react-native';
 
 const DATA = {
@@ -24,7 +24,7 @@ const ListUMKM = () => {
           <Text style={[styles.col1, styles.tableHeader]}>No</Text>
           <Text style={[styles.col2, styles.tableHeader]}>Nama UMKM</Text>
           <Text style={[styles.col3, styles.tableHeader]}>Produk Utama</Text>
-          <Text style={[styles.col4, styles.tableHeader]}>Penjualan Rata-Rata (Rp)</Text>
+          <Text style={[styles.col4, styles.tableHeader]}>Penjualan Rata-Rata</Text>
           <Text style={[styles.col5, styles.tableHeader]}>Alamat</Text>
         </View>
         {Array(60)
@@ -37,10 +37,10 @@ const ListUMKM = () => {
                   styles.flexTable,
                   { backgroundColor: idx % 2 === 0 ? colours.backgroundClickable : colours.backgroundSecondary },
                 ]}>
-                <Text style={[styles.col1, styles.tableItem]}>{idx}</Text>
+                <Text style={[styles.col1, styles.tableItem]}>{idx + 1}</Text>
                 <Text style={[styles.col2, styles.tableItem]}>{DATA.name}</Text>
                 <Text style={[styles.col3, styles.tableItem]}>{DATA.product}</Text>
-                <Text style={[styles.col4, styles.tableItem]}>{DATA.sales}</Text>
+                <Text style={[styles.col4, styles.tableItem]}>Rp{DATA.sales}</Text>
                 <Text style={[styles.col5, styles.tableItem]}>{DATA.alamat}</Text>
               </View>
             );
@@ -86,15 +86,14 @@ const styles = StyleSheet.create({
   tableHeader: {
     paddingVertical: 6,
     textAlign: 'center',
-    fontFamily: fontFamily.semiBold,
     color: colours.backgroundPrimary,
-    // backgroundColor: colours.yellowYoung,
+    fontFamily: fontFamilyDM.medium,
   },
   tableItem: {
     paddingVertical: 8,
     textAlign: 'center',
     color: colours.white,
-    fontFamily: fontFamily.regular,
+    fontFamily: fontFamilyDM.regular,
   },
   col1: {
     width: '8%',

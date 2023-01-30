@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/native';
 import { navigate } from '@src/navigation';
 import colours from '@utils/colours';
-import { fontFamily } from '@utils/fonts';
+import { fontFamily, fontFamilyDM } from '@utils/fonts';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -51,22 +51,22 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
   },
   textContainer: {
-    padding: 8,
+    padding: 12,
     width: 244,
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
   regular: {
-    fontFamily: fontFamily.regular,
-    fontSize: 14,
-    lineHeight: 18,
+    fontSize: 12,
+    lineHeight: 16,
     color: colours.gray300,
+    fontFamily: fontFamilyDM.regular,
   },
   title: {
-    fontFamily: fontFamily.bold,
     fontSize: 16,
     lineHeight: 20,
     color: colours.white,
+    fontFamily: fontFamilyDM.bold,
   },
   date: {
     color: colours.gray300,

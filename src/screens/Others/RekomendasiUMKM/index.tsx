@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
   tabsText: {
     fontSize: 12,
-    lineHeight: 12,
+    lineHeight: 14,
     color: colours.white,
   },
   maps: {

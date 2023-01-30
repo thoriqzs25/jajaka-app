@@ -17,4 +17,19 @@ export const fontFamily = {
   extraLightItalic: 'Raleway-ExtraLightItalic',
   thin: 'Raleway-Thin',
   thinItalic: 'Raleway-ThinItalic',
-}
+};
+
+export const fontFamilyDM = {
+  regular: 'DMSans-Regular',
+  regularItalic: 'DMSans-RegularItalic',
+  medium: 'DMSans-Medium',
+  mediumItalic: 'DMSans-MediumItalic',
+  bold: 'DMSans-Bold',
+  boldItalic: 'DMSans-BoldItalic',
+  //   DMSans-Regular.ttf
+  // DMSans-Medium.ttf
+  // DMSans-MediumItalic.ttf
+  // DMSans-Italic.ttf
+  // DMSans-Bold.ttf
+  // DMSans-BoldItalic.ttf
+};

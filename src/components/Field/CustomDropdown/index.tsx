@@ -1,5 +1,5 @@
 import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   defaultText: {
     fontSize: 14,
     color: colours.white,
-    fontFamily: fontFamily.regular,
+    fontFamily: fontFamilyDM.regular,
   },
   textItem: {
     flex: 1,

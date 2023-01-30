@@ -2,7 +2,7 @@ import CustomButton from '@src/components/Field/CustomButton';
 import CustomDropdown from '@src/components/Field/CustomDropdown';
 import TextField from '@src/components/Field/TextField';
 import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
 import { StyleSheet, Text, View } from 'react-native';
 
 const DATA = ['Kota', 'Kecamatan', 'Sektor', 'Kredit'];
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 18,
     color: colours.white,
-    fontFamily: fontFamily.regular,
+    fontFamily: fontFamilyDM.regular,
   },
   button: {
     width: 80,

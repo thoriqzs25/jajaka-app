@@ -17,7 +17,8 @@ export type IconType =
   | 'light-bulb'
   | 'notification'
   | 'chat-bubble-dots'
-  | 'service';
+  | 'service'
+  | 'checkmark-outline';
 
 export default createIconSetFromIcoMoon(icoMoonConfig, 'icomoon');
 

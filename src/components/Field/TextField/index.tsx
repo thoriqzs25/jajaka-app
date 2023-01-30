@@ -1,7 +1,7 @@
 import CustomIcon from '@src/components/CustomIcons';
 import useBoolean from '@src/hooks/useBoolean';
 import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
 import { useEffect, useRef, useState } from 'react';
 import { KeyboardTypeOptions, StyleProp, StyleSheet, StyleSheetProperties, TextInputProps } from 'react-native';
 import { Text, TextInput, View } from 'react-native';
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
   wholeContainer: {},
   labelContainer: {},
   labelTitle: {
-    fontFamily: fontFamily.regular,
-    color: colours.white,
     fontSize: 16,
     lineHeight: 20,
     paddingBottom: 4,
+    color: colours.white,
+    fontFamily: fontFamilyDM.regular,
   },
   inputContainer: {
     fontSize: 16,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   inputText: {
     fontSize: 14,
     paddingVertical: 8,
-    fontFamily: fontFamily.regular,
+    fontFamily: fontFamilyDM.regular,
   },
   icon: {
     height: 30,

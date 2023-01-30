@@ -1,6 +1,6 @@
 import CustomIcon from '@src/components/CustomIcons';
 import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
 import { IconType } from '@src/utils/icons';
 import { Pressable, StyleProp, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 18,
     color: colours.white,
-    fontFamily: fontFamily.regular,
+    fontFamily: fontFamilyDM.regular,
   },
 });
 

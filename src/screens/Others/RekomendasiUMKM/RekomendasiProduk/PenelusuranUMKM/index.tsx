@@ -2,7 +2,7 @@ import { RouteProp } from '@react-navigation/native';
 import CustomIcon from '@src/components/CustomIcons';
 import SubPages from '@src/layouts/SubPages';
 import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
 import { globalStyle } from '@src/utils/globalStyles';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -15,7 +15,18 @@ const PenelusuranUMKM = ({ route }: { route: RouteProp<any> }) => {
     return (
       <View style={styles.subContainer}>
         <View style={styles.header}>
-          <CustomIcon name='notification' size={16} style={{ marginRight: 4 }} color={colours.yellowNormal} />
+          <View
+            style={{
+              width: 20,
+              height: 20,
+              marginRight: 4,
+              borderRadius: 10,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: colours.yellowNormal,
+            }}>
+            <CustomIcon name='service' size={12} color={colours.backgroundPrimary} />
+          </View>
           <Text style={styles.headerText}>{route.params?.type}</Text>
         </View>
         <Text style={styles.title}>{title}</Text>
@@ -57,7 +68,7 @@ const PenelusuranUMKM = ({ route }: { route: RouteProp<any> }) => {
       <View style={styles.subContainer}>
         <Text style={styles.title2}>{title}</Text>
         <View style={styles.col}>
-          <Text style={[styles.defaultText, { textAlign: 'justify' }]}>
+          <Text style={[styles.defaultText, { textAlign: 'justify', lineHeight: 24 }]}>
             Mesin cuci - Timbangan - Detergen dan Pewangi - Pengering - Hanger dan Jemuran - Alat Tagging - Setrika -
             Keranjang - Plastik Kemasan
           </Text>
@@ -130,7 +141,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 18,
     color: colours.white,
-    fontFamily: fontFamily.regular,
+    fontFamily: fontFamilyDM.regular,
   },
 });
 

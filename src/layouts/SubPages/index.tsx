@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import CustomIcon from '@components/CustomIcons';
 import colours from '@utils/colours';
-import { fontFamily } from '@utils/fonts';
+import { fontFamily, fontFamilyDM } from '@utils/fonts';
 import { globalStyle } from '@utils/globalStyles';
 import { IconType } from '@utils/icons';
 import { Pressable, StyleProp, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     lineHeight: 14,
     color: colours.white,
-    fontFamily: fontFamily.regular,
+    fontFamily: fontFamilyDM.regular,
   },
   subTitleIcon: {
     marginRight: 4,

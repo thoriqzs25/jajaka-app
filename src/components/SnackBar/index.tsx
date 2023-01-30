@@ -6,6 +6,7 @@ import { fontFamily } from '@src/utils/fonts';
 import { globalStyle } from '@src/utils/globalStyles';
 import { View, StyleSheet, Text } from 'react-native';
 import { Button, Snackbar } from 'react-native-paper';
+import CustomIcon from '../CustomIcons';
 
 const CustomSnackBar = ({ visible, setVisible, desc }: { visible: boolean; setVisible: UseBoolean; desc: string }) => {
   const onDismissSnackBar = () => setVisible.false();
@@ -14,7 +15,17 @@ const CustomSnackBar = ({ visible, setVisible, desc }: { visible: boolean; setVi
     <View style={[styles.container, { backgroundColor: colours.blueNormal }]}>
       <View style={[styles.subContainer]}>
         <Snackbar style={styles.snackbar} visible={visible} onDismiss={onDismissSnackBar} duration={2600}>
-          <Text style={{ fontFamily: fontFamily.regular, fontSize: 14, color: colours.redNormal }}>{desc}</Text>
+          <View
+            style={{
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
+            {/* <CustomIcon name='checkmark-outline' style={{ marginRight: 8 }} /> */}
+            <CustomIcon name='notification' style={{ marginRight: 8 }} />
+            <Text style={{ fontFamily: fontFamily.regular, fontSize: 14, lineHeight: 18, color: colours.white }}>
+              {desc}
+            </Text>
+          </View>
         </Snackbar>
       </View>
     </View>
@@ -36,10 +47,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   snackbar: {
-    borderWidth: 1,
     borderRadius: 12,
-    borderColor: colours.redNormal,
-    backgroundColor: colours.redYoung,
+    backgroundColor: colours.redNormal,
   },
 });
 
