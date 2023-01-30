@@ -31,6 +31,44 @@ const DATA = [
   },
 ];
 
+const DATA2 = [
+  {
+    name: 'Abon Mitcha',
+    total: '2',
+  },
+  {
+    name: 'Revenue',
+    total: '3',
+  },
+  {
+    name: 'Pillow',
+    total: '1',
+  },
+  {
+    name: 'Cucian',
+    total: '4',
+  },
+];
+
+const DATA3 = [
+  {
+    name: 'Laundry',
+    total: '3',
+  },
+  {
+    name: 'Cuci Mobil',
+    total: '4',
+  },
+  {
+    name: 'Salon',
+    total: '8',
+  },
+  {
+    name: 'Bengkel',
+    total: '6',
+  },
+];
+
 const RekomendasiUMKM = () => {
   const [tabs, setTabs] = useState<'Cari Ide Usaha' | 'Cari Lokasi Usaha'>('Cari Ide Usaha');
 
@@ -40,20 +78,8 @@ const RekomendasiUMKM = () => {
         return (
           <ScrollView style={[globalStyle.paddingHorizontal, { marginBottom: 16 }]}>
             <TentukanIdemu />
-            <RekomendasiProduk
-              DATA={{
-                name: 'Abon Mitcha',
-                total: '2',
-              }}
-              title={'Jasa'}
-            />
-            <RekomendasiProduk
-              DATA={{
-                name: 'Abon Mitcha',
-                total: '2',
-              }}
-              title={'Kuliner'}
-            />
+            <RekomendasiProduk DATA={DATA2} title={'Jasa'} />
+            <RekomendasiProduk DATA={DATA3} title={'Kuliner'} noHeader />
           </ScrollView>
         );
       case 'Cari Lokasi Usaha':

@@ -65,20 +65,20 @@ const styles = StyleSheet.create({
   },
   textContainer: {},
   title: {
-    fontFamily: fontFamily.bold,
     fontSize: 16,
     lineHeight: 20,
     color: colours.white,
+    fontFamily: fontFamily.bold,
   },
   subTitleContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
   },
   subTitle: {
-    fontFamily: fontFamily.regular,
     fontSize: 10,
     lineHeight: 14,
     color: colours.white,
+    fontFamily: fontFamily.regular,
   },
   subTitleIcon: {
     marginRight: 4,

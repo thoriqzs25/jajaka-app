@@ -53,7 +53,11 @@ const BongbolonganDetails = React.forwardRef<BottomSheetRefProps, { data: any; h
         {data ? (
           <View style={[globalStyle.paddingModal]}>
             <View style={styles.headerContainer}>
-              <CustomIcon name={'spoon-knife'} size={20} style={styles.icon} />
+              <CustomIcon
+                name={data.details.Kategori === 'Kuliner' ? 'spoon-knife' : 'service'}
+                size={20}
+                style={styles.icon}
+              />
 
               <Text style={styles.title}>{data.name}</Text>
             </View>

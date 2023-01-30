@@ -24,7 +24,7 @@ const DATA = [
       ...defaultDelta,
     },
     details: {
-      Kategori: 'Kuliner',
+      Kategori: 'Donasi',
       Produk: 'Aneka nasi dan jajanan',
       Alamat: 'Jl. Tamansari Bawah, Tamansari, Kec. Bandung Wetan',
       'Jam Buka': 'Senin - Sabtu, 09.00 - 20.00',

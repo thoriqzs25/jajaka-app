@@ -41,7 +41,7 @@ const Codepush = () => {
   };
 
   const CodepushButton = () => {
-    const env = NativeModules.RNConfig.env; // to get the current env you just need to insert this line
+    const env = NativeModules.RNBuildType.env; // to get the current env you just need to insert this line
 
     return (
       <TouchableOpacity style={styles.buttonContainer} activeOpacity={0.75} onPress={() => handleCodepush()}>

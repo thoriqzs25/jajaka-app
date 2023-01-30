@@ -15,13 +15,13 @@ public class RNConfigModule extends ReactContextBaseJavaModule {
 
   @Override
   public String getName() {
-    return "RNConfig";
+    return "RNBuildType";
   }
 
-  @ReactMethod
+  @Override
   public Map<String, Object> getConstants() {
-    final Map<String, Object> contansts = new HashMap<>();
-    contansts.put("env", BuildConfig.FLAVOR);
-    return contansts;
+    final Map<String, Object> contants = new HashMap<>();
+    contants.put("env", BuildConfig.FLAVOR);
+    return contants;
   }
 }

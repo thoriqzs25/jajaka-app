@@ -41,7 +41,7 @@ const CustomMaps = ({
           style={[styles.image, { width: active ? 36 : 23, height: active ? 39 : 32 }]}
         />
         <CustomIcon
-          name={category === 'Kuliner' ? 'spoon-knife' : 'coin-dollar'}
+          name={category === 'Kuliner' ? 'spoon-knife' : 'service'}
           size={14}
           color={colours.white}
           style={styles.icon}
@@ -77,6 +77,7 @@ const CustomMaps = ({
         showsCompass={false}
         initialRegion={{
           latitude: -6.60755,
+
           longitude: 106.81303,
           ...defaultDelta,
         }}>
