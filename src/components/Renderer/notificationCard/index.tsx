@@ -1,6 +1,6 @@
 import CustomIcon from '@src/components/CustomIcons';
 import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
 import { StyleSheet } from 'react-native';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Pressable } from 'react-native';
@@ -11,7 +11,7 @@ const notificationCard = ({ item }: { item: any }) => {
       <TouchableOpacity activeOpacity={0.75}>
         <View style={styles.cardContainer}>
           <View style={styles.iconContainer}>
-            <CustomIcon name={'bullhorn'} style={styles.icon} size={24} color={colours.white} />
+            <CustomIcon name={'notification_custom'} style={styles.icon} size={24} color={colours.white} />
           </View>
           <View style={styles.textContainer}>
             <View style={styles.topContainer}>
@@ -38,12 +38,12 @@ const styles = StyleSheet.create({
     backgroundColor: colours.backgroundClickable,
   },
   iconContainer: {
-    height: 40,
     width: 40,
+    height: 40,
     borderRadius: 1000,
-    backgroundColor: colours.yellowNormal,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colours.yellowNormal,
   },
   icon: {},
   textContainer: {
@@ -56,18 +56,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   regular: {
-    fontFamily: fontFamily.regular,
-    fontSize: 14,
-    lineHeight: 18,
+    fontSize: 12,
+    lineHeight: 16,
+    fontFamily: fontFamilyDM.regular,
   },
   title: {
+    flex: 1,
     width: 100,
     fontSize: 14,
     lineHeight: 18,
     marginRight: 8,
-    flex: 1,
     color: colours.white,
-    fontFamily: fontFamily.bold,
+    fontFamily: fontFamilyDM.bold,
   },
   date: {
     color: colours.gray300,

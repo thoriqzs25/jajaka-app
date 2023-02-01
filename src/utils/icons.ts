@@ -2,7 +2,13 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icoMoonConfig from '@src/assets/fonts/icons/selection.json';
 
 export type IconType =
-  | 'home1'
+  | 'fluent_home'
+  | 'fluent_person'
+  | 'person'
+  | 'fab'
+  | 'forum'
+  | 'notification_custom'
+  | 'user-solid-circle'
   | 'user1'
   | 'notifications-outline'
   | 'cheveron-right'
@@ -18,7 +24,8 @@ export type IconType =
   | 'notification'
   | 'chat-bubble-dots'
   | 'service'
-  | 'checkmark-outline';
+  | 'checkmark-outline'
+  | 'send-alt';
 
 export default createIconSetFromIcoMoon(icoMoonConfig, 'icomoon');
 

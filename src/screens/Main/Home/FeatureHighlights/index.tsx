@@ -71,11 +71,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 24,
     marginBottom: 8,
+    color: colours.white,
     fontFamily: fontFamily.bold,
   },
   desc: {
     fontSize: 14,
     lineHeight: 18,
+    color: colours.white,
     fontFamily: fontFamily.regular,
   },
 });
