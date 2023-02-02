@@ -17,7 +17,6 @@ const DATA = {
 const NewsDetail = () => {
   return (
     <SubPages title={'Berita UMKM #1'} childPadding={false}>
-      {/* <SubPages title={'Berita UMKM #1'} childPadding={true}> */}
       <ScrollView style={{ flex: 1 }}>
         <ImageView name={DATA.image} style={styles.image} resizeMode={'cover'} />
         <View style={globalStyle.paddingHorizontal}>

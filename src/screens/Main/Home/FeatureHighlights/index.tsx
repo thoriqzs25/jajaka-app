@@ -32,7 +32,7 @@ const FeatureHighlights = () => {
               onPress={() => {
                 if (data.id === 1) {
                   navigate('Bongbolongan');
-                } else dispatch(userLogout());
+                } else navigate('Ngajarkeun');
               }}>
               <ImageView name={data.image} style={styles.image} />
               <Text style={styles.title}>{data.title}</Text>

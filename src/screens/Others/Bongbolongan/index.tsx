@@ -1,6 +1,6 @@
 import CustomMaps, { defaultDelta } from '@components/CustomMaps';
 import SubPages from '@src/layouts/SubPages';
-import BongbolonganDetails from '@screens/Main/Home/FeatureHighlights/BongbolonganDetails';
+import BongbolonganDetails from '@src/screens/Others/Bongbolongan/BongbolonganDetails';
 import { BottomSheetRefProps } from '@cTypes/refs/bottomSheet';
 import colours from '@utils/colours';
 import { useCallback, useRef, useState } from 'react';
@@ -116,10 +116,10 @@ const Bongbolongan = () => {
     setHalfScreen(half);
   };
 
-  const tabsNav = () => {
-    switch (tabs) {
-      case 'Maps':
-        return (
+  const TabsNav = () => {
+    return (
+      <>
+        {tabs === 'Maps' ? (
           <View style={styles.mapsContainer}>
             <CustomMaps
               itemList={DATA}
@@ -130,21 +130,18 @@ const Bongbolongan = () => {
               selectedItem={selected}
             />
           </View>
-        );
-      case 'Database':
-        return (
+        ) : tabs === 'Database' ? (
           <ScrollView style={[styles.databaseContainer, globalStyle.paddingHorizontal]} nestedScrollEnabled={true}>
             <KategoriData />
             <ListUMKM />
           </ScrollView>
-        );
-      default:
-        return (
+        ) : (
           <View>
             <Text>Loading</Text>
           </View>
-        );
-    }
+        )}
+      </>
+    );
   };
 
   return (
@@ -171,7 +168,7 @@ const Bongbolongan = () => {
             titleStyle={[styles.tabsText, tabs === 'Database' && activeStyle.text]}
           />
         </View>
-        {tabsNav()}
+        <TabsNav />
         {tabs === 'Maps' && <BongbolonganDetails ref={bottomSheetRef} data={selected} halfScreen={halfScreen} />}
         <View
           style={{

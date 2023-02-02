@@ -72,18 +72,16 @@ const DATA3 = [
 const RekomendasiUMKM = () => {
   const [tabs, setTabs] = useState<'Cari Ide Usaha' | 'Cari Lokasi Usaha'>('Cari Ide Usaha');
 
-  const tabsNav = () => {
-    switch (tabs) {
-      case 'Cari Ide Usaha':
-        return (
+  const TabsNav = () => {
+    return (
+      <>
+        {tabs === 'Cari Ide Usaha' ? (
           <ScrollView style={[globalStyle.paddingHorizontal, { marginBottom: 16 }]}>
             <TentukanIdemu />
             <RekomendasiProduk DATA={DATA2} title={'Jasa'} />
             <RekomendasiProduk DATA={DATA3} title={'Kuliner'} noHeader />
           </ScrollView>
-        );
-      case 'Cari Lokasi Usaha':
-        return (
+        ) : tabs === 'Cari Lokasi Usaha' ? (
           <ScrollView style={[globalStyle.paddingHorizontal, { marginBottom: 16 }]}>
             <TentukanLokasi />
             <RekomendasiLokasi
@@ -96,14 +94,13 @@ const RekomendasiUMKM = () => {
               <CustomMaps style={styles.maps} itemList={DATA} />
             </View>
           </ScrollView>
-        );
-      default:
-        return (
+        ) : (
           <View>
             <Text>Loading</Text>
           </View>
-        );
-    }
+        )}
+      </>
+    );
   };
 
   return (
@@ -129,7 +126,7 @@ const RekomendasiUMKM = () => {
             titleStyle={[styles.tabsText, tabs === 'Cari Lokasi Usaha' && activeStyle.text]}
           />
         </View>
-        {tabsNav()}
+        <TabsNav />
       </>
     </SubPages>
   );

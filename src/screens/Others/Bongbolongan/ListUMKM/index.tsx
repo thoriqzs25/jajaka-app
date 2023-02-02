@@ -1,5 +1,5 @@
 import colours from '@src/utils/colours';
-import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
+import { fontFamily, fontFamilyDM, fontFamilyLex } from '@src/utils/fonts';
 import { StyleSheet, Text, View } from 'react-native';
 
 const DATA = {
@@ -63,19 +63,19 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.bold,
   },
   numContainer: {
-    backgroundColor: colours.yellowNormal,
+    marginLeft: 12,
+    borderRadius: 8,
     paddingVertical: 8,
     alignItems: 'center',
-    justifyContent: 'center',
     paddingHorizontal: 10,
-    borderRadius: 8,
-    marginLeft: 12,
+    justifyContent: 'center',
+    backgroundColor: colours.yellowNormal,
   },
   numText: {
+    fontSize: 14,
+    lineHeight: 14,
     color: colours.backgroundPrimary,
-    fontFamily: fontFamily.semiBold,
-    fontSize: 18,
-    lineHeight: 16,
+    fontFamily: fontFamilyLex.regular,
   },
   tableContainer: {},
   flexTable: {

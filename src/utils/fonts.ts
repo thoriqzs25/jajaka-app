@@ -26,10 +26,8 @@ export const fontFamilyDM = {
   mediumItalic: 'DMSans-MediumItalic',
   bold: 'DMSans-Bold',
   boldItalic: 'DMSans-BoldItalic',
-  //   DMSans-Regular.ttf
-  // DMSans-Medium.ttf
-  // DMSans-MediumItalic.ttf
-  // DMSans-Italic.ttf
-  // DMSans-Bold.ttf
-  // DMSans-BoldItalic.ttf
+};
+
+export const fontFamilyLex = {
+  regular: 'Lexend-Regular',
 };

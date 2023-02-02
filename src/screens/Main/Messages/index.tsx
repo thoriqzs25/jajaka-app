@@ -2,7 +2,8 @@ import CustomIcon from '@src/components/CustomIcons';
 import ImageView from '@src/components/ImageView';
 import { navigate } from '@src/navigation';
 import colours from '@src/utils/colours';
-import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@src/utils/deviceDimensions';
+import { fontFamily, fontFamilyDM, fontFamilyLex } from '@src/utils/fonts';
 import { globalStyle } from '@src/utils/globalStyles';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
@@ -41,14 +42,12 @@ const _renderChat = ({ item }: { item: any }) => {
           <CustomIcon name='user-solid-circle' size={30} style={{ width: 32 }} />
         )}
       </View>
-      {/* <View style={styles.subContainer}> */}
       <View style={styles.leftContainer}>
         <Text style={styles.name}>{item.name}</Text>
         <Text numberOfLines={1} style={styles.grayText}>
           {item.message[item.message.length - 1]}
         </Text>
       </View>
-      {/* </View> */}
       <View style={styles.rightContainer}>
         <Text style={styles.grayText}>{item.date}</Text>
         <View style={styles.notif}>
@@ -65,7 +64,30 @@ const Messages = () => {
   return (
     <View style={[globalStyle.padding]}>
       <Text style={styles.title}>Chat</Text>
-      <FlatList data={DATA} renderItem={_renderChat} />
+      {DATA ? (
+        <FlatList data={DATA} renderItem={_renderChat} />
+      ) : (
+        <View
+          style={{
+            // backgroundColor: colours.blueNormal,
+            height: '94%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <ImageView name='empty-chat' style={{ width: 180, height: 180, marginBottom: 20 }} />
+          <Text
+            style={{
+              fontSize: 16,
+              lineHeight: 18,
+              textAlign: 'center',
+              color: colours.white,
+              width: (SCREEN_WIDTH / 3) * 2,
+              fontFamily: fontFamilyLex.regular,
+            }}>
+            Kamu belum menerima chat, silakan mulai berkonsultasi dengan para ahli!
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -117,7 +139,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 18,
     color: colours.white,
-    fontFamily: fontFamilyDM.medium,
+    fontFamily: fontFamilyLex.regular,
   },
   notif: {
     width: 20,

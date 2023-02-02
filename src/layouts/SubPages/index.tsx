@@ -36,7 +36,7 @@ const SubPages = ({
             <View style={styles.textContainer}>
               <Text style={styles.title}>{title}</Text>
               <View style={styles.subTitleContainer}>
-                {subTitleIcon && <CustomIcon style={styles.subTitleIcon} name={subTitleIcon} size={10} />}
+                {subTitleIcon && <CustomIcon style={styles.subTitleIcon} name={subTitleIcon} size={12} />}
                 <Text style={styles.subTitle}>{subTitle}</Text>
               </View>
             </View>

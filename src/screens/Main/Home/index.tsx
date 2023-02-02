@@ -2,7 +2,6 @@ import useBoolean from '@src/hooks/useBoolean';
 import { globalStyle } from '@utils/globalStyles';
 import { FlatList, ScrollView, StyleSheet, Text } from 'react-native';
 import FeatureHighlights from './FeatureHighlights';
-import BongbolonganDetails from './FeatureHighlights/BongbolonganDetails';
 import HomeHeader from './Header';
 import NewsList from './NewsList';
 

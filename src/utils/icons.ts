@@ -25,7 +25,8 @@ export type IconType =
   | 'chat-bubble-dots'
   | 'service'
   | 'checkmark-outline'
-  | 'send-alt';
+  | 'send-alt'
+  | 'star-full';
 
 export default createIconSetFromIcoMoon(icoMoonConfig, 'icomoon');
 

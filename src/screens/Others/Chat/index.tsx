@@ -24,11 +24,81 @@ const Chat = ({ route }: { route: RouteProp<any> }) => {
     setMessages([
       {
         _id: 1,
-        text: 'Hello developer',
+        text: 'Heyyy brooo213',
         createdAt: new Date(),
         user: {
           _id: 2,
           name: 'React Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+      {
+        _id: 2,
+        text: 'Heyyy brooo',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+      {
+        _id: 3,
+        text: 'Heyyooo',
+        createdAt: new Date(),
+        user: {
+          _id: 1,
+          name: 'Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+      {
+        _id: 4,
+        text: 'Heyyoo3',
+        createdAt: new Date(),
+        user: {
+          _id: 1,
+          name: 'Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+      {
+        _id: 5,
+        text: 'Heyyooo2',
+        createdAt: new Date(),
+        user: {
+          _id: 1,
+          name: 'Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+      {
+        _id: 6,
+        text: 'Heyyy a',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+      {
+        _id: 7,
+        text: 'Heyyy bro3',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+      {
+        _id: 8,
+        text: 'Heyyaspd2',
+        createdAt: new Date(),
+        user: {
+          _id: 1,
+          name: 'Native',
           avatar: 'https://placeimg.com/140/140/any',
         },
       },
@@ -161,7 +231,7 @@ const Chat = ({ route }: { route: RouteProp<any> }) => {
     <Message
       {...props}
       containerStyle={{
-        left: { backgroundColor: 'lime' },
+        left: { backgroundColor: 'lime', paddingLeft: 0 },
         right: { backgroundColor: 'gold' },
       }}
     />
@@ -179,7 +249,7 @@ const Chat = ({ route }: { route: RouteProp<any> }) => {
         alwaysShowSend={true}
         renderBubble={_renderBubble}
         renderInputToolbar={_renderInputToolbar}
-        renderAvatar={() => null}
+        renderAvatar={null}
         // renderMessage={_renderMessage}
         // renderMessageText={_renderMessageText}
         messagesContainerStyle={{ paddingBottom: 14 }}

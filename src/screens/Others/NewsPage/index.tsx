@@ -2,7 +2,7 @@ import CustomIcon from '@src/components/CustomIcons';
 import newsCard from '@src/components/Renderer/newsCard';
 import SubPages from '@src/layouts/SubPages';
 import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import { fontFamily, fontFamilyDM, fontFamilyLex } from '@src/utils/fonts';
 import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const DATA = [
@@ -118,20 +118,23 @@ const styles = StyleSheet.create({
     backgroundColor: colours.backgroundPrimary,
   },
   searchContainer: {
-    paddingHorizontal: 12,
-    borderRadius: 8,
+    height: 40,
+    borderRadius: 20,
     marginBottom: 12,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 12,
     backgroundColor: colours.backgroundClickable,
   },
   contentContainer: {},
   text: {
-    color: colours.gray300,
-    fontFamily: fontFamily.regular,
+    flex: 1,
+    width: '100%',
     fontSize: 14,
-    lineHeight: 18,
     marginLeft: 4,
+    lineHeight: 16,
+    color: colours.gray300,
+    fontFamily: fontFamilyDM.regular,
   },
 });
 
