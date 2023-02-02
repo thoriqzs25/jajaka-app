@@ -5,12 +5,9 @@ import colours from '@src/utils/colours';
 import { fontFamily, fontFamilyDM, fontFamilyLex } from '@src/utils/fonts';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const KonsultanCard = ({ item }: { item: any }) => {
+const KonsultanCard = ({ item, onPress }: { item: any; onPress: () => void }) => {
   return (
-    <TouchableOpacity
-      activeOpacity={0.75}
-      // onPress={() => navigate('Chat', { name: item.name })}
-      style={styles.boxContainer}>
+    <TouchableOpacity activeOpacity={0.75} onPress={onPress} style={styles.boxContainer}>
       <View style={styles.imageContainer}>
         {item.image ? (
           <ImageView name={item.image} style={styles.image} />
@@ -40,9 +37,7 @@ const KonsultanCard = ({ item }: { item: any }) => {
             })}
         </View>
         <Text style={styles.name}>{item.name}</Text>
-        <Text numberOfLines={1} style={styles.grayText}>
-          {item.title}
-        </Text>
+        <Text style={styles.grayText}>{item.title}</Text>
       </View>
       <View style={styles.rightContainer}>
         <CustomIcon name='fab' size={18} />

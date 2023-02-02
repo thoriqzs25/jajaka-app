@@ -1,6 +1,7 @@
 import CustomIcon from '@src/components/CustomIcons';
 import CustomButton from '@src/components/Field/CustomButton';
 import SubPages from '@src/layouts/SubPages';
+import { navigate } from '@src/navigation';
 import colours from '@src/utils/colours';
 import { fontFamily, fontFamilyDM, fontFamilyLex } from '@src/utils/fonts';
 import { useEffect, useState } from 'react';
@@ -97,7 +98,7 @@ const Ngajarkeun = () => {
   };
 
   const _renderItem = ({ item }: { item: any }) => {
-    return <KonsultanCard item={item} key={item.name} />;
+    return <KonsultanCard item={item} key={item.name} onPress={() => navigate('KonsultanProfile', { item: item })} />;
   };
 
   return (

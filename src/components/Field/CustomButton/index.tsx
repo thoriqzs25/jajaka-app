@@ -13,6 +13,7 @@ const CustomButton = ({
   glow,
   iconName,
   iconNameRight,
+  iconSize,
 }: {
   title: string;
   style?: StyleProp<any>;
@@ -21,6 +22,7 @@ const CustomButton = ({
   glow?: boolean;
   iconName?: IconType;
   iconNameRight?: IconType;
+  iconSize?: number;
 }) => {
   return (
     <TouchableOpacity
@@ -34,7 +36,7 @@ const CustomButton = ({
         },
       ]}
       onPress={onPress}>
-      {iconName && <CustomIcon name={iconName} style={{ marginRight: 4 }} size={12} />}
+      {iconName && <CustomIcon name={iconName} style={{ marginRight: 4 }} size={iconSize ? iconSize : 12} />}
       <Text style={[styles.title, titleStyle]}>{title}</Text>
 
       {iconNameRight && (
