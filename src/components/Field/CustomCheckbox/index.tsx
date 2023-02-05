@@ -10,13 +10,13 @@ import { useEffect } from 'react';
 const CustomCheckbox = ({
   style,
   boxStyle,
-  label,
+  title,
   setValue,
   error = '',
 }: {
   style?: StyleProp<any>;
   boxStyle?: StyleProp<any>;
-  label?: string;
+  title?: string;
   setValue: UseBoolean;
   error?: string;
 }) => {
@@ -42,7 +42,7 @@ const CustomCheckbox = ({
         {active && <CustomIcon name={'checkmark1'} size={12} />}
       </View>
       <View>
-        <Text style={styles.label}>Saya telah setuju dengan syarat dan ketentuan.</Text>
+        <Text style={styles.label}>{title ?? ''}</Text>
       </View>
     </TouchableOpacity>
   );

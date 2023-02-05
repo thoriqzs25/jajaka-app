@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator<any>();
 const TabNavigator = () => {
   const getTabBarVisibility = (route: RouteProp<any>) => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-    const hideOnScreens = ['Chat'];
+    const hideOnScreens = ['Chat', 'RegisterKonsultan'];
     if (hideOnScreens.indexOf(routeName) <= -1) return 'flex';
     return 'none';
   };
@@ -30,11 +30,11 @@ const TabNavigator = () => {
       <Tab.Screen
         name='HomeStack'
         component={HomeStackNavigator}
-        options={({ navigation }) => {
+        options={({ navigation, route }) => {
           const isFocused = navigation.isFocused();
           return {
+            tabBarStyle: { display: getTabBarVisibility(route), height: 72 },
             tabBarShowLabel: false,
-
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <TouchableOpacity

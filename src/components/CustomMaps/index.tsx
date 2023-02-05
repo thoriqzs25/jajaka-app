@@ -76,9 +76,8 @@ const CustomMaps = ({
         style={styles.map}
         showsCompass={false}
         initialRegion={{
-          latitude: -6.60755,
-
-          longitude: 106.81303,
+          latitude: -6.8910415,
+          longitude: 107.6104972,
           ...defaultDelta,
         }}>
         {itemList.map((item: any, idx: number) => {

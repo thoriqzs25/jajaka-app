@@ -1,32 +1,38 @@
+import CustomButton from '@src/components/Field/CustomButton';
 import { UseBoolean } from '@src/types/hooks/UseBoolean';
 import colours from '@src/utils/colours';
-import { StyleProp, StyleSheet, Text, View } from 'react-native';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@src/utils/deviceDimensions';
+import { ReactNode } from 'react';
+import { StyleProp, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal from 'react-native-modal';
 
 const MiddleModal = ({
   visible,
-  setVisible,
+  onClose,
   style,
   children,
 }: {
   visible: boolean;
-  setVisible: UseBoolean;
+  onClose: () => void;
   style?: StyleProp<any>;
-  children: JSX.Element;
+  children?: ReactNode;
 }) => {
   return (
-    // <View style={{ flex: 1 }}>
     <Modal
-      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+      style={{ alignItems: 'center', justifyContent: 'center' }}
       isVisible={visible}
-      onBackdropPress={() => {
-        setVisible.false();
-        console.log('set false line 23');
-      }}
-      backdropOpacity={0.5}>
+      onBackdropPress={onClose}
+      backdropOpacity={0.5}
+      onBackButtonPress={onClose}
+      onSwipeComplete={onClose}
+      backdropTransitionOutTiming={0}
+      deviceWidth={SCREEN_WIDTH}
+      deviceHeight={SCREEN_HEIGHT}
+      animationIn={'zoomIn'}
+      animationOut={'zoomOut'}>
       <View style={[styles.modal, style]}>{children}</View>
     </Modal>
-    // </View>
   );
 };
 
@@ -34,7 +40,7 @@ const styles = StyleSheet.create({
   modal: {
     // width: 260,
     // height: 200,
-    borderRadius: 12,
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colours.backgroundPrimary,

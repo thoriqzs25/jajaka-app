@@ -52,7 +52,7 @@ const CustomCarousels = () => {
   };
 
   const handleOnViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: any }) => {
-    setIndex(viewableItems[0].index);
+    if (viewableItems.length > 0) setIndex(viewableItems[0].index);
   }).current;
 
   const viewabilityConfig = useRef({

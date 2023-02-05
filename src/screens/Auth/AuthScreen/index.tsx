@@ -76,7 +76,7 @@ const AuthScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'}>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'} keyboardVerticalOffset={user ? -68 : 8}>
       <CustomSnackBar
         visible={visible}
         setVisible={setVisible}

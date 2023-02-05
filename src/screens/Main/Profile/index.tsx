@@ -4,13 +4,16 @@ import CustomDropdown from '@src/components/Field/CustomDropdown';
 import ImageView from '@src/components/ImageView';
 import MiddleModal from '@src/components/Modal/MiddleModal';
 import useBoolean from '@src/hooks/useBoolean';
+import { navigate } from '@src/navigation';
 import { userLogout } from '@src/redux/actions/auth';
+import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import { globalStyle } from '@src/utils/globalStyles';
 import colours from '@utils/colours';
 import { fontFamily, fontFamilyDM, fontFamilyLex } from '@utils/fonts';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { Button } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import Codepush from '../DevTools/Codepush';
 
@@ -36,14 +39,16 @@ const DATA3 = [
 ];
 
 const Profile = () => {
-  const [userType, setType] = useState<string>('customer');
+  const [userType, setType] = useState<string>('konsultan');
   const { value: logoutModal, setValue: setModal1 } = useBoolean(false);
 
   const dispatch = useDispatch();
   const onClick = (icon: string) => {
     if (icon === 'logout') {
-      // dispatch(userLogout());
       setModal1.true();
+    }
+    if (icon === 'person') {
+      navigate('RegisterKonsultan');
     }
   };
 
@@ -124,20 +129,34 @@ const Profile = () => {
         })}
         <Codepush />
       </ScrollView>
-      <MiddleModal visible={logoutModal} setVisible={setModal1} style={{ paddingHorizontal: 20, paddingVertical: 32 }}>
-        <View>
-          <Text style={{ fontFamily: fontFamilyLex.regular, fontSize: 14, color: colours.white, marginBottom: 20 }}>
+      <MiddleModal
+        visible={logoutModal}
+        onClose={() => {
+          setModal1.false();
+        }}
+        style={{ width: 260, paddingVertical: 32 }}>
+        <View style={{ alignItems: 'center' }}>
+          <Text
+            style={{
+              textAlign: 'center',
+              width: 160,
+              fontFamily: fontFamilyLex.regular,
+              fontSize: 16,
+              color: colours.white,
+              marginBottom: 20,
+            }}>
             Apakah kamu yakin ingin keluar?
           </Text>
           <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
             <CustomButton
               title='Batal'
+              onPress={() => setModal1.false()}
               style={[styles.button, { backgroundColor: colours.white, borderColor: colours.blueNormal }]}
               titleStyle={{ color: colours.blueNormal, fontFamily: fontFamilyDM.regular, fontSize: 14 }}
             />
             <CustomButton
               title='Keluar'
-              onPress={() => console.log('test')}
+              onPress={() => dispatch(userLogout())}
               style={[styles.button, { backgroundColor: colours.redNormal, borderColor: colours.redNormal }]}
               titleStyle={{ color: colours.white, fontFamily: fontFamilyDM.regular, fontSize: 14 }}
             />
@@ -190,6 +209,8 @@ const styles = StyleSheet.create({
     width: 104,
     borderWidth: 1,
     borderRadius: 28,
+    marginHorizontal: 4,
+    paddingVertical: 10,
   },
 });
 export default Profile;

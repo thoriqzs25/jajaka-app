@@ -1,24 +1,24 @@
 import CustomCheckbox from '@components/Field/CustomCheckbox';
 import TextField from '@components/Field/TextField';
 import { UseBoolean } from '@cTypes/hooks/UseBoolean';
+import CustomDropdown from '@src/components/Field/CustomDropdown';
 import colours from '@utils/colours';
-import { fontFamily } from '@utils/fonts';
+import { fontFamily, fontFamilyDM } from '@utils/fonts';
 import { globalStyle } from '@utils/globalStyles';
 import { StyleSheet, Text, View } from 'react-native';
 
-const SigninForm = ({
+const RegisterForm = ({
   name,
   email,
   phoneNum,
   setName,
   setEmail,
-  setPassword,
   setPhoneNum,
-  setPasswordConf,
   setTerm,
+  setJasa,
+  setKuliner,
   errorEmail,
   errorName,
-  errorPass,
   errorAggree,
 }: {
   name?: string;
@@ -26,18 +26,17 @@ const SigninForm = ({
   phoneNum?: string;
   setName: (val: string) => void;
   setEmail: (val: string) => void;
-  setPassword: (val: string) => void;
   setPhoneNum: (val: string) => void;
-  setPasswordConf: (val: string) => void;
   setTerm: UseBoolean;
+  setJasa: UseBoolean;
+  setKuliner: UseBoolean;
   errorEmail?: string;
   errorName?: string;
-  errorPass?: string;
   errorAggree?: string;
 }) => {
   return (
     <View style={[styles.sectionContainer, globalStyle.paddingHorizontal]}>
-      <Text style={styles.sectionTitle}>Sign Up</Text>
+      <Text style={styles.sectionTitle}>Register</Text>
       <View style={styles.formContainer}>
         <TextField
           title={'E-mail'}
@@ -67,27 +66,17 @@ const SigninForm = ({
             keyboardType={'number-pad'}
           />
         </View>
-        <View style={styles.dualInput}>
-          <TextField
-            title={'Password'}
-            placeholderText={'Masukkan password'}
-            secureInput
-            style={[styles.input]}
-            setValue={setPassword}
-            error={errorPass}
-          />
-          <View style={styles.divider} />
-          <TextField
-            title={'Konfirmasi Password'}
-            placeholderText={'Masukkan password'}
-            secureInput
-            style={[styles.input]}
-            setValue={setPasswordConf}
-            error={errorPass}
-          />
+        <View style={{ marginBottom: 8 }}>
+          <Text style={styles.label}>Kategori</Text>
+          <CustomCheckbox title={'UMKM Jasa'} setValue={setJasa} style={{ marginBottom: 2 }} />
+          <CustomCheckbox title={'UMKM Kuliner'} setValue={setKuliner} />
+        </View>
+        <View>
+          <Text style={styles.label}>Tipe</Text>
+          <CustomDropdown style={{ width: '100%', height: 48, borderRadius: 16 }} />
         </View>
       </View>
-      <CustomCheckbox title={'Saya telah setuju dengan syarat dan ketentuan.'} error={errorAggree} setValue={setTerm} />
+      <CustomCheckbox title='Saya telah setuju dengan syarat dan ketentuan.' error={errorAggree} setValue={setTerm} />
     </View>
   );
 };
@@ -117,7 +106,13 @@ const styles = StyleSheet.create({
   input: {
     width: '49%',
   },
+  label: {
+    fontSize: 16,
+    lineHeight: 20,
+    paddingBottom: 4,
+    color: colours.white,
+    fontFamily: fontFamilyDM.regular,
+  },
 });
 
-export default SigninForm;
-//
+export default RegisterForm;

@@ -19,8 +19,8 @@ const DATA = [
     id: 1,
     name: 'Test 1',
     coordinate: {
-      latitude: -6.60255,
-      longitude: 106.81303,
+      latitude: -6.89364,
+      longitude: 107.609644,
       ...defaultDelta,
     },
     details: {
@@ -35,8 +35,8 @@ const DATA = [
     id: 2,
     name: 'Test 2',
     coordinate: {
-      latitude: -6.60754,
-      longitude: 106.81503,
+      latitude: -6.892323,
+      longitude: 107.612918,
       ...defaultDelta,
     },
     details: {
@@ -51,8 +51,8 @@ const DATA = [
     id: 3,
     name: 'Test 3',
     coordinate: {
-      latitude: -6.60255,
-      longitude: 106.81203,
+      latitude: -6.889446,
+      longitude: 107.607873,
       ...defaultDelta,
     },
     details: {
@@ -67,12 +67,12 @@ const DATA = [
     id: 4,
     name: 'Test 4',
     coordinate: {
-      latitude: -6.60455,
-      longitude: 106.82203,
+      latitude: -6.887444,
+      longitude: 107.608724,
       ...defaultDelta,
     },
     details: {
-      Kategori: 'Kulineran',
+      Kategori: 'Kuliner',
       Produk: 'Aneka nasi dan jajanan',
       Alamat: 'Jl. Kec. Bandung Wetan',
       'Jam Buka': 'Senin - Selasa, 09.00 - 12.00',
@@ -83,12 +83,44 @@ const DATA = [
     id: 5,
     name: 'Test 5',
     coordinate: {
-      latitude: -6.59355,
-      longitude: 106.81003,
+      latitude: -6.886369,
+      longitude: 107.612057,
       ...defaultDelta,
     },
     details: {
-      Kategori: 'Kulineran 5',
+      Kategori: 'Donasi',
+      Produk: 'Aneka nasi dan jajanan',
+      Alamat: 'Jl. Kec. Bandung Wetan',
+      'Jam Buka': 'Senin - Selasa, 09.00 - 12.00',
+      'Tahun Berdiri': '2010',
+    },
+  },
+  {
+    id: 6,
+    name: 'Test 6',
+    coordinate: {
+      latitude: -6.886997,
+      longitude: 107.612758,
+      ...defaultDelta,
+    },
+    details: {
+      Kategori: 'Kuliner',
+      Produk: 'Aneka nasi dan jajanan',
+      Alamat: 'Jl. Kec. Bandung Wetan',
+      'Jam Buka': 'Senin - Selasa, 09.00 - 12.00',
+      'Tahun Berdiri': '2010',
+    },
+  },
+  {
+    id: 7,
+    name: 'Test 7',
+    coordinate: {
+      latitude: -6.885293,
+      longitude: 107.611857,
+      ...defaultDelta,
+    },
+    details: {
+      Kategori: 'Kuliner',
       Produk: 'Aneka nasi dan jajanan',
       Alamat: 'Jl. Kec. Bandung Wetan',
       'Jam Buka': 'Senin - Selasa, 09.00 - 12.00',

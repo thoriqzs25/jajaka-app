@@ -2,8 +2,8 @@ import CustomIcon from '@src/components/CustomIcons';
 import colours from '@src/utils/colours';
 import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
 import { IconType } from '@src/utils/icons';
-import { Pressable, StyleProp, StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Pressable, StyleProp, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const CustomButton = ({
   title,
@@ -35,7 +35,13 @@ const CustomButton = ({
           shadowColor: colours.white,
         },
       ]}
-      onPress={onPress}>
+      onPress={
+        onPress
+          ? onPress
+          : () => {
+              console.log('click line 38', title);
+            }
+      }>
       {iconName && <CustomIcon name={iconName} style={{ marginRight: 4 }} size={iconSize ? iconSize : 12} />}
       <Text style={[styles.title, titleStyle]}>{title}</Text>
 
