@@ -59,11 +59,12 @@ const Codepush = () => {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: colours.gray300,
+    paddingVertical: 4,
     flexDirection: 'row',
+    // borderBottomWidth: 1,
     justifyContent: 'space-between',
+    marginBottom: 40,
+    // borderBottomColor: colours.gray300,
   },
   bar: {
     paddingHorizontal: 5,

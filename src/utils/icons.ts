@@ -26,7 +26,12 @@ export type IconType =
   | 'service'
   | 'checkmark-outline'
   | 'send-alt'
-  | 'star-full';
+  | 'star-full'
+  | 'lock-closed'
+  | 'help_outline'
+  | 'settings'
+  | 'sticky_note'
+  | 'logout';
 
 export default createIconSetFromIcoMoon(icoMoonConfig, 'icomoon');
 

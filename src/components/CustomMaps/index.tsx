@@ -23,7 +23,7 @@ const CustomMaps = ({
   isHalf,
   selectedItem,
 }: {
-  style?: StyleProp<any>;
+  style: StyleProp<any>;
   onOpenDetail?: () => void;
   setSelected?: (id: any) => void;
   selectedItem?: any;

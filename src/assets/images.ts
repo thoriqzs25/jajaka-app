@@ -24,6 +24,8 @@ export const imageSource = (name: string) => {
       return require('@src/assets/images/dummy-user.webp');
     case 'dummy-user-2':
       return require('@src/assets/images/dummy-user-2.webp');
+    case 'dummy-user-3':
+      return require('@src/assets/images/dummy-user-3.webp');
     case 'empty-chat':
       return require('@src/assets/images/empty-chat.webp');
     default:
