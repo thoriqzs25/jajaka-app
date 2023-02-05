@@ -1,6 +1,7 @@
 import CustomCheckbox from '@components/Field/CustomCheckbox';
 import TextField from '@components/Field/TextField';
 import { UseBoolean } from '@cTypes/hooks/UseBoolean';
+import CustomIcon from '@src/components/CustomIcons';
 import CustomDropdown from '@src/components/Field/CustomDropdown';
 import colours from '@utils/colours';
 import { fontFamily, fontFamilyDM } from '@utils/fonts';
@@ -37,6 +38,19 @@ const RegisterForm = ({
   return (
     <View style={[styles.sectionContainer, globalStyle.paddingHorizontal]}>
       <Text style={styles.sectionTitle}>Register</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
+        <CustomIcon name='person' color={colours.yellowNormal} />
+        <Text
+          style={{
+            fontFamily: fontFamilyDM.regular,
+            fontSize: 14,
+            lineHeight: 18,
+            color: colours.white,
+            marginLeft: 8,
+          }}>
+          Daftar sebagai konsultan!
+        </Text>
+      </View>
       <View style={styles.formContainer}>
         <TextField
           title={'E-mail'}

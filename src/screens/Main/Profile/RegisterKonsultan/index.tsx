@@ -22,28 +22,30 @@ const RegisterKonsultan = () => {
 
   return (
     <SubPages title='' childPadding={false}>
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'} keyboardVerticalOffset={20}>
-        {/* <ScrollView> */}
-        <CustomCarousels />
-        <RegisterForm
-          name={name}
-          email={email}
-          phoneNum={phoneNum}
-          setName={setName}
-          setEmail={setEmail}
-          setPhoneNum={setPhoneNum}
-          setTerm={setTerm}
-          setJasa={setJasa}
-          setKuliner={setKuliner}
-          errorEmail={errorEmail}
-          errorName={errorName}
-          errorAggree={errorAggree}
-        />
-        <View style={[globalStyle.paddingHorizontal]}>
-          <CustomButton title={'Register'} />
-        </View>
-        {/* </ScrollView> */}
-      </KeyboardAvoidingView>
+      <ScrollView>
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'} keyboardVerticalOffset={-260}>
+          <View style={{ marginBottom: 20 }}>
+            <CustomCarousels />
+            <RegisterForm
+              name={name}
+              email={email}
+              phoneNum={phoneNum}
+              setName={setName}
+              setEmail={setEmail}
+              setPhoneNum={setPhoneNum}
+              setTerm={setTerm}
+              setJasa={setJasa}
+              setKuliner={setKuliner}
+              errorEmail={errorEmail}
+              errorName={errorName}
+              errorAggree={errorAggree}
+            />
+            <View style={[globalStyle.paddingHorizontal]}>
+              <CustomButton title={'Register'} />
+            </View>
+          </View>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </SubPages>
   );
 };
