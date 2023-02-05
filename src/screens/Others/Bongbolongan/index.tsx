@@ -116,10 +116,10 @@ const Bongbolongan = () => {
     setHalfScreen(half);
   };
 
-  const TabsNav = () => {
-    return (
-      <>
-        {tabs === 'Maps' ? (
+  const tabsNav = () => {
+    switch (tabs) {
+      case 'Maps':
+        return (
           <View style={styles.mapsContainer}>
             <CustomMaps
               itemList={DATA}
@@ -130,18 +130,21 @@ const Bongbolongan = () => {
               selectedItem={selected}
             />
           </View>
-        ) : tabs === 'Database' ? (
+        );
+      case 'Database':
+        return (
           <ScrollView style={[styles.databaseContainer, globalStyle.paddingHorizontal]} nestedScrollEnabled={true}>
             <KategoriData />
             <ListUMKM />
           </ScrollView>
-        ) : (
+        );
+      default:
+        return (
           <View>
             <Text>Loading</Text>
           </View>
-        )}
-      </>
-    );
+        );
+    }
   };
 
   return (
@@ -168,7 +171,8 @@ const Bongbolongan = () => {
             titleStyle={[styles.tabsText, tabs === 'Database' && activeStyle.text]}
           />
         </View>
-        <TabsNav />
+        {/* <TabsNav /> */}
+        {tabsNav()}
         {tabs === 'Maps' && <BongbolonganDetails ref={bottomSheetRef} data={selected} halfScreen={halfScreen} />}
         <View
           style={{
