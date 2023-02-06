@@ -6,6 +6,7 @@ import MiddleModal from '@src/components/Modal/MiddleModal';
 import useBoolean from '@src/hooks/useBoolean';
 import { navigate } from '@src/navigation';
 import { userLogout } from '@src/redux/actions/auth';
+import { Biodata, Pengalaman } from '@src/screens/Others/Ngajarkeun/KonsultanProfile';
 import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import { globalStyle } from '@src/utils/globalStyles';
 import colours from '@utils/colours';
@@ -123,8 +124,10 @@ const Profile = () => {
           <Text style={styles.secondaryText}>{DATA.email}</Text>
           <Text style={styles.secondaryText}>{DATA.phone}</Text>
         </View>
+        {userType === 'konsultan' && <Biodata />}
+        {userType === 'konsultan' && <Pengalaman />}
         {DATA2.map((data: any, idx: number) => {
-          if (data.icon === 'person' && userType !== 'consumer') return;
+          if (data.icon === 'person' && userType === 'konsultan') return;
           return <Card key={idx.toString()} item={data} />;
         })}
         <Codepush />

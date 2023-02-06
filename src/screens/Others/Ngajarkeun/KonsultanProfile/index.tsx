@@ -15,7 +15,26 @@ const DATA = [
   { name: 'Manager Tokopaedi', duration: '2017 - 2220' },
   { name: 'Astra Bhineka', duration: '2010 - 2120' },
 ];
-const KonsultanProfile = ({ route }: { route: RouteProp<any> }) => {
+
+export const Biodata = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.containerTitle}>📝 Biodata</Text>
+      <Text
+        style={{
+          fontFamily: fontFamilyDM.regular,
+          fontSize: 14,
+          lineHeight: 16,
+          color: colours.white,
+          marginTop: 12,
+        }}>
+        Saya adalah seorang konsultan blabla ini isinya quotes gitu
+      </Text>
+    </View>
+  );
+};
+
+export const Pengalaman = () => {
   const [shownExp, setShownExp] = useState<any[]>(DATA.slice(0, 3));
 
   const toggleSeeMore = () => {
@@ -26,65 +45,47 @@ const KonsultanProfile = ({ route }: { route: RouteProp<any> }) => {
     }
   };
 
-  const Biodata = () => {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.containerTitle}>📝 Biodata</Text>
-        <Text
-          style={{
-            fontFamily: fontFamilyDM.regular,
-            fontSize: 14,
-            lineHeight: 16,
-            color: colours.white,
-            marginTop: 12,
-          }}>
-          Saya adalah seorang konsultan blabla ini isinya quotes gitu
-        </Text>
-      </View>
-    );
-  };
+  return (
+    <View style={styles.container}>
+      <Text style={styles.containerTitle}>✨ Pengalaman</Text>
+      {shownExp &&
+        shownExp.map((_, idx) => {
+          return (
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }} key={idx.toString()}>
+              <Text
+                style={{
+                  fontFamily: fontFamilyDM.regular,
+                  fontSize: 14,
+                  lineHeight: 16,
+                  color: colours.white,
+                  marginTop: 12,
+                }}>
+                {_.name}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fontFamilyDM.regular,
+                  fontSize: 14,
+                  lineHeight: 16,
+                  color: colours.white,
+                  marginTop: 12,
+                }}>
+                {_.duration}
+              </Text>
+            </View>
+          );
+        })}
+      <CustomButton
+        title={shownExp.length < DATA.length ? `+ ${DATA.length - 3} lainnya` : 'Tutup'}
+        style={styles.button}
+        titleStyle={{ color: colours.blueYoung }}
+        onPress={toggleSeeMore}
+      />
+    </View>
+  );
+};
 
-  const Pengalaman = () => {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.containerTitle}>✨ Pengalaman</Text>
-        {shownExp &&
-          shownExp.map((_, idx) => {
-            return (
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }} key={idx.toString()}>
-                <Text
-                  style={{
-                    fontFamily: fontFamilyDM.regular,
-                    fontSize: 14,
-                    lineHeight: 16,
-                    color: colours.white,
-                    marginTop: 12,
-                  }}>
-                  {_.name}
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: fontFamilyDM.regular,
-                    fontSize: 14,
-                    lineHeight: 16,
-                    color: colours.white,
-                    marginTop: 12,
-                  }}>
-                  {_.duration}
-                </Text>
-              </View>
-            );
-          })}
-        <CustomButton
-          title={shownExp.length < DATA.length ? `+ ${DATA.length - 3} lainnya` : 'Tutup'}
-          style={styles.button}
-          titleStyle={{ color: colours.blueYoung }}
-          onPress={toggleSeeMore}
-        />
-      </View>
-    );
-  };
-
+const KonsultanProfile = ({ route }: { route: RouteProp<any> }) => {
   const KonsultasiSekarang = () => {
     return (
       <View style={styles.container}>
