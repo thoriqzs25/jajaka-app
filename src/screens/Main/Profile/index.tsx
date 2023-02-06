@@ -124,7 +124,7 @@ const Profile = () => {
           <Text style={styles.secondaryText}>{DATA.phone}</Text>
         </View>
         {DATA2.map((data: any, idx: number) => {
-          if (data.icon === 'person' && userType !== 'konsultan') return;
+          if (data.icon === 'person' && userType !== 'consumer') return;
           return <Card key={idx.toString()} item={data} />;
         })}
         <Codepush />

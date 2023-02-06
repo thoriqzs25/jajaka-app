@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '@screens/Main/Home';
+import Webview from '@src/components/Webview';
 import AuthScreen from '@src/screens/Auth/AuthScreen';
 import RegisterKonsultan from '@src/screens/Main/Profile/RegisterKonsultan';
 import Bongbolongan from '@src/screens/Others/Bongbolongan';
@@ -19,6 +20,7 @@ const HomeStackNavigator = () => {
       <HomeStack.Screen name='Home' component={Home} options={{ headerShown: false }} />
       <HomeStack.Screen name='NewsPage' component={NewsPage} options={{ headerShown: false }} />
       <HomeStack.Screen name='NewsDetail' component={NewsDetail} options={{ headerShown: false }} />
+      <HomeStack.Screen name='Webview' component={Webview} options={{ headerShown: false }} />
       <HomeStack.Screen name='Notification' component={Notification} options={{ headerShown: false }} />
       <HomeStack.Screen name='Bongbolongan' component={Bongbolongan} options={{ headerShown: false }} />
       <HomeStack.Screen name='Ngajarkeun' component={Ngajarkeun} options={{ headerShown: false }} />

@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator<any>();
 const TabNavigator = () => {
   const getTabBarVisibility = (route: RouteProp<any>) => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-    const hideOnScreens = ['Chat', 'RegisterKonsultan'];
+    const hideOnScreens = ['Chat', 'RegisterKonsultan', 'NewsPage', 'Webview'];
     if (hideOnScreens.indexOf(routeName) <= -1) return 'flex';
     return 'none';
   };

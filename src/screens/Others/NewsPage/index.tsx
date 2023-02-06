@@ -105,7 +105,6 @@ const NewsPage = () => {
         stickyHeaderIndices={[0]}
         scrollIndicatorInsets={{ right: 15 }}
         ListHeaderComponent={SearchBar}
-        stickyHeaderHiddenOnScroll={true}
         contentContainerStyle={styles.contentContainer}
         keyExtractor={(item, index) => item.id.toString()}
       />

@@ -14,7 +14,7 @@ import ImageView from '../../ImageView';
 
 const newsCard = ({ item }: { item: any }) => {
   const handleOpenNews = () => {
-    navigate('NewsDetail');
+    navigate('Webview');
   };
 
   return (
