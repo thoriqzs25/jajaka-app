@@ -1,3 +1,5 @@
+import { setErrorMessage } from '@src/redux/actions/error';
+import { store } from '@src/redux/store';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 const BASE_URL = 'http://101.50.2.188';
@@ -59,6 +61,9 @@ export const axiosRequest = async <T>(params: AxiosRequestConfig, firebaseToken?
       .request(params)
       .then((result) => {
         if (result.data.error) {
+          const payload = result?.data?.error?.response.data.detail ?? '';
+          store.dispatch(setErrorMessage(payload));
+
           reject(result?.data?.error ?? '');
           return;
         }
@@ -71,11 +76,19 @@ export const axiosRequest = async <T>(params: AxiosRequestConfig, firebaseToken?
           );
         resolve(result.data);
       })
-      .catch((error: AxiosError) => {
+      .catch((error: AxiosError<{ detail: string }>) => {
         __DEV__ &&
           console.log(`%cAPI ERROR ${error?.config?.method}: ${error?.config?.url}`, 'background: red; color: black', {
             error,
           });
+
+        if (error?.message === 'Network Error') store.dispatch(setErrorMessage('Kamu Offline!'));
+        else {
+          const payload = error?.response?.data?.detail ?? null;
+          if (payload !== null) store.dispatch(setErrorMessage(payload));
+        }
+
+        // store.dispatch(setErrorMessage(payload.detail));
 
         // if (error?.message === 'Network Error') navigate('OfflineNotice');
         // !__DEV__ && ENV === 'staging' && store.dispatch(setErrorId(error?.response?.data.header.requestId));
