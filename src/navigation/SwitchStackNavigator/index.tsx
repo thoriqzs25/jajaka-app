@@ -20,11 +20,11 @@ const noGesturesAndNoHeaderAndAnimateFromTheSideOptions = {
 
 const SwitchStackNavigator = () => {
   // const user = false;
-  const { loggedIn } = useSelector((state: RootState) => state.auth);
+  const { token } = useSelector((state: RootState) => state.auth);
 
   return (
     <Switch.Navigator initialRouteName='MainStackScreen'>
-      {loggedIn ? (
+      {token ? (
         <Switch.Screen name={'MainStackScreen'} options={{ headerShown: false }}>
           {() => <MainStackNavigator />}
         </Switch.Screen>

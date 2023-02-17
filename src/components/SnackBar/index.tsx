@@ -4,17 +4,25 @@ import colours from '@src/utils/colours';
 import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import { fontFamily } from '@src/utils/fonts';
 import { globalStyle } from '@src/utils/globalStyles';
+import { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Button, Snackbar } from 'react-native-paper';
 import CustomIcon from '../CustomIcons';
 
-const CustomSnackBar = ({ visible, setVisible, desc }: { visible: boolean; setVisible: UseBoolean; desc: string }) => {
-  const onDismissSnackBar = () => setVisible.false();
+const CustomSnackBar = ({ visible, onClose, desc }: { visible: boolean; onClose: () => void; desc: string }) => {
+  useEffect(() => {
+    if (visible) {
+      setTimeout(() => {
+        onClose?.();
+      }, 3000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
 
   return (
     <View style={[styles.container, { backgroundColor: colours.blueNormal }]}>
       <View style={[styles.subContainer]}>
-        <Snackbar style={styles.snackbar} visible={visible} onDismiss={onDismissSnackBar} duration={2600}>
+        <Snackbar style={styles.snackbar} visible={visible} onDismiss={onClose} duration={2600}>
           <View
             style={{
               alignItems: 'center',

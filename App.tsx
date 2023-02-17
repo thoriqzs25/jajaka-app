@@ -18,6 +18,7 @@ import { Provider } from 'react-redux';
 import { persistor, store } from '@src/redux/store';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // ts-ignore
 const Test = createStackNavigator();
@@ -33,13 +34,15 @@ let App = () => {
 
   return (
     <SafeAreaView style={styles.appContainer}>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <GestureHandlerRootView style={styles.appContainer}>
-            <AppComponent />
-          </GestureHandlerRootView>
-        </PersistGate>
-      </Provider>
+      <SafeAreaProvider>
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <GestureHandlerRootView style={styles.appContainer}>
+              <AppComponent />
+            </GestureHandlerRootView>
+          </PersistGate>
+        </Provider>
+      </SafeAreaProvider>
     </SafeAreaView>
   );
 };

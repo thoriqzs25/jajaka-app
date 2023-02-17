@@ -4,6 +4,8 @@ import ImageView from '@src/components/ImageView';
 import CustomSnackBar from '@src/components/SnackBar';
 import useBoolean from '@src/hooks/useBoolean';
 import { userLogin } from '@src/redux/actions/auth';
+import { store } from '@src/redux/store';
+import { signIn, signUp, testRoot } from '@src/services/auth';
 import colours from '@src/utils/colours';
 import { validateEmail, validateName, validatePassword } from '@src/utils/constraints/signup';
 import { fontFamily } from '@src/utils/fonts';
@@ -34,16 +36,29 @@ const AuthScreen = () => {
 
   const { value: visible, setValue: setVisible } = useBoolean(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     Keyboard.dismiss();
-    if (email === '123' && password === '123') {
-      console.log('success login line 22');
-      dispatch(userLogin({ token: 'abcefghi', email: email }));
-    }
     if (user) {
+      // testRoot();
       if (!validateLogin()) setVisible.true();
+      else {
+        const payload = {
+          email: email,
+          password: password,
+        };
+        await signIn(payload);
+      }
     } else {
       if (!validateSignup()) setVisible.true();
+      else {
+        const payload = {
+          email: email,
+          name: name,
+          password: password,
+          phone: '+62' + phoneNum.substring(1),
+        };
+        await signUp(payload);
+      }
     }
   };
 
@@ -79,7 +94,7 @@ const AuthScreen = () => {
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'} keyboardVerticalOffset={user ? -68 : 8}>
       <CustomSnackBar
         visible={visible}
-        setVisible={setVisible}
+        onClose={() => setVisible.false()}
         desc={errorEmail ? errorEmail : errorName ? errorName : errorPass ? errorPass : errorAggree}
       />
       <View style={styles.pageContainer}>

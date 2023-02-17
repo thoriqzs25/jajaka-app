@@ -1,6 +1,7 @@
+import { AuthReducerState } from './auth';
+import { ErrorReducerState } from './error';
+
 export interface RootState {
-  auth: {
-    loggedIn?: boolean;
-    email?: string;
-  }
+  auth: AuthReducerState;
+  error: ErrorReducerState;
 }

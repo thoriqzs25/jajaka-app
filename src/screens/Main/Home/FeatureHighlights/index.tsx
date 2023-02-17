@@ -3,6 +3,7 @@ import ImageView from '@src/components/ImageView';
 import useBoolean from '@src/hooks/useBoolean';
 import { navigate } from '@src/navigation';
 import { userLogout } from '@src/redux/actions/auth';
+import { setErrorMessage } from '@src/redux/actions/error';
 import { RootState } from '@src/types/states/root';
 import colours from '@src/utils/colours';
 import { fontFamily } from '@src/utils/fonts';
@@ -32,6 +33,7 @@ const FeatureHighlights = () => {
               onPress={() => {
                 if (data.id === 1) {
                   navigate('Bongbolongan');
+                  // dispatch(setErrorMessage('Test Error'));
                 } else navigate('Ngajarkeun');
               }}>
               <ImageView name={data.image} style={styles.image} />

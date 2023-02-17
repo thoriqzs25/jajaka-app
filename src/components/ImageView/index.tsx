@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { Image, View, ImageBackground } from 'react-native';
 import { imageSource } from '@src/assets/images';
 import colours from '@src/utils/colours';
+import FastImage from 'react-native-fast-image';
 
 interface ImageViewIProps {
   name?: string;
@@ -19,6 +20,10 @@ const ImageView = ({
   remoteAssetFullUri,
   ...rest
 }: ImageViewIProps) => {
+  if (remoteAssetFullUri && remoteAssetFullUri?.length > 0) {
+    return <FastImage style={style} resizeMode={resizeMode || 'cover'} source={{ uri: remoteAssetFullUri }} />;
+  }
+
   const source = name && imageSource(name);
   return source !== undefined && source !== null ? (
     background ? (

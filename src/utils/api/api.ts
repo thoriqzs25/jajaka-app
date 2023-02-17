@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
-const BASE_URL = 'https://swapi.dev/api/'
+const BASE_URL = 'http://101.50.2.188';
 
 export const axiosRequest = async <T>(params: AxiosRequestConfig, firebaseToken?: string): Promise<T> => {
   axios.defaults.baseURL = BASE_URL;
@@ -20,7 +20,7 @@ export const axiosRequest = async <T>(params: AxiosRequestConfig, firebaseToken?
         const httpMetric = perf().newHttpMetric(config.url, config.method);
         // @ts-ignore
         config.metadata = { httpMetric };
-        
+
         await httpMetric.start();
       } finally {
         return config;
@@ -51,7 +51,7 @@ export const axiosRequest = async <T>(params: AxiosRequestConfig, firebaseToken?
       } finally {
         return Promise.reject(error);
       }
-    },
+    }
   );
 
   return new Promise((resolve, reject) => {
@@ -67,7 +67,7 @@ export const axiosRequest = async <T>(params: AxiosRequestConfig, firebaseToken?
           console.log(
             `%cAPI SUCCESS ${result.config.method}: ${result.config.url}`,
             'background: #bada55; color: black',
-            result,
+            result
           );
         resolve(result.data);
       })

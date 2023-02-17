@@ -1,6 +1,9 @@
+import { useFocusEffect } from '@react-navigation/native';
 import useBoolean from '@src/hooks/useBoolean';
+import { RootState } from '@src/types/states/root';
 import { globalStyle } from '@utils/globalStyles';
 import { FlatList, ScrollView, StyleSheet, Text } from 'react-native';
+import { useSelector } from 'react-redux';
 import FeatureHighlights from './FeatureHighlights';
 import HomeHeader from './Header';
 import NewsList from './NewsList';

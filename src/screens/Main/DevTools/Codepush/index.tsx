@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { NativeModules, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import codePush from 'react-native-code-push';
-import colours from '@src/utils/colours';
-import { fontFamily } from '@src/utils/fonts';
+import colours from '@utils/colours';
+import { fontFamily } from '@utils/fonts';
 import packageJSON from 'package.json';
+import KEYS from '@utils/keys';
 
 type Status = {
   title: string;
@@ -23,7 +24,7 @@ const Codepush = () => {
     setCpStatus({ title: 'loading', color: colours.yellowNormal });
     codePush
       .sync(
-        { deploymentKey: 'smegzDoYLtSW-PZG7zFLkRYglf7pmxawAqGIh', installMode: codePush.InstallMode.IMMEDIATE },
+        { deploymentKey: KEYS.CODEPUSH, installMode: codePush.InstallMode.IMMEDIATE },
         (status) => {
           if (status === codePush.SyncStatus.UP_TO_DATE) {
             setCpStatus({ title: 'latest', color: colours.greenNormal });

@@ -5,6 +5,7 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import { navigate } from '@src/navigation';
+import { News } from '@src/types/props/news';
 import colours from '@utils/colours';
 import { fontFamily, fontFamilyDM } from '@utils/fonts';
 import React from 'react';
@@ -12,23 +13,23 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ImageView from '../../ImageView';
 
-const newsCard = ({ item }: { item: any }) => {
+const newsCard = ({ item }: { item: News }) => {
   const handleOpenNews = () => {
-    navigate('Webview');
+    navigate('Webview', { url: item.permalink });
   };
 
   return (
     <Pressable onPress={handleOpenNews}>
       <TouchableOpacity activeOpacity={0.75}>
         <View style={styles.cardContainer}>
-          <ImageView name={item.image} style={styles.image} />
+          <ImageView remoteAssetFullUri={item.image_url ?? ''} style={styles.image} />
           <View style={styles.textContainer}>
-            <Text style={[styles.regular, styles.date]}>{item.date}</Text>
+            <Text style={[styles.regular, styles.date]}>{item.published_at}</Text>
             <Text style={styles.title} numberOfLines={2} ellipsizeMode='tail'>
               {item.title}
             </Text>
             <Text style={[styles.regular, styles.desc]} numberOfLines={2} ellipsizeMode='tail'>
-              {item.desc}
+              {item.excerpt}
             </Text>
           </View>
         </View>

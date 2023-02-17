@@ -3,8 +3,11 @@ import ImageView from '@components/ImageView';
 import { useNavigation } from '@react-navigation/native';
 import NewsCard from '@src/components/Renderer/newsCard';
 import { navigate } from '@src/navigation';
+import { allNews } from '@src/services/news';
+import { News } from '@src/types/props/news';
 import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
+import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -47,6 +50,17 @@ const DATA = [
 ];
 
 const NewsList = () => {
+  const [newsData, setData] = useState<News[]>([]);
+
+  const getAllNews = async () => {
+    const res = await allNews();
+    setData(res);
+  };
+
+  useEffect(() => {
+    getAllNews();
+  }, []);
+
   return (
     <View style={styles.listContainer}>
       <View style={styles.headerContainer}>
@@ -61,7 +75,7 @@ const NewsList = () => {
           <CustomIcon name={'cheveron-right'} color={colours.blueYoung} size={20} />
         </TouchableOpacity>
       </View>
-      <FlatList data={DATA} renderItem={NewsCard} keyExtractor={(item, index) => item.id.toString()} />
+      <FlatList data={newsData} renderItem={NewsCard} keyExtractor={(item, index) => item.id.toString()} />
     </View>
   );
 };

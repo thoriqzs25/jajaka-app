@@ -1,19 +1,18 @@
 import { API } from '@utils/api/endpoints';
 import { axiosRequest } from '@utils/api/api';
-import { SignInPayload, SignUpPayload } from '@cTypes/props/auth';
+import { AuthResponse, SignInPayload, SignUpPayload } from '@cTypes/props/auth';
+import { store } from '@src/redux/store';
+import { userLogin } from '@src/redux/actions/auth';
 
 export const signIn = async (payload: SignInPayload) => {
   try {
-    const data = payload;
-
-    const response = await axiosRequest({
+    const response = (await axiosRequest({
       method: 'POST',
       url: API.auth.signIn,
-      data: data,
-    });
+      data: payload,
+    })) as AuthResponse;
 
-    // store.dispatch(setSkill(response.data));
-    console.log(response, 'res line 16 test');
+    store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
     return response;
   } catch (e) {
     throw e;
@@ -22,18 +21,29 @@ export const signIn = async (payload: SignInPayload) => {
 
 export const signUp = async (payload: SignUpPayload) => {
   try {
-    const data = payload;
-
-    const response = await axiosRequest({
+    const response = (await axiosRequest({
       method: 'POST',
       url: API.auth.signUp,
-      data: data,
-    });
+      data: payload,
+    })) as AuthResponse;
 
-    // store.dispatch(setSkill(response.data));
-    console.log(response, 'res line 16 test');
+    store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
     return response;
   } catch (e) {
+    console.log('line 40', e);
+    throw e;
+  }
+};
+
+export const testRoot = async () => {
+  try {
+    const response = await axiosRequest({
+      method: 'GET',
+      url: '/',
+    });
+    console.log(response, 'res line 50');
+  } catch (e) {
+    console.log('line 52', e);
     throw e;
   }
 };

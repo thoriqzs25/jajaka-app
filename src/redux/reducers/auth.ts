@@ -1,25 +1,25 @@
-import { AuthReducerAction } from "@cTypes/states/auth";
+import { AuthReducerAction, AuthReducerState } from '@cTypes/states/auth';
 
 const defaultState = {
-  loggedIn: false,
-  email: ''
-}
+  email: '',
+  token: '',
+} as AuthReducerState;
 
 const authReducer = (prevState = defaultState, action: AuthReducerAction) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'USER_LOGIN':
       return {
         ...prevState,
-        loggedIn: true,
-        email: action.email
-      }
+        email: action.email,
+        token: action.token,
+      };
     case 'USER_LOGOUT':
       return {
-        defaultState
-      }
-    default: 
+        defaultState,
+      };
+    default:
       return prevState;
   }
-}
+};
 
-export default authReducer
+export default authReducer;

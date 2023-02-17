@@ -36,10 +36,11 @@ const HomeHeader = () => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     paddingVertical: 12,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: colours.backgroundPrimary,
   },
   leftContainer: { flexDirection: 'row', alignItems: 'center' },
   rightContainer: {
