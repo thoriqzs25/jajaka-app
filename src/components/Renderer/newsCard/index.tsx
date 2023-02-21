@@ -1,9 +1,3 @@
-import {
-  createNavigationContainerRef,
-  NavigationContainer,
-  NavigationContainerRef,
-  useNavigation,
-} from '@react-navigation/native';
 import { navigate } from '@src/navigation';
 import { News } from '@src/types/props/news';
 import colours from '@utils/colours';

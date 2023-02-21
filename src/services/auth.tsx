@@ -27,6 +27,20 @@ export const signUp = async (payload: SignUpPayload) => {
       data: payload,
     })) as AuthResponse;
 
+    // store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
+    return response;
+  } catch (e) {
+    console.log('line 40', e);
+  }
+};
+
+export const resendVerification = async (email: string) => {
+  try {
+    const response = (await axiosRequest({
+      method: 'POST',
+      url: API.auth.verifySend(email),
+    })) as AuthResponse;
+
     store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
     return response;
   } catch (e) {

@@ -57,7 +57,9 @@ const AuthScreen = () => {
           password: password,
           phone: '+62' + phoneNum.substring(1),
         };
-        await signUp(payload);
+        // console.log(payload, 'line 60 PAYLOAD');
+        const res = await signUp(payload);
+        console.log(res, 'line 61');
       }
     }
   };

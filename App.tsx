@@ -23,7 +23,14 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 // ts-ignore
 const Test = createStackNavigator();
 
-const codePushOptions = { checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME };
+const codePushOptions = {
+  checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
+  mandatoryInstallMode: CodePush.InstallMode.IMMEDIATE,
+  updateDialog: {
+    appendReleaseDescription: true,
+    title: 'a new update is available!',
+  },
+};
 
 let App = () => {
   const isDarkMode = useColorScheme() === 'dark';
