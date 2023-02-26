@@ -26,12 +26,12 @@ const DATA = {
 };
 
 const DATA2 = [
-  { title: 'Daftar sebagai konsultan!', icon: 'person' },
-  { title: 'Kebijakan Privasi', icon: 'lock-closed' },
-  { title: 'Ketentuan Layanan', icon: 'sticky_note' },
-  { title: 'Pusat Bantuan', icon: 'help_outline' },
-  { title: 'Pengaturan Akun', icon: 'settings' },
-  { title: 'Keluar', icon: 'logout' },
+  { title: 'Daftar sebagai konsultan!', icon: 'person', id: 'DSK' },
+  { title: 'Kebijakan Privasi', icon: 'lock-closed', id: 'KP' },
+  { title: 'Ketentuan Layanan', icon: 'sticky_note', id: 'KL' },
+  { title: 'Pusat Bantuan', icon: 'help_outline', id: 'PB' },
+  { title: 'Pengaturan Akun', icon: 'settings', id: 'PA' },
+  { title: 'Keluar', icon: 'logout', id: 'K' },
 ];
 
 const DATA3 = [
@@ -44,19 +44,24 @@ const Profile = () => {
   const { value: logoutModal, setValue: setModal1 } = useBoolean(false);
 
   const dispatch = useDispatch();
-  const onClick = (icon: string) => {
-    if (icon === 'logout') {
+  const onClick = (code: string) => {
+    if (code === 'K') {
       setModal1.true();
-    }
-    if (icon === 'person') {
+    } else if (code === 'DSK') {
       navigate('RegisterKonsultan');
+    } else if (code === 'KP') {
+      navigate('KebijakanPrivasi');
+    } else if (code === 'KL') {
+      navigate('KetentuanLayanan');
+    } else if (code === 'PA') {
+      navigate('PengaturanAkun');
     }
   };
 
   const Card = ({ item }: { item: any }) => {
     return (
       <TouchableOpacity
-        onPress={() => onClick(item.icon)}
+        onPress={() => onClick(item.id)}
         activeOpacity={0.75}
         style={[
           cardStyles.container,
@@ -74,11 +79,11 @@ const Profile = () => {
           <CustomIcon
             name={item.icon}
             color={item.icon === 'logout' ? colours.white : colours.yellowNormal}
-            size={16}
+            size={item.icon === 'lock-closed' ? 12 : 16}
           />
           <Text
             style={{
-              marginLeft: 12,
+              marginLeft: item.icon === 'lock-closed' ? 16 : 12,
               fontFamily: fontFamilyDM.regular,
               fontSize: 14,
               lineHeight: 18,

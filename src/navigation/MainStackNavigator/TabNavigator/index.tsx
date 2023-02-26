@@ -11,6 +11,7 @@ import { StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ChatStackNavigator from './ChatStack';
 import HomeStackNavigator from './HomeStack';
+import ProfileStackNavigator from './HomeStack/ProfileStack';
 
 const Tab = createBottomTabNavigator<any>();
 
@@ -86,8 +87,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name='Profile'
-        component={Profile}
+        name='ProfileStack'
+        component={ProfileStackNavigator}
         options={({ navigation }) => {
           const isFocused = navigation.isFocused();
           return {

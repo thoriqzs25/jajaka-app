@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '@screens/Main/Home';
 import Webview from '@src/components/Webview';
 import AuthScreen from '@src/screens/Auth/AuthScreen';
+import KebijakanPrivasi from '@src/screens/Main/Profile/KebijakanPrivasi';
 import RegisterKonsultan from '@src/screens/Main/Profile/RegisterKonsultan';
 import Bongbolongan from '@src/screens/Others/Bongbolongan';
 import NewsDetail from '@src/screens/Others/NewsDetail';
@@ -27,7 +28,6 @@ const HomeStackNavigator = () => {
       <HomeStack.Screen name='RekomendasiUMKM' component={RekomendasiUMKM} options={{ headerShown: false }} />
       <HomeStack.Screen name='PenelusuranUMKM' component={PenelusuranUMKM} options={{ headerShown: false }} />
       <HomeStack.Screen name='KonsultanProfile' component={KonsultanProfile} options={{ headerShown: false }} />
-      <HomeStack.Screen name='RegisterKonsultan' component={RegisterKonsultan} options={{ headerShown: false }} />
     </HomeStack.Navigator>
   );
 };
