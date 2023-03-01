@@ -3,6 +3,7 @@ import { axiosRequest } from '@utils/api/api';
 import { AuthResponse, SignInPayload, SignUpPayload } from '@cTypes/props/auth';
 import { store } from '@src/redux/store';
 import { userLogin, waitingVerif } from '@src/redux/actions/auth';
+import { userInfo } from '@src/redux/actions/user';
 
 export const signIn = async (payload: SignInPayload) => {
   try {
@@ -64,9 +65,12 @@ export const autoLogin = async () => {
       },
     })) as AuthResponse;
 
-    if (response && auth.token) store.dispatch(userLogin({ token: auth.token, email: response.data.user.email }));
+    if (response && auth.token) {
+      store.dispatch(userLogin({ token: auth.token, email: response.data.user.email }));
+      store.dispatch(userInfo({ payload: response.data.user }));
+    }
 
-    console.log(response, 'res line 50');
+    return response;
   } catch (e) {
     console.log('line 52', e);
     throw e;

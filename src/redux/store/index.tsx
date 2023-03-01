@@ -10,6 +10,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import errorReducer from '../reducers/error';
+import userReducer from '../reducers/user';
 
 export const MMKVStorage = new MMKV({
   id: 'mmkv.default',
@@ -35,7 +36,7 @@ const persistConfig = {
   key: 'root',
   storage: reduxStorage,
   stateReconciler: autoMergeLevel2,
-  blacklist: ['auth', 'error'],
+  blacklist: ['auth', 'error', 'user'],
 };
 
 const authPersistConfig = {
@@ -47,6 +48,7 @@ const authPersistConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   error: errorReducer,
+  user: userReducer,
 });
 
 const middleware = applyMiddleware(thunk);

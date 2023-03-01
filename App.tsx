@@ -21,6 +21,8 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { navigate } from '@src/navigation';
+import { userLogin } from '@src/redux/actions/auth';
+import { autoLogin } from '@src/services/auth';
 
 // ts-ignore
 const Test = createStackNavigator();

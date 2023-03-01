@@ -7,6 +7,7 @@ import useBoolean from '@src/hooks/useBoolean';
 import { navigate } from '@src/navigation';
 import { userLogout } from '@src/redux/actions/auth';
 import { Biodata, Pengalaman } from '@src/screens/Others/Ngajarkeun/KonsultanProfile';
+import { RootState } from '@src/types/states/root';
 import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import { globalStyle } from '@src/utils/globalStyles';
 import colours from '@utils/colours';
@@ -15,7 +16,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Button } from 'react-native-paper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Codepush from '../DevTools/Codepush';
 
 const DATA = {
@@ -42,6 +43,8 @@ const DATA3 = [
 const Profile = () => {
   const [userType, setType] = useState<string>('konsultan');
   const { value: logoutModal, setValue: setModal1 } = useBoolean(false);
+
+  const { user } = useSelector((state: RootState) => state);
 
   const dispatch = useDispatch();
   const onClick = (code: string) => {
@@ -118,18 +121,18 @@ const Profile = () => {
         </View>
         <View style={[styles.container, { justifyContent: 'center', alignItems: 'center', marginTop: 90 }]}>
           <View style={{ position: 'absolute', top: -70 }}>
-            {DATA.image ? (
+            {/* {user.image ? (
               <ImageView name={DATA.image} style={{ width: 140, height: 140 }} />
-            ) : (
-              <CustomIcon name={'user-solid-circle'} size={140} style={{ width: 144 }} />
-            )}
+            ) : ( */}
+            <CustomIcon name={'user-solid-circle'} size={140} style={{ width: 144 }} />
+            {/* )} */}
           </View>
 
-          <Text style={[styles.name, { paddingTop: 70 }]}>{DATA.name}</Text>
-          <Text style={styles.secondaryText}>{DATA.email}</Text>
-          <Text style={styles.secondaryText}>{DATA.phone}</Text>
+          <Text style={[styles.name, { paddingTop: 70 }]}>{user.name ?? ''}</Text>
+          <Text style={styles.secondaryText}>{user.email ?? ''}</Text>
+          <Text style={styles.secondaryText}>{user.phone ?? ''}</Text>
         </View>
-        {userType === 'konsultan' && <Biodata />}
+        {userType === 'konsultan' && <Biodata desc={user.consultant?.bio} />}
         {userType === 'konsultan' && <Pengalaman />}
         {DATA2.map((data: any, idx: number) => {
           if (data.icon === 'person' && userType === 'konsultan') return;

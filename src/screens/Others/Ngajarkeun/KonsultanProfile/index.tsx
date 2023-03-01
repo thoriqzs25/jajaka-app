@@ -16,7 +16,7 @@ const DATA = [
   { name: 'Astra Bhineka', duration: '2010 - 2120' },
 ];
 
-export const Biodata = () => {
+export const Biodata = ({ desc }: { desc?: string | null }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.containerTitle}>📝 Biodata</Text>
@@ -28,7 +28,7 @@ export const Biodata = () => {
           color: colours.white,
           marginTop: 12,
         }}>
-        Saya adalah seorang konsultan blabla ini isinya quotes gitu
+        {desc ?? ''}
       </Text>
     </View>
   );

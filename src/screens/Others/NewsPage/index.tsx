@@ -22,6 +22,8 @@ const NewsPage = () => {
     if (key.length > 2) {
       const qRes = await queryNews({ q: key });
       setSearchRes(qRes);
+    } else {
+      getAllNews();
     }
   };
 
@@ -40,6 +42,9 @@ const NewsPage = () => {
               placeholder={'Masukkan kata kunci berita'}
               onChangeText={(text) => {
                 searchNews(text);
+              }}
+              onBlur={(e) => {
+                console.log('line 44', e);
               }}
             />
           </View>

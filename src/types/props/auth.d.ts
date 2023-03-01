@@ -14,15 +14,17 @@ export type AuthResponse = {
   message: string;
   data: {
     access_token?: string;
-    user: {
-      id: number;
-      name: string;
-      email: string;
-      phone: string;
-      verified: boolean;
-      is_consultant: boolean;
-      created_at: string;
-      published_at: string;
-    };
+    user: UserData;
   };
+};
+
+export type UserData = {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  verified: boolean;
+  is_consultant: boolean;
+  created_at: string;
+  published_at: string;
 };

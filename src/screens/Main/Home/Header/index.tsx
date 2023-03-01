@@ -2,13 +2,16 @@ import CustomIcon from '@src/components/CustomIcons';
 import ImageView from '@src/components/ImageView';
 import { navigate } from '@src/navigation';
 import { UseBoolean } from '@src/types/hooks/UseBoolean';
+import { RootState } from '@src/types/states/root';
 import colours from '@utils/colours';
 import { fontFamily } from '@utils/fonts';
 import { Pressable, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const HomeHeader = () => {
-  const name = 'Kuya Kuyi Tahiber';
+  const { user } = useSelector((state: RootState) => state);
+
   const incomingNotif = true;
   return (
     <View style={styles.headerContainer}>
@@ -17,7 +20,7 @@ const HomeHeader = () => {
         <Text style={styles.text}>
           Halo,
           {'\n'}
-          {name}
+          {user.name ?? ''}
         </Text>
       </View>
 

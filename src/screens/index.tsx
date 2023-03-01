@@ -10,6 +10,7 @@ import CustomSnackBar from '@src/components/SnackBar';
 import { RootState } from '@src/types/states/root';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetErrorMessage } from '@src/redux/actions/error';
+import { autoLogin } from '@src/services/auth';
 
 const Test = createNativeStackNavigator();
 
@@ -29,6 +30,10 @@ const AppComponent = () => {
   //   console.log('line 29', message);
   // }, []);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    autoLogin();
+  }, []);
 
   return (
     <View style={styles.screenContainer}>

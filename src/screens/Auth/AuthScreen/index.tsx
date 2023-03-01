@@ -24,11 +24,11 @@ const AuthScreen = () => {
   const { value: user, setValue: setUser } = useBoolean(true);
   const { value: termAggreement, setValue: setTerm } = useBoolean(false);
 
-  const [name, setName] = useState<string>('Thoriq');
-  const [email, setEmail] = useState<string>('thariqzs@yahoo.com');
-  const [phoneNum, setPhoneNum] = useState<string>('081298984688');
-  const [password, setPassword] = useState<string>('abcabcab');
-  const [passwordConf, setPasswordConf] = useState<string>('abcabcab');
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [phoneNum, setPhoneNum] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [passwordConf, setPasswordConf] = useState<string>('');
 
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorName, setErrorName] = useState<string>('');
