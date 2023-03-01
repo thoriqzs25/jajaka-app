@@ -1,8 +1,9 @@
 import { AuthReducerAction, AuthReducerState } from '@cTypes/states/auth';
 
 const defaultState = {
-  email: '',
-  token: '',
+  email: null,
+  token: null,
+  loggedIn: null,
 } as AuthReducerState;
 
 const authReducer = (prevState = defaultState, action: AuthReducerAction) => {
@@ -12,10 +13,17 @@ const authReducer = (prevState = defaultState, action: AuthReducerAction) => {
         ...prevState,
         email: action.email,
         token: action.token,
+        loggedIn: true,
       };
     case 'USER_LOGOUT':
       return {
         defaultState,
+      };
+    case 'WAITING_VERIF':
+      return {
+        ...prevState,
+        token: action.token,
+        email: action.email,
       };
     default:
       return prevState;

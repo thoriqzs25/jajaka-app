@@ -13,7 +13,7 @@ export type SignUpPayload = {
 export type AuthResponse = {
   message: string;
   data: {
-    access_token: string;
+    access_token?: string;
     user: {
       id: number;
       name: string;

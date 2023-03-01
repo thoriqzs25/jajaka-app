@@ -1,27 +1,39 @@
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import ImageView from '@src/components/ImageView';
 import SubPages from '@src/layouts/SubPages';
 import { navigate } from '@src/navigation';
-import { resendVerification } from '@src/services/auth';
+import { autoLogin, resendVerification } from '@src/services/auth';
 import { RootState } from '@src/types/states/root';
 import colours from '@src/utils/colours';
 import { fontFamily, fontFamilyDM, fontFamilyLex } from '@src/utils/fonts';
-import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { AppState, AppStateStatus, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 
 const VerifikasiScreen = () => {
   const { email, token } = useSelector((store: RootState) => store.auth);
-
-  useEffect(() => {
-    console.log('line 18', email, token);
-  }, []);
+  const [appState, setAppState] = useState<AppStateStatus>(AppState.currentState);
 
   const sendVerification = async () => {
     if (!email) navigate('AuthScreen');
     else await resendVerification(email);
   };
+
+  useEffect(() => {
+    const handleAppStateChange = async (nextAppState: AppStateStatus) => {
+      if (appState.match(/inactive|background/) && nextAppState === 'active') {
+        // App has come to the foreground
+        console.log('App has come to the foreground!');
+        await autoLogin();
+        // hit /user
+      }
+      setAppState(nextAppState);
+    };
+
+    // Add event listener for app state changes
+    AppState.addEventListener('change', handleAppStateChange);
+  }, [appState]);
 
   return (
     <SubPages title=''>

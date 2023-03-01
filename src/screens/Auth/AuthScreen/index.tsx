@@ -3,15 +3,16 @@ import CustomButton from '@src/components/Field/CustomButton';
 import ImageView from '@src/components/ImageView';
 import CustomSnackBar from '@src/components/SnackBar';
 import useBoolean from '@src/hooks/useBoolean';
+import { navigate } from '@src/navigation';
 import { userLogin } from '@src/redux/actions/auth';
 import { store } from '@src/redux/store';
-import { signIn, signUp, testRoot } from '@src/services/auth';
+import { signIn, signUp } from '@src/services/auth';
 import colours from '@src/utils/colours';
 import { validateEmail, validateName, validatePassword } from '@src/utils/constraints/signup';
 import { fontFamily } from '@src/utils/fonts';
 import { globalStyle } from '@src/utils/globalStyles';
 import { useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import LoginForm from './LoginForm';
 import SigninForm from './SigninForm';
@@ -23,11 +24,11 @@ const AuthScreen = () => {
   const { value: user, setValue: setUser } = useBoolean(true);
   const { value: termAggreement, setValue: setTerm } = useBoolean(false);
 
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [phoneNum, setPhoneNum] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [passwordConf, setPasswordConf] = useState<string>('');
+  const [name, setName] = useState<string>('Thoriq');
+  const [email, setEmail] = useState<string>('thariqzs@yahoo.com');
+  const [phoneNum, setPhoneNum] = useState<string>('081298984688');
+  const [password, setPassword] = useState<string>('abcabcab');
+  const [passwordConf, setPasswordConf] = useState<string>('abcabcab');
 
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorName, setErrorName] = useState<string>('');
@@ -35,32 +36,45 @@ const AuthScreen = () => {
   const [errorAggree, setErrorAggree] = useState<string>('');
 
   const { value: visible, setValue: setVisible } = useBoolean(false);
+  const { value: loading, setValue: setLoading } = useBoolean(false);
 
   const handleSubmit = async () => {
-    Keyboard.dismiss();
-    if (user) {
-      // testRoot();
-      if (!validateLogin()) setVisible.true();
-      else {
-        const payload = {
-          email: email,
-          password: password,
-        };
-        await signIn(payload);
+    try {
+      setLoading.true();
+
+      Keyboard.dismiss();
+      if (user) {
+        // testRoot();
+        if (!validateLogin()) setVisible.true();
+        else {
+          const payload = {
+            email: email,
+            password: password,
+          };
+          await signIn(payload);
+        }
+      } else {
+        if (!validateSignup()) setVisible.true();
+        else {
+          const payload = {
+            email: email,
+            name: name,
+            password: password,
+            phone: '+62' + phoneNum.substring(1),
+          };
+          // console.log(payload, 'line 60 PAYLOAD');
+          const res = await signUp(payload);
+          console.log('line 66', res);
+          if (res?.message === 'Success') {
+            // dispatch(waitingVerif(email, phoneNum.))
+            navigate('Verifikasi');
+          }
+        }
       }
-    } else {
-      if (!validateSignup()) setVisible.true();
-      else {
-        const payload = {
-          email: email,
-          name: name,
-          password: password,
-          phone: '+62' + phoneNum.substring(1),
-        };
-        // console.log(payload, 'line 60 PAYLOAD');
-        const res = await signUp(payload);
-        console.log(res, 'line 61');
-      }
+    } catch (e) {
+      console.log(e, 'Error Authentication');
+    } finally {
+      setLoading.false();
     }
   };
 
@@ -94,6 +108,11 @@ const AuthScreen = () => {
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={'position'} keyboardVerticalOffset={user ? -68 : 8}>
+      <ActivityIndicator
+        size={'large'}
+        animating={loading}
+        style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}
+      />
       <CustomSnackBar
         visible={visible}
         onClose={() => setVisible.false()}

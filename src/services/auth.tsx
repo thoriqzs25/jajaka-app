@@ -2,7 +2,7 @@ import { API } from '@utils/api/endpoints';
 import { axiosRequest } from '@utils/api/api';
 import { AuthResponse, SignInPayload, SignUpPayload } from '@cTypes/props/auth';
 import { store } from '@src/redux/store';
-import { userLogin } from '@src/redux/actions/auth';
+import { userLogin, waitingVerif } from '@src/redux/actions/auth';
 
 export const signIn = async (payload: SignInPayload) => {
   try {
@@ -27,7 +27,10 @@ export const signUp = async (payload: SignUpPayload) => {
       data: payload,
     })) as AuthResponse;
 
-    // store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
+    // store.dispatch(
+    //   userLogin({ token: response.data.access_token, email: response.data.user.email, phone: response.data.user.phone })
+    // );
+    store.dispatch(waitingVerif({ token: response.data.access_token, email: payload.email }));
     return response;
   } catch (e) {
     console.log('line 40', e);
@@ -41,7 +44,7 @@ export const resendVerification = async (email: string) => {
       url: API.auth.verifySend(email),
     })) as AuthResponse;
 
-    store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
+    // store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
     return response;
   } catch (e) {
     console.log('line 40', e);
@@ -49,12 +52,20 @@ export const resendVerification = async (email: string) => {
   }
 };
 
-export const testRoot = async () => {
+export const autoLogin = async () => {
+  const { auth } = store.getState();
+
   try {
-    const response = await axiosRequest({
+    const response = (await axiosRequest({
       method: 'GET',
-      url: '/',
-    });
+      url: '/user',
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    })) as AuthResponse;
+
+    if (response && auth.token) store.dispatch(userLogin({ token: auth.token, email: response.data.user.email }));
+
     console.log(response, 'res line 50');
   } catch (e) {
     console.log('line 52', e);

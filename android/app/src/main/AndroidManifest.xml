@@ -25,8 +25,10 @@
             <action android:name="android.intent.action.VIEW"/>
             <category android:name="android.intent.category.DEFAULT"/>
             <category android:name="android.intent.category.BROWSABLE"/>
-            <data android:host="jajakatahiber.com" android:scheme="http"/>
-            <data android:host="jajakatahiber.com" android:scheme="https"/>
+            <data android:host="api.berjajaka.com" android:scheme="http"/>
+            <data android:host="api.berjajaka.com" android:scheme="https"/>
+            <data android:host="berjajaka.com" android:scheme="http"/>
+            <data android:host="berjajaka.com" android:scheme="https"/>
         </intent-filter>
       </activity>
       <meta-data

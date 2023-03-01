@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {
+  Linking,
   NativeModules,
   SafeAreaView,
   ScrollView,
@@ -19,6 +20,7 @@ import { persistor, store } from '@src/redux/store';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { navigate } from '@src/navigation';
 
 // ts-ignore
 const Test = createStackNavigator();
@@ -37,6 +39,15 @@ let App = () => {
 
   useEffect(() => {
     SplashScreen.hide();
+  }, []);
+
+  useEffect(() => {
+    const linkingSubscription = Linking.addEventListener('url', ({ url }) => {
+      console.log('line 45', url);
+      // handleDeeplink(url, handleSearch);
+    });
+
+    return () => linkingSubscription.remove();
   }, []);
 
   return (
