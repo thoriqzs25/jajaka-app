@@ -51,7 +51,8 @@ const AuthScreen = () => {
             email: email,
             password: password,
           };
-          await signIn(payload);
+          const res = await signIn(payload);
+          console.log('line 55', res);
         }
       } else {
         if (!validateSignup()) setVisible.true();

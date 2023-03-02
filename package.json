@@ -1,9 +1,10 @@
 {
   "name": "jajaka",
-  "version": "0.4.5",
+  "version": "0.4.7",
   "private": true,
   "scripts": {
     "android": "npx react-native run-android --variant=stagingDebug",
+    "android:prod": "npx react-native run-android --variant=stagingRelease",
     "ios": "npx react-native run-ios",
     "start": "react-native start",
     "test": "jest",

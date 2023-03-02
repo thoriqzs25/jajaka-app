@@ -16,7 +16,8 @@ export const signIn = async (payload: SignInPayload) => {
     store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
     return response;
   } catch (e) {
-    throw e;
+    return e;
+    // throw e;
   }
 };
 

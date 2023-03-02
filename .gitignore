@@ -43,7 +43,7 @@ buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
-!release.keystore
+!jajakarelease.keystore
 
 # fastlane
 #
