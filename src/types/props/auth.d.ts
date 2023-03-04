@@ -23,8 +23,9 @@ export type UserData = {
   name: string;
   email: string;
   phone: string;
-  verified: boolean;
+  profile_url: string;
   is_consultant: boolean;
   created_at: string;
   published_at: string;
+  verified: boolean;
 };

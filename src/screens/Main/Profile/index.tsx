@@ -13,7 +13,7 @@ import { globalStyle } from '@src/utils/globalStyles';
 import colours from '@utils/colours';
 import { fontFamily, fontFamilyDM, fontFamilyLex } from '@utils/fonts';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Button } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
@@ -121,11 +121,18 @@ const Profile = () => {
         </View>
         <View style={[styles.container, { justifyContent: 'center', alignItems: 'center', marginTop: 90 }]}>
           <View style={{ position: 'absolute', top: -70 }}>
-            {/* {user.image ? (
-              <ImageView name={DATA.image} style={{ width: 140, height: 140 }} />
-            ) : ( */}
-            <CustomIcon name={'user-solid-circle'} size={140} style={{ width: 144 }} />
-            {/* )} */}
+            {user.profile_url !== null ? (
+              <Image
+                source={{ uri: `data:image/png;base64,${user.profile_url}` }}
+                style={{
+                  width: 144,
+                  height: 144,
+                  borderRadius: 700,
+                }}
+              />
+            ) : (
+              <CustomIcon name={'user-solid-circle'} size={140} style={{ width: 144 }} />
+            )}
           </View>
 
           <Text style={[styles.name, { paddingTop: 70 }]}>{user.name ?? ''}</Text>

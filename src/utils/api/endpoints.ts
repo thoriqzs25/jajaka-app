@@ -8,4 +8,7 @@ export const API = {
     allNews: '/news',
     queryNews: (nId?: number, q?: string) => `/news/search?news_id=${nId ?? 0}&q=${q ?? ''}`,
   },
+  user: {
+    updatePhoto: '/user/profile/image',
+  },
 };

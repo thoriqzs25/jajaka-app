@@ -1,3 +1,5 @@
+import { PhotoData } from '../props/auth';
+
 export interface UserReducerState {
   consultant?: Consultant | null;
   email?: string | null;
@@ -19,5 +21,9 @@ export type UserReducerAction =
   | {
       type: 'USER_INFO';
       payload: UserReducerState;
+    }
+  | {
+      type: 'UPDATE_PHOTO';
+      base64: string;
     }
   | { type: 'REMOVE_USER' };

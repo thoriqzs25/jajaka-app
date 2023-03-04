@@ -15,8 +15,8 @@ export const signIn = async (payload: SignInPayload) => {
     })) as AuthResponse;
 
     // store.dispatch(setErrorMessage(response.message));
-    if (response.message)
-      store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
+    if (response.message) store.dispatch(userInfo({ payload: response.data.user }));
+    store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
     return response;
   } catch (e) {
     return e;
