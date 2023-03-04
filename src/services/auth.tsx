@@ -70,8 +70,8 @@ export const autoLogin = async () => {
     })) as AuthResponse;
 
     if (response && auth.token) {
-      store.dispatch(userLogin({ token: auth.token, email: response.data.user.email }));
       store.dispatch(userInfo({ payload: response.data.user }));
+      store.dispatch(userLogin({ token: auth.token, email: response.data.user.email }));
     }
 
     return response;

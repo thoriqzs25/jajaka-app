@@ -24,7 +24,7 @@ const SwitchStackNavigator = () => {
 
   return (
     <Switch.Navigator initialRouteName='MainStackScreen'>
-      {!loggedIn ? (
+      {loggedIn ? (
         <Switch.Screen name={'MainStackScreen'} options={{ headerShown: false }}>
           {() => <MainStackNavigator />}
         </Switch.Screen>
