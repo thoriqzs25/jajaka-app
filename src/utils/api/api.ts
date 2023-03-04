@@ -2,7 +2,7 @@ import { setErrorMessage } from '@src/redux/actions/error';
 import { store } from '@src/redux/store';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
-const BASE_URL = 'http://api.berjajaka.com';
+const BASE_URL = 'https://api.berjajaka.com';
 // const BASE_URL = 'http://101.50.2.188';
 
 export const axiosRequest = async <T>(params: AxiosRequestConfig, firebaseToken?: string): Promise<T> => {

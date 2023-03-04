@@ -51,7 +51,7 @@ const SubPages = ({
 };
 
 const styles = StyleSheet.create({
-  layoutContainer: { flex: 1 },
+  layoutContainer: { flex: 1, zIndex: 100 },
   headerContainer: { alignSelf: 'flex-start' },
   leftContainer: {
     paddingRight: 8,
