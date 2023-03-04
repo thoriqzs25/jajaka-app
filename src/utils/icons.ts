@@ -31,7 +31,8 @@ export type IconType =
   | 'help_outline'
   | 'settings'
   | 'sticky_note'
-  | 'logout';
+  | 'logout'
+  | 'edit-pencil';
 
 export default createIconSetFromIcoMoon(icoMoonConfig, 'icomoon');
 

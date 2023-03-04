@@ -4,6 +4,7 @@ import { AuthResponse, SignInPayload, SignUpPayload } from '@cTypes/props/auth';
 import { store } from '@src/redux/store';
 import { userLogin, waitingVerif } from '@src/redux/actions/auth';
 import { userInfo } from '@src/redux/actions/user';
+import { setErrorMessage } from '@src/redux/actions/error';
 
 export const signIn = async (payload: SignInPayload) => {
   try {
@@ -13,7 +14,9 @@ export const signIn = async (payload: SignInPayload) => {
       data: payload,
     })) as AuthResponse;
 
-    store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
+    // store.dispatch(setErrorMessage(response.message));
+    if (response.message)
+      store.dispatch(userLogin({ token: response.data.access_token, email: response.data.user.email }));
     return response;
   } catch (e) {
     return e;
