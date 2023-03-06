@@ -4,7 +4,8 @@ import ImageView from '@src/components/ImageView';
 import CustomSnackBar from '@src/components/SnackBar';
 import useBoolean from '@src/hooks/useBoolean';
 import { navigate } from '@src/navigation';
-import { userLogin } from '@src/redux/actions/auth';
+import { userLogin, waitingVerif } from '@src/redux/actions/auth';
+import { setErrorMessage } from '@src/redux/actions/error';
 import { store } from '@src/redux/store';
 import { signIn, signUp } from '@src/services/auth';
 import colours from '@src/utils/colours';
@@ -35,7 +36,6 @@ const AuthScreen = () => {
   const [errorPass, setErrorPass] = useState<string>('');
   const [errorAggree, setErrorAggree] = useState<string>('');
 
-  const { value: visible, setValue: setVisible } = useBoolean(false);
   const { value: loading, setValue: setLoading } = useBoolean(false);
 
   const handleSubmit = async () => {
@@ -45,8 +45,7 @@ const AuthScreen = () => {
       Keyboard.dismiss();
       if (user) {
         // testRoot();
-        if (!validateLogin()) setVisible.true();
-        else {
+        if (validateLogin()) {
           const payload = {
             email: email,
             password: password,
@@ -54,19 +53,17 @@ const AuthScreen = () => {
           const res = await signIn(payload);
         }
       } else {
-        if (!validateSignup()) setVisible.true();
-        else {
+        if (validateSignup()) {
           const payload = {
             email: email,
             name: name,
             password: password,
             phone: '+62' + phoneNum.substring(1),
           };
-          // console.log(payload, 'line 60 PAYLOAD');
           const res = await signUp(payload);
-          console.log('line 66', res);
+
           if (res?.message === 'Success') {
-            // dispatch(waitingVerif(email, phoneNum.))
+            store.dispatch(waitingVerif({ token: res.data.access_token, email: email }));
             navigate('Verifikasi');
           }
         }
@@ -103,6 +100,20 @@ const AuthScreen = () => {
 
     setErrorAggree(termAggreement ? '' : 'Harap setujui syarat dan ketentuan');
 
+    store.dispatch(
+      setErrorMessage(
+        !emailValidation.value
+          ? emailValidation.message
+          : !nameValidation.value
+          ? nameValidation.message
+          : !passValidation.value
+          ? passValidation.message
+          : !termAggreement
+          ? 'Harap setujui syarat dan ketentuan'
+          : null
+      )
+    );
+
     return res;
   };
 
@@ -112,11 +123,6 @@ const AuthScreen = () => {
         size={'large'}
         animating={loading}
         style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}
-      />
-      <CustomSnackBar
-        visible={visible}
-        onClose={() => setVisible.false()}
-        desc={errorEmail ? errorEmail : errorName ? errorName : errorPass ? errorPass : errorAggree}
       />
       <View style={styles.pageContainer}>
         <View style={[styles.header, globalStyle.padding]}>

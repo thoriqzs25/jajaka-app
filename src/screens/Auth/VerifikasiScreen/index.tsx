@@ -1,23 +1,41 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import ImageView from '@src/components/ImageView';
+import useBoolean from '@src/hooks/useBoolean';
 import SubPages from '@src/layouts/SubPages';
 import { navigate } from '@src/navigation';
+import { setErrorMessage } from '@src/redux/actions/error';
+import { store } from '@src/redux/store';
 import { autoLogin, resendVerification } from '@src/services/auth';
 import { RootState } from '@src/types/states/root';
 import colours from '@src/utils/colours';
 import { fontFamily, fontFamilyDM, fontFamilyLex } from '@src/utils/fonts';
 import { useCallback, useEffect, useState } from 'react';
-import { AppState, AppStateStatus, StyleSheet, Text, View } from 'react-native';
+import { AppState, AppStateStatus, StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 
 const VerifikasiScreen = () => {
-  const { email, token } = useSelector((store: RootState) => store.auth);
+  const { email, token } = useSelector((state: RootState) => state.auth);
+
   const [appState, setAppState] = useState<AppStateStatus>(AppState.currentState);
 
+  const { goBack } = useNavigation();
+
+  const { value: loading, setValue: setLoading } = useBoolean(false);
+
   const sendVerification = async () => {
-    if (!email) navigate('AuthScreen');
-    else await resendVerification(email);
+    setLoading.true();
+    try {
+      if (!email) navigate('AuthScreen');
+      else {
+        const res = await resendVerification(email);
+        if (res.message) store.dispatch(setErrorMessage('Berhasil kirim verifikasi'));
+      }
+    } catch (e) {
+      console.log('line 34', e);
+    } finally {
+      setLoading.false();
+    }
   };
 
   useEffect(() => {
@@ -38,6 +56,11 @@ const VerifikasiScreen = () => {
   return (
     <SubPages title=''>
       <View style={styles.container}>
+        <ActivityIndicator
+          size={'large'}
+          animating={loading}
+          style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}
+        />
         <ImageView name='empty-chat' style={styles.img} />
         <Text style={[styles.defaultText, styles.title]}>Verifikasi</Text>
         <Text style={[styles.defaultText, styles.desc]}>
@@ -54,7 +77,7 @@ const VerifikasiScreen = () => {
         </View>
         <View style={[styles.linkContainer, { position: 'absolute', bottom: 0 }]}>
           <Text style={[styles.defaultText, styles.link]}>Ada kesalahan penulisan data? </Text>
-          <TouchableOpacity activeOpacity={0.75}>
+          <TouchableOpacity activeOpacity={0.75} onPress={() => goBack()}>
             <Text
               style={[styles.defaultText, styles.link, { color: colours.redNormal, fontFamily: fontFamilyDM.medium }]}>
               Kembali
