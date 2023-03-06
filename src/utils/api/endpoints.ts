@@ -9,6 +9,8 @@ export const API = {
     queryNews: (nId?: number, q?: string) => `/news/search?news_id=${nId ?? 0}&q=${q ?? ''}`,
   },
   user: {
+    //PUT
     updatePhoto: '/user/profile/image',
+    changePassword: '/user/profile/password',
   },
 };

@@ -44,7 +44,7 @@ const Profile = () => {
   const [userType, setType] = useState<string>('konsultan');
   const { value: logoutModal, setValue: setModal1 } = useBoolean(false);
 
-  const { user } = useSelector((state: RootState) => state);
+  const user = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
   const onClick = (code: string) => {
@@ -121,9 +121,9 @@ const Profile = () => {
         </View>
         <View style={[styles.container, { justifyContent: 'center', alignItems: 'center', marginTop: 90 }]}>
           <View style={{ position: 'absolute', top: -70 }}>
-            {user.profile_url !== null ? (
-              <Image
-                source={{ uri: `data:image/png;base64,${user.profile_url}` }}
+            {user.profile_url !== undefined ? (
+              <ImageView
+                remoteAssetFullUri={user.profile_url as string}
                 style={{
                   width: 144,
                   height: 144,

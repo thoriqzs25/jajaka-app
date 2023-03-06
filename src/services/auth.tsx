@@ -80,3 +80,24 @@ export const autoLogin = async () => {
     throw e;
   }
 };
+
+export const changePassword = async (payload: { new_password: string; old_password: string }) => {
+  const { auth } = store.getState();
+
+  try {
+    const response = (await axiosRequest({
+      method: 'PUT',
+      url: API.user.changePassword,
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+      data: payload,
+    })) as AuthResponse;
+
+    // console.log('line 91', response);
+    return response;
+  } catch (e) {
+    console.log('line 40', e);
+    throw e;
+  }
+};
