@@ -2,6 +2,7 @@ import { store } from '@src/redux/store';
 import { axiosRequest } from '@src/utils/api/api';
 import { API } from '@src/utils/api/endpoints';
 import axios from 'axios';
+import { autoLogin } from './auth';
 
 export const updatePhotoUser = async (formData: FormData) => {
   const { auth } = store.getState();
@@ -24,11 +25,7 @@ export const updatePhotoUser = async (formData: FormData) => {
         console.log('line 26', e);
       });
 
-    // store.dispatch(
-    //   userLogin({ token: response.data.access_token, email: response.data.user.email, phone: response.data.user.phone })
-    // );
-    // store.dispatch(waitingVerif({ token: response.data.access_token, email: payload.email }));
-    console.log('line 24', response);
+    await autoLogin();
     return response;
   } catch (e) {
     console.log('line 40', e);

@@ -76,6 +76,15 @@ const PengaturanAkun = () => {
                 borderRadius: 700,
               }}
             />
+          ) : user.profile_url !== undefined ? (
+            <ImageView
+              remoteAssetFullUri={user.profile_url as string}
+              style={{
+                width: 144,
+                height: 144,
+                borderRadius: 700,
+              }}
+            />
           ) : (
             <CustomIcon name={'user-solid-circle'} size={140} style={{ width: 144 }} />
           )}

@@ -24,11 +24,6 @@ const userReducer = (prevState = defaultState, action: UserReducerAction) => {
         phone: action.payload.phone,
         profile_url: action.payload.profile_url,
       };
-    case 'UPDATE_PHOTO':
-      return {
-        ...prevState,
-        profile_url: action.base64,
-      };
     case 'REMOVE_USER':
       return {
         defaultState,
