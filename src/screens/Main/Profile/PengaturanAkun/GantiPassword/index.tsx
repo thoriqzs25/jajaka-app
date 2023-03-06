@@ -18,6 +18,7 @@ const GantiPassword = () => {
   const { goBack } = useNavigation();
 
   const handleChangePassword = async () => {
+    console.log('line 21', 'change');
     try {
       if (newPass.length > 0 && newPass === confPass) {
         const payload = {

@@ -26,10 +26,6 @@ const appTheme = {
 
 const AppComponent = () => {
   const { message } = useSelector((state: RootState) => state.error);
-  // useEffect(() => {
-  //   console.log('line 29', message);
-  // }, []);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     autoLogin();
@@ -39,15 +35,7 @@ const AppComponent = () => {
     <View style={styles.screenContainer}>
       <NavigationContainer theme={appTheme} ref={navigationRef}>
         <StatusBar barStyle={'light-content'} backgroundColor={colours.backgroundPrimary} />
-        <CustomSnackBar
-          visible={message !== null}
-          onClose={() => {
-            dispatch(resetErrorMessage());
-          }}
-          desc={message ?? ''}
-        />
-        {/* <ErrorBox visible={message !== null} title={''} content={message ?? ''} onClose={handleInitError} /> */}
-        {/* <ErrorModal /> */}
+        <CustomSnackBar visible={message !== null} desc={message ?? ''} />
         <CodepushCheck />
         <SwitchStackNavigator />
       </NavigationContainer>

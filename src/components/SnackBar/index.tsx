@@ -1,4 +1,6 @@
 import useBoolean from '@src/hooks/useBoolean';
+import { resetErrorMessage } from '@src/redux/actions/error';
+import { store } from '@src/redux/store';
 import { UseBoolean } from '@src/types/hooks/UseBoolean';
 import colours from '@src/utils/colours';
 import { SCREEN_WIDTH } from '@src/utils/deviceDimensions';
@@ -9,11 +11,20 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Button, Snackbar } from 'react-native-paper';
 import CustomIcon from '../CustomIcons';
 
-const CustomSnackBar = ({ visible, onClose, desc }: { visible: boolean; onClose: () => void; desc: string }) => {
+const CustomSnackBar = ({ visible, desc }: { visible: boolean; desc: string }) => {
+  const onClose = () => {
+    store.dispatch(resetErrorMessage());
+  };
+
+  const bgColor =
+    desc?.toLowerCase().includes('berhasil') || desc?.toLowerCase().includes('sukses')
+      ? colours.greenNormal
+      : colours.redNormal;
+
   useEffect(() => {
     if (visible) {
       setTimeout(() => {
-        onClose?.();
+        store.dispatch(resetErrorMessage());
       }, 3000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,7 +33,11 @@ const CustomSnackBar = ({ visible, onClose, desc }: { visible: boolean; onClose:
   return (
     <View style={[styles.container, { backgroundColor: colours.blueNormal }]}>
       <View style={[styles.subContainer]}>
-        <Snackbar style={styles.snackbar} visible={visible} onDismiss={onClose} duration={2600}>
+        <Snackbar
+          style={[styles.snackbar, { backgroundColor: bgColor }]}
+          visible={visible}
+          onDismiss={onClose}
+          duration={2600}>
           <View
             style={{
               alignItems: 'center',
@@ -56,7 +71,6 @@ const styles = StyleSheet.create({
   },
   snackbar: {
     borderRadius: 12,
-    backgroundColor: colours.redNormal,
   },
 });
 
