@@ -30,10 +30,6 @@ const Test = createStackNavigator();
 const codePushOptions = {
   checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
   mandatoryInstallMode: CodePush.InstallMode.IMMEDIATE,
-  // updateDialog: {
-  //   appendReleaseDescription: true,
-  //   title: 'a new update is available!',
-  // },
 };
 
 let App = () => {

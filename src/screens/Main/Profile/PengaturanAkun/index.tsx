@@ -13,6 +13,12 @@ import { fontFamilyDM } from '@src/utils/fonts';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { navigate } from '@src/navigation';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@src/utils/deviceDimensions';
+import { Buffer } from 'buffer';
+import { updatePhoto } from '@src/redux/actions/user';
+import { updatePhotoUser } from '@src/services/user';
+import RNFS from 'react-native-fs';
+
+// import RNFetchBlob from 'rn-fetch-blob';
 
 const PengaturanAkun = () => {
   const { user } = useSelector((state: RootState) => state);
@@ -27,17 +33,34 @@ const PengaturanAkun = () => {
       mediaType: 'photo',
       maxHeight: 400,
       maxWidth: 400,
+      includeBase64: true,
+      includeExtra: true,
+      quality: 1,
     });
 
     if (image.assets) {
-      const tempFile = {
-        fileName: 'image of thoriq',
-        // fileData: image.assets[0]?.base64,
-        fileUri: image.assets[0]?.uri,
-      };
+      const base64 = image.assets[0]?.base64 ?? '';
+      const contentType = image.assets[0]?.type ?? '';
+      const uri = image.assets[0]?.uri ?? '';
 
-      setPhoto(tempFile.fileUri);
-      console.log('Response', tempFile);
+      try {
+        const formData = new FormData();
+
+        formData.append('image', {
+          //@ts-ignore
+          uri: uri,
+          //@ts-ignore
+          type: 'image/jpeg',
+          //@ts-ignore
+          name: 'thoriq.jpg',
+        });
+
+        await updatePhotoUser(formData);
+      } catch (e) {
+        console.log('line 58', e);
+      } finally {
+        setPhoto(uri);
+      }
     }
   };
 
