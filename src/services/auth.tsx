@@ -5,6 +5,7 @@ import { store } from '@src/redux/store';
 import { userLogin, waitingVerif } from '@src/redux/actions/auth';
 import { userInfo } from '@src/redux/actions/user';
 import { setErrorMessage } from '@src/redux/actions/error';
+import { DetailAndMessage, GeneralResponse } from '@src/types/props/request';
 
 export const signIn = async (payload: SignInPayload) => {
   try {
@@ -95,6 +96,25 @@ export const changePassword = async (payload: { new_password: string; old_passwo
     })) as AuthResponse;
 
     // console.log('line 91', response);
+    return response;
+  } catch (e) {
+    console.log('line 40', e);
+    throw e;
+  }
+};
+
+export const resetPassword = async (email: string) => {
+  const payload = {
+    email: email,
+  };
+  try {
+    const response = (await axiosRequest({
+      method: 'PUT',
+      url: API.auth.resetPassword,
+      data: payload,
+    })) as DetailAndMessage;
+    // })) as GeneralResponse<DetailAndMessage>;
+
     return response;
   } catch (e) {
     console.log('line 40', e);

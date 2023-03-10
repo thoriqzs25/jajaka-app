@@ -12,13 +12,13 @@ const CustomCheckbox = ({
   boxStyle,
   title,
   setValue,
-  error = '',
+  error = false,
 }: {
   style?: StyleProp<any>;
   boxStyle?: StyleProp<any>;
   title?: string;
   setValue: UseBoolean;
-  error?: string;
+  error?: boolean;
 }) => {
   const { value: active, setValue: setActive } = useBoolean(false);
 

@@ -130,7 +130,7 @@ const AuthScreen = () => {
         </View>
         <CustomCarousels />
         {user ? (
-          <LoginForm setEmail={setEmail} setPassword={setPassword} email={email} errorEmail={errorEmail} />
+          <LoginForm setEmail={setEmail} setPassword={setPassword} email={email} errorEmail={!!errorEmail} />
         ) : (
           <SigninForm
             name={name}
@@ -142,10 +142,10 @@ const AuthScreen = () => {
             setPhoneNum={setPhoneNum}
             setPasswordConf={setPasswordConf}
             setTerm={setTerm}
-            errorEmail={errorEmail}
-            errorName={errorName}
-            errorPass={errorPass}
-            errorAggree={errorAggree}
+            errorEmail={!!errorEmail}
+            errorName={!!errorName}
+            errorPass={!!errorPass}
+            errorAggree={!!errorAggree}
           />
         )}
         <View style={[globalStyle.paddingHorizontal]}>

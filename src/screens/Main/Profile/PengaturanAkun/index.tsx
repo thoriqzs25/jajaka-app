@@ -14,7 +14,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { navigate } from '@src/navigation';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@src/utils/deviceDimensions';
 import { Buffer } from 'buffer';
-import { updatePhoto } from '@src/redux/actions/user';
 import { updatePhotoUser } from '@src/services/user';
 
 // import RNFetchBlob from 'rn-fetch-blob';

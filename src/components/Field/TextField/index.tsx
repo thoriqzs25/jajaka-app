@@ -1,9 +1,17 @@
 import CustomIcon from '@src/components/CustomIcons';
 import useBoolean from '@src/hooks/useBoolean';
+import { navigate } from '@src/navigation';
 import colours from '@src/utils/colours';
 import { fontFamily, fontFamilyDM } from '@src/utils/fonts';
 import { useEffect, useRef, useState } from 'react';
-import { KeyboardTypeOptions, StyleProp, StyleSheet, StyleSheetProperties, TextInputProps } from 'react-native';
+import {
+  KeyboardTypeOptions,
+  StyleProp,
+  StyleSheet,
+  StyleSheetProperties,
+  TextInputProps,
+  TouchableOpacity,
+} from 'react-native';
 import { Text, TextInput, View } from 'react-native';
 
 const TextField = ({
@@ -16,7 +24,7 @@ const TextField = ({
   value,
   autoCapitalize = 'none',
   keyboardType = 'default',
-  error = '',
+  error = false,
   inputStyle,
 }: {
   title?: string;
@@ -28,7 +36,7 @@ const TextField = ({
   value?: string;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
   keyboardType?: KeyboardTypeOptions;
-  error?: string;
+  error?: boolean;
   inputStyle?: StyleProp<any>;
 }) => {
   const { value: active, setValue: setActive } = useBoolean(false);
@@ -48,8 +56,13 @@ const TextField = ({
   return (
     <View style={[styles.wholeContainer, style]}>
       {title && (
-        <View style={styles.labelContainer}>
+        <View style={[styles.labelContainer, { flexDirection: 'row', justifyContent: 'space-between' }]}>
           <Text style={styles.labelTitle}>{title}</Text>
+          {title === 'Password' && (
+            <TouchableOpacity activeOpacity={0.75} onPress={() => navigate('LupaPassword')}>
+              <Text style={{ color: colours.redNormal }}>Lupa Password?</Text>
+            </TouchableOpacity>
+          )}
         </View>
       )}
       <View

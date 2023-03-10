@@ -30,10 +30,10 @@ const SigninForm = ({
   setPhoneNum: (val: string) => void;
   setPasswordConf: (val: string) => void;
   setTerm: UseBoolean;
-  errorEmail?: string;
-  errorName?: string;
-  errorPass?: string;
-  errorAggree?: string;
+  errorEmail?: boolean;
+  errorName?: boolean;
+  errorPass?: boolean;
+  errorAggree?: boolean;
 }) => {
   return (
     <View style={[styles.sectionContainer, globalStyle.paddingHorizontal]}>

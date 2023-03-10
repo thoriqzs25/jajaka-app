@@ -14,7 +14,7 @@ const LoginForm = ({
   email?: string;
   setEmail: (val: string) => void;
   setPassword: (val: string) => void;
-  errorEmail?: string;
+  errorEmail?: boolean;
 }) => {
   return (
     <View style={[styles.sectionContainer, globalStyle.padding]}>
